@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Container restart policies in docker-compose</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					dockercompose
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Container restart policies in docker-compose</h2>
+					<div class="news_box">
+						<p><ul><li><strong>"no"</strong><br/>
+Never attempt to restart this container if it stops or crashes. It is embraced in quotes, otherwise it will be considered as "false"</li>
+							<li><strong>always</strong><br/>
+If this container stops "for any reason" automatically attempt to restart it</li>
+							<li><strong>on-failure</strong><br/>
+Only restart if the container stops with an error code</li>
+							<li><strong>unless-stopped</strong><br/>
+								Always restart unless we (the developers) forcibly stop it</li></ul><br/>
+Example:
+<pre><code>version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    <strong>restart: always</strong>
+    build: .
+    ports:
+      - "4001:8081"</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

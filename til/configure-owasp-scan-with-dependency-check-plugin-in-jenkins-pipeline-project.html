@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Configure OWASP scan with dependency check plugin in Jenkins pipeline project</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+					owasp jenkins ansible
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Configure OWASP scan with dependency check plugin in Jenkins pipeline project</h2>
+					<div class="news_box">
+<ol><li>Make sure you have installed the OWASP dependency check plugin in Jenkins</li>
+<li>install dependency-check script using this Ansible role (I have used it for jenkins master and slave). It  will simply install dependency-check shell script in <strong>/opt</strong> directory<br />
+roles/owasp-check-install/defaults/main.yml:
+<pre><code>---
+dependency_check_version: 5.1.1</code></pre>
+roles/owasp-check-install/tasks/main.yml
+<pre><code>---
+- name: Delete previously unpacked /opt/dependency-check
+  file:
+    path: /opt/dependency-check
+    state: absent
+  become: yes
+
+- name: "Download dependency-check-{{ dependency_check_version }}-release.zip"
+  get_url:
+    url: "https://dl.bintray.com/jeremy-long/owasp/dependency-check-{{ dependency_check_version }}-release.zip"
+    dest: /opt/dc.zip
+  become: yes
+
+- name: Extract dc.zip into /opt/dependency-check
+  unarchive:
+    src: /opt/dc.zip
+    dest: /opt
+    remote_src: yes
+  become: yes
+
+- name: Recursively change ownership of a directory /opt/dependency-check
+  file:
+    path: /opt/dependency-check
+    state: directory
+    recurse: yes
+    owner: jenkins
+    group: jenkins
+  become: yes</code></pre></li>
+<li>Modify the Jenkins pipeline. I used direct invocation, because calling the plugin gives me <strong>Null pointer exception</strong> in Jenkins. Add new step for scan:
+<pre><code>    stage("Dependency Check") {
+        steps {
+   sh '''
+    /opt/dependency-check/bin/dependency-check.sh --out . -s $WORKSPACE --project test -f HTML -f XML
+    '''
+    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+    archiveArtifacts allowEmptyArchive: true, artifacts: '**/dependency-check-report.html', onlyIfSuccessful: true
+  }}</code></pre></li></ol>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

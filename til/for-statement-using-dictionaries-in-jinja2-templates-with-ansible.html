@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | for statement using dictionaries in jinja2 templates with Ansible</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+					ansible jinja2
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>for statement using dictionaries in jinja2 templates with Ansible</h2>
+					<div class="news_box">
+<strong>tasks/main.yml</strong>:
+<pre><code>...
+- name: configure
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload haproxy
+...</code></pre>
+
+<strong>templates/haproxy.cfg.j2</strong>:
+<pre><code>...
+backend refinery
+{% for server, value in haproxy_backends.iteritems() %}
+    server {{ server }} {{ value.ip }}:8080 check
+{% endfor %}
+...</code></pre>
+
+<strong>defaults/main.yml</strong>:
+<pre><code>...
+haproxy_stats: true
+haproxy_backends:
+  refinery01:
+    ip: 192.168.5.41
+  refinery02:
+    ip: 192.168.5.42
+...</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

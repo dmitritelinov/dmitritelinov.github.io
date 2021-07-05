@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | What is a Linux distribution</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>What is a Linux distribution</h2>
+					<div class="news_box">
+Is a collection of components that form a Linux system:
+<ol><li>Linux kernel and device drivers</li>
+Kernel connects application layer to the hardware. It is like an engine for a car. it’s job is to manage the low level functions of an OS, such as memory management, process handling, I/O, low-level networking and any other tasks that require direct communication with the hardware. In this low level abstraction process all system calls are made to the kernel.
+For Linux everything is a file. For instance hardware is mapped by a file hierarchy via /dev and /sys and process information is found at /proc.<br />
+Device drivers are pieces of software that are designed to speak to certain types of hardware: you're going to have drivers that work with hard disk, drivers that works for different types of videocards, DVD drives, BlueRay drives, network cards etc.
+<li>GNU coreutils and util-linux</li>
+Are basic file, shell and text manipulation foundation utilities that are expected to exist on every Linux distribution. Examples: pwd, ls cat, more, less, cut, fsck, cp, dd, tail etc. Earlier, these tools were packaged as fileutils, extutils, shellutils, but recently, they are known as a single package - coreutils.
+Also, it is additional software package - util-linux, distributed by the Linux Kernel Organization for use as part of the Linux operating system
+<li>Additional software, libraries and documentation</li>
+Like bootloader - software that manages boot process, daemons or background services; init system - subsystem that controls the daemons; package management system etc.<br />
+Also there are some libraries that provide extra functionalily, things that the kernel may need in order to perform it's job efficiently: math functions, how to tell date/time on a system and things of that nature.
+<li>A window system (optional) - graphical server, most common being the X Server</li>
+Is the display server for X Windows System: a framework for the GUI environment. X is architecture agnostic framework for remote GUIs and input devices. X Server is designed to be used over network connections. As X clients may be applications such as browser and terminal.
+<li>GUI (optional)</li>
+GUI is often referred to as Desktop Environment like KDE, Gnome, Unity, Cinnamon, LXDE, LXQT, MATE, Xfce. This is the environment that permits you to navigate with mouse and folders.
+<li>Applications</li>
+Thousands of software titles that can be found and installed by package manager or compiled from sources<br />
+These are the programs which you are actually interract on a computer: the web-browser is an application that is need to communicate with the display in order user to see the results. This application has to work with various types of library files which will help the application to translate it's communications in the types of communications that the kernel will understand in order to send this messages down to the hardware</ol>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

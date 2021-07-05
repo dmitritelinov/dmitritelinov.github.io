@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Common Linux network tools</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					linux
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Common Linux network tools</h2>
+					<div class="news_box">
+<p><pre><code>ping
+ping -f google.com # test your network functionality
+ping -f -s 4096 ubuntu # ping flood
+
+netstat -tulpen # everything that it is listening on this computer
+
+ss #socket stats alternative to netstat
+ss -tuna
+
+nmap # very rich network scanner
+nmap 192.168.4.2
+name localhost
+
+dig # it is about DNS, allows you to test functionality of your DNS server
+dig nu.nl</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

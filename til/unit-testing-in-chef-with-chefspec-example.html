@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Unit testing in Chef with ChefSpec example</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					chef devops
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Unit testing in Chef with ChefSpec example</h2>
+					<div class="news_box">
+						<p>Let's suppose that we have the following coookbook -<br/>
+<strong>recipes/server.rb</strong>:
+<pre><code>package 'apache2'
+
+template '/var/www/html/index.html' do
+  source 'index.html.erb'
+  variables(:name =&gt; "Dmitri") 
+end
+
+service 'apache2' do
+  action [:enable, :start ]
+  subscribes :restart, 'template[/var/www/html/index.html]', :immediately
+end</code></pre>
+Unit testing is executed from these files - <br/>
+<strong>spec/spec_helper.rb</strong>:
+<pre><code>require 'chefspec'
+require 'chefspec/berkshelf'
+
+ChefSpec::Coverage.start!</code></pre>
+<strong>spec/unit/recipes/default_spec.rb</strong>:
+<pre><code>require 'spec_helper'
+
+describe 'apache::default' do
+  context 'When all attributes are default, on an unspecified platform' do
+    let(:chef_run) do
+      runner = ChefSpec::ServerRunner.new({:platform =&gt; 'centos', :version =&gt; '7.0'})
+      runner.converge(described_recipe)
+    end
+
+    it 'installs the correct package' do
+      expect(chef_run).to install_package('apache2')
+    end
+
+    it 'creates an default html file' do
+      expect(chef_run).to create_template('/var/www/html/index.html')
+    end
+
+    it 'starts the service' do
+      expect(chef_run).to start_service('apache2')
+    end
+    
+    it 'starts the service' do
+      expect(chef_run).to enable_service('apache2')
+    end
+  end
+end</code></pre>
+Execute the tests in following way:
+<pre><code>chef exec rspec spec/unit/recipes/default_spec.rb</code></pre>
+Example output:
+<pre><code>....
+
+Finished in 0.37569 seconds (files took 0.97682 seconds to load)
+4 examples, 0 failures
+
+
+ChefSpec Coverage report generated...
+
+  Total Resources:   3
+  Touched Resources: 3
+  Touch Coverage:    100.0%
+
+You are awesome and so is your test coverage! Have a fantastic day!</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

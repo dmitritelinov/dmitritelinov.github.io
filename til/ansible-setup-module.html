@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Ansible Setup module</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ansible
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Ansible Setup module</h2>
+					<div class="news_box">
+						<p>This module is automatically called by the playbooks to gather useful variables about remote hosts that can be subsequently used in playbooks.<br/><br/>
+						We can call this module directly with the <strong>ansible</strong> command to see the variables available for a target.<br/><br/>
+						The information provided by this command are referred to as <strong>facts</strong> and correspondingly Ansible provides many facts about the system automatically.<br/><br/>
+In Ansible 2.10, this has been moved to ansible-base ans is classed as 'builtin' plugin. It can be referenced via the name 'setup' or 'ansible.builtin.setup':
+<pre><code>ansible -i inv localhost -m setup
+ansible -i inv localhost -m ansible.builtin.setup</code></code></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

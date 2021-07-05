@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | SSH connectivity overview</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ssh
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>SSH connectivity overview</h2>
+					<div class="news_box">
+						<p><ol><li>client requests an SSH session with server</li>
+						<li>SSH Protocol sessions are exchanged, if they are compatible - they agree, otherwise - no connection</li>
+						<li>Key Exchange information is shared with the cryptographic primitives that each side supports</li>
+						<li>Both client and server negociate session key using Diffie-Helman algorithm, creating a symmetric key. At this point, if the server is not known to the client, you will see the request to add the key fingerprint to the clients known_hosts file</li>
+						<li>New keys between client and server are established. Future communication uses these keys</li>
+						<li>Encrypted session established, ready for authentication</li></ol></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

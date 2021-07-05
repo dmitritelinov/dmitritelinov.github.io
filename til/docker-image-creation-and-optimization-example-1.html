@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Docker image creation and optimization Example 1</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Docker image creation and optimization Example 1</h2>
+					<div class="news_box">
+						<p>Create a new image.<br/>
+						First create a folder for project named <strong>docker-bp</strong>:
+						<pre><code>$ mkdir docker-bp
+$ cd docker-bp</code></pre>
+Create files:
+<pre><code>$ cat custom.conf
+server {
+  listen 80;
+  server_name docker.pctags.com;
+  location / {
+    root /opt/app;
+    index index.html index.htm;
+  }
+  location /test {
+    return 200 '$hostname\n';
+  }
+}
+$ mkdir app
+$ cat app/index.html 
+&lt;h1&gt;Hello from Nginx!&lt;/h1&gt;
+$ cat Dockerfile 
+FROM debian
+COPY . /opt
+RUN apt-get update
+RUN apt-get install -y nginx
+COPY custom.conf /etc/nginx/conf.d/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+Build the image:
+<pre><code>$ docker build -t docker-bp .</code></pre>
+Check the size of Docker image <strong>docker-bp</strong> at this step:
+<pre><code>$ docker images | grep docker-bp</code></pre>
+<strong>196MB</strong><br/><br/>
+Optimize – step 2:<br/>
+Make RUN to execute in a single command<br/>
+Remove apt-get cache<br/>
+<pre><code>$ cat Dockerfile
+FROM debian
+COPY . /opt
+RUN apt-get update &amp;&amp; apt-get install -y \
+    nginx \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+COPY custom.conf /etc/nginx/conf.d/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+Build the image:
+<pre><code>$ docker build -t docker-bp .</code></pre>
+Check the size of Docker image <strong>docker-bp</strong> at this step:
+<pre><code>$ docker images | grep docker-bp</code></pre>
+<strong>178MB</strong><br/><br/>
+Optimize – step 3:<br/>
+Add .dockerignore
+<pre><code>$ cat .dockerignore
+.git
+Dockerfile</code></pre>
+Build the image:
+<pre><code>docker build -t docker-bp .</code></pre>
+Check the size of Docker image <strong>docker-bp</strong> at this step:
+<pre><code>$ docker images | grep docker-bp</code></pre>
+<strong>175MB</strong><br/><br/>
+Optimize – step 4:<br/>
+Change base image to minimal Linux – Alpine
+<pre><code>$ cat Dockerfile 
+FROM alpine
+COPY . /opt
+RUN apk add --no-cache nginx &amp;&amp; mkdir -p /run/nginx
+COPY custom.conf /etc/nginx/conf.d/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+Build the image:
+<pre><code>$ docker build -t docker-bp .</code></pre>
+Check the size of Docker image <strong>docker-bp</strong> at this step:
+<pre><code>$ docker images | grep docker-bp</code></pre>
+<strong>6.9MB</strong><br/><br/>
+Optimize step 5 – change the order of instructions to make effective use of cache (creating Docker layers):
+<pre><code>$ cat Dockerfile 
+FROM alpine
+RUN apk add --no-cache nginx &amp;&amp; mkdir -p /run/nginx
+EXPOSE 80
+COPY custom.conf /etc/nginx/conf.d/
+COPY . /opt
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+Now, change something in code in <strong>app/index.html</strong> and rebuild image. You’ll notice a faster rebuild, because Docker used cache.<br/><br/>
+Optimize step 6 – use image tags and versions for packages to make sure that your image will always work:
+<pre><code>$ cat Dockerfile 
+FROM alpine:3.11.5
+ENV NGINX_VERSION 1.16.1-r6
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.11/main nginx=${NGINX_VERSION} \
+    &amp;&amp; mkdir -p /run/nginx
+EXPOSE 80
+COPY custom.conf /etc/nginx/conf.d/
+COPY . /opt
+CMD ["nginx", "-g", "daemon off;"]</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

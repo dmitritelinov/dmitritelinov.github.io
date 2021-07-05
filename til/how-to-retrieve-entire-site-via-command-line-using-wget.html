@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | How to retrieve entire site via command line using wget</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+					wget
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>How to retrieve entire site via command line using wget</h2>
+					<div class="news_box">
+<pre><code>wget -rkpNl5 www.pctags.com</code></pre>
+<b>-r</b> – Retrieve recursively<br />
+<b>-k</b> – Convert the links in the document to make them suitable for local viewing<br />
+<b>-p</b> – Download everything (inlined images, sounds, and referenced stylesheets)<br />
+<b>-N</b> – Turn on time-stamping<br />
+<b>-l5</b> – Specify recursion maximum depth level 5<br /><br />
+wget is a small non-interactive network retriever which is part of <a href="http://www.gnu.org/" target="_blank">GNU project</a>.<br />
+This simple, but powerful tool could be easily used to download a website to a local directory, building recursively all directories, getting HTML, images, and other files from the server to your computer.
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

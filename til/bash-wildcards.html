@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | bash wildcards</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+bash
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>bash wildcards</h2>
+					<div class="news_box">
+Also known as globbing. A wildcard is a character that can be used as a substitute for any of a class of characters in a search:<br />
+<strong>*</strong> - zero or more characters, everything, unlimited number of characters<br />
+<strong>?</strong> - single character<br />
+<strong>[]</strong> - range of characters, <strong>[a-c]</strong> or <strong>[z-s]</strong> (it is the same as <strong>[s-z]</strong>) or <strong>[lm]</strong>- range, valid in an opposite order as well, or specific characters<br />
+<strong>{}</strong> - sequence of characters<br />
+<strong>\</strong> - escape<br />
+<strong>^</strong> - beginning of the line<br />
+<strong>$</strong> - end of line<br /><br />
+You can combine them. Examples:<br />
+cd /usr/bin<br />
+<strong>ls a*</strong> - files that starts with <em>a</em><br />
+<strong>ls *a</strong> - files that ends with <em>a</em><br />
+<strong>ls a?s*</strong> - ensures that there is at least one character behind the <em>a</em> and <em>s</em> following after that, Ex: <em>alsamixer alsatplg ansible</em><br />
+<strong>ls a[nm]*</strong> - shows the files that have <em>n</em> or <em>m</em> on the 2nd position. Ex.: <em>amidi animate amixer</em><br />
+<strong>ls a[a-c]*</strong> - second character is between the range <em>a</em> and <em>c</em>. Ex.: <em>aa-enabled aa-exec aconnect</em><br />
+<strong>for i in {0..9}; do echo $i; done</strong> - will type numbers from <em>0</em> to <em>9</em> in separate line
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

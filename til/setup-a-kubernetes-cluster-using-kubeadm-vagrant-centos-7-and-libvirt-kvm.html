@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Setup a Kubernetes cluster using kubeadm, Vagrant, Centos 7 and libvirt (KVM)</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes libvirt kvm centos vagrant
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Setup a Kubernetes cluster using kubeadm, Vagrant, Centos 7 and libvirt (KVM)</h2>
+					<div class="news_box">
+<p>Create a working directories for Vagrant machines:
+<pre><code>mkdir machines
+cd machines/
+mkdir master worker{1,2,3}</code></pre>
+Add latest Centos 7 image:
+<pre><code>vagrant box add centos/7</code></pre>
+Create Vagrantfiles:
+<pre><code>cd master/
+cat master/Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.hostname = "master.example.com"
+  config.vm.provider "libvirt" do |lv|
+     lv.memory = "2048"
+     lv.cpus = 2
+  end
+  config.vm.provision "shell", inline: &lt;&lt;-SHELL
+     yum install -y vim bash-completion git
+   SHELL
+end
+cat ../worker1/Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.hostname = "worker1.example.com"
+  config.vm.provider "libvirt" do |lv|
+     lv.memory = "1024"
+  end
+  config.vm.provision "shell", inline: &lt;&lt;-SHELL
+     yum install -y vim bash-completion git
+   SHELL
+end
+...</code></pre>
+Power up the machines (for each of those) - in separate console tabs:
+<pre><code>vagrant up --provider=libvirt
+vagrant ssh</code></pre>
+On all instances<br/>
+Install Docker runtime prerequisites:
+<pre><code>yum install -y vim yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code></pre>
+Install Docker runtime and configure it:
+<pre><code>yum install -y docker-ce
+[ ! -d /etc/docker ] &amp;&amp; mkdir /etc/docker</code></pre>
+Change Docker storage driver:
+<pre><code>cat &gt; /etc/docker/daemon.json &lt;&lt;EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ]
+}
+EOF</code></pre>
+Startup configuration:
+<pre><code>mkdir -p /etc/systemd/system/docker.service.d
+systemctl daemon-reload
+systemctl restart docker
+systemctl enable docker</code></pre>
+Disable firewall:
+<pre><code>systemctl disable --now firewalld</code></pre>
+Add kubernetes tools repository:
+<pre><code>cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF</code></pre>
+Disable SELinux:
+<pre><code>setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config</code></pre>
+Install kubeadm with tools:
+<pre><code>yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+systemctl enable --now kubelet</code></pre>
+Set iptables bridging:
+<pre><code>cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system</code></pre>
+Disable swap. Comment the line in <strong>/etc/fstab</strong>:
+<pre><code>#/swapfile none swap defaults 0 0</code></pre>
+Get the IP address of all machines and add entries to /etc/hosts:
+<pre><code>ip a # to get the IPs
+cat /etc/hosts
+192.168.121.65 master.example.com
+192.168.121.45 worker1.example.com
+192.168.121.46 worker2.example.com
+192.168.121.47 worker3.example.com</code></pre>
+Reboot Vagrant machine:
+<pre><code>reboot</code></pre>
+On master issue as root user:
+<pre><code>kubeadm init</code></pre>
+and note the following output lines:
+<pre><code>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+...
+kubeadm join 192.168.121.65:6443 --token o634ic.evnh5g70kag5j8h1 \
+    --discovery-token-ca-cert-hash sha256:78a97bb327b67c6be786af2d070db04710a97d365dce91d6eb0b55b77fb5cad0</code></pre>
+Configure kubectl at master. Switch to vagrant user and issue first 3  saved commands:
+<pre><code>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config</code></pre>
+Check cluster status:
+<pre><code>kubectl cluster-info</code></pre>
+You should get the following output:
+<pre><code>Kubernetes control plane is running at https://192.168.121.65:6443
+KubeDNS is running at https://192.168.121.65:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.</code></pre>
+
+One more check:
+<pre><code>kubectl get nodes</code></pre>
+
+Output:
+<pre><code>NAME                 STATUS     ROLES                  AGE     VERSION
+master.example.com   NotReady   control-plane,master   2m47s   v1.20.2</code></pre>
+
+Install weave network plugin - go to the <a href="https://www.weave.works/docs/net/latest/kubernetes/kube-addon/">homepage</a> and you'll find the following command for installation:
+<pre><code>kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"</code></pre>
+Check again master node:
+<pre><code>kubectl get nodes</code></pre>
+You should get the Ready state for master node:
+<pre><code>NAME                 STATUS   ROLES                  AGE     VERSION
+master.example.com   Ready    control-plane,master   5m49s   v1.20.2</code></pre>
+On workers - join the cluster by issuing saved command, run as root:
+<pre><code>kubeadm join 192.168.121.65:6443 --token o634ic.evnh5g70kag5j8h1 \
+--discovery-token-ca-cert-hash sha256:78a97bb327b67c6be786af2d070db04710a97d365dce91d6eb0b55b77fb5cad0</code></pre>
+In no more than 2 minutes, worker should join the cluster. Check it by command at master:
+<pre><code>kubectl get nodes
+NAME                   STATUS   ROLES                  AGE   VERSION
+worker1.example.com    Ready    <none>                 78s   v1.20.2
+master.example.com     Ready    control-plane,master    8m   v1.20.2</code></pre>
+Repeat for other workers. So in 10 minutes you'll have your kubeadm Vagrant cluster ready to go.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

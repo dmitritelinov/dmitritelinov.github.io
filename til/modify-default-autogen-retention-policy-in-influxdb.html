@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Modify default autogen retention policy in InfluxDB</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+					influxdb
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Modify default autogen retention policy in InfluxDB</h2>
+					<div class="news_box">
+					<pre><code>ALTER RETENTION POLICY autogen ON {{ database_name }} DURATION {{ duration }} \
+REPLICATION {{ n }} SHARD DURATION {{ shard_duration }} DEFAULT</code></pre>
+A retention policy describes the process of how InfluxDB discards old data by <b>{{ duration }}</b>, how many copies of this data are stored in the cluster <b>{{ n }}</b>. Once the data is expired it will be dropped from the database, but not one data at a time - InfluxDB will drop entire Shard Group. Time range covered by <b>{{ shard_duration }}</b> specifies interval at which a Shard Group will be deleted from database<br><br>
+When you create a database, InfluxDB automatically creates a retention policy called <b>autogen</b> with an <b>infinite</b> duration, a replication factor set to <b>one</b>, and a shard group duration set to <b>seven days</b>.
+<pre><code>duration_unit       = "ns" | "u" | "µ" | "ms" | "s" | "m" | "h" | "d" | "w"</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

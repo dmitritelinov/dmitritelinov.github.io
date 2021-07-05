@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Allow incoming SYN packets to all listening ports using iptables and Ansible</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+ansible iptables
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Allow incoming SYN packets to all listening ports using iptables and Ansible</h2>
+					<div class="news_box">
+<pre><code>- name: Gather facts on listening ports
+  listen_ports_facts:
+
+- name: iptables - allow incoming SYN packets to all listening TCP ports
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "{{ item }}"
+    ctstate: NEW
+    jump: ACCEPT
+  loop: "{{ ansible_facts.tcp_listen  | map(attribute='port') | sort | unique | list }}"
+  become: yes
+
+- name: iptables - allow all incoming SYN packets to all listening UDP ports
+  iptables:
+    chain: INPUT
+    protocol: udp
+    destination_port: "{{ item }}"
+    ctstate: NEW
+    jump: ACCEPT
+  loop: "{{ ansible_facts.udp_listen  | map(attribute='port') | sort | unique | list }}"
+  become: yes</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

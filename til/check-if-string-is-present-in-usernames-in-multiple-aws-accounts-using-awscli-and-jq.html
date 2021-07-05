@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Check if string is present in usernames in multiple AWS accounts using awscli and jq</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+aws awscli grep tr jq
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Check if string is present in usernames in multiple AWS accounts using awscli and jq</h2>
+					<div class="news_box">
+<pre><code>for profile in $(grep "\[" ~/.aws/credentials | tr -d '[|]'); \
+do echo $profile; \
+aws --profile $profile iam list-users | jq '.Users[] | select(.UserName | contains("dmitri"))'; \
+done</code></pre>This will:<ul><li>get all AWS profiles from awscli config <b>~/.aws/credentials</b></li>
+<li>filter the profiles, by removing symbols [ and ] with <b>tr</b></li>
+<li>print the profile name</li>
+<li>list all users in the AWS profile using awscli tool - an output will be a json</li>
+<li>filter the json by UserName field with <b>jq</b> which will contain the string <b>dmitri</b> and print the result</li></ul>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

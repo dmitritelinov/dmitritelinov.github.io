@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | ps</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ps linux
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>ps</h2>
+					<div class="news_box">
+						<p>This is the command line utility that allows you to get process information. It has a lot of options, really a lot. But in combination with the grep utility it will easily give you information about processes that you need.<br/>
+						If you enter this command - you will see currenly running processes for this particular session.<br/><br/>
+Get help:
+<pre><code>ps --help all</code></pre><br/>
+Show the information that you can see in <strong>top</strong> as well:
+<pre><code>ps aux</code></pre>
+processes between <strong>[]</strong> - there are kernel processes, you cannot manage them with <strong>kill</strong> command.<br/><br/>
+Another way to show process properties is by using:
+<pre><code>ps -ef</code></pre>
+it is also showing parent process id PPID<br/><br/>
+Forest display:
+<pre><code>ps fax</code></pre>
+this is a nice graphical display showing you the relation between processes<br/><br/>
+<strong>ps</strong> has a lot of filtering options. One of them is:
+<pre><code>ps aux --sort pmem</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Generate file contents using cat, here-document and environment variables</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Generate file contents using cat, here-document and environment variables</h2>
+					<div class="news_box">
+A here-document is a I/O redirection that tells the shell to read the data until the delimiter word is found. The &lt;&lt;EOF syntax is very useful when working with multi-line text in bash, eg. when assigning multi-line string to a shell variable, file or a pipe:
+<pre><code>dt@ThinkPad-T460s:~$ cat &gt;file.txt &lt;&lt;EOF
+echo test && \\
+echo $HOSTNAME && \\
+echo \$HOSTNAME
+EOF
+dt@ThinkPad-T460s:~$ cat file.txt 
+echo test && \
+echo ThinkPad-T460s && \
+echo $HOSTNAME</code></pre>
+<strong>&gt;</strong> - outputs to a file. You can use >> also.<br />
+<strong>&lt;&lt;EOF</strong> - read input from the current source until a line containing EOF word is seen. You can name this tag as you want, it's often EOF or STOP.<br /><br />
+Quotes or escape prevent parameter expansion, ex: 
+<pre><code>cat &lt;&lt;'EOF'
+or
+cat &lt;&lt;\EOF</code></pre>
+Hyphen removes leading tabs in the here-document - so the document will loose all formatting with tabs and spaces:
+<pre><code>cat &lt;&lt;-EOF</code></pre>
+You can use <strong>tee</strong> instead of <strong>cat</strong> in case you need redirection outside sudo context:
+<pre><code>sudo tee &lt;&lt;EOF /etc/hostname
+mynewhostname
+EOF</code></pre>
+The format of here-documents is:
+<pre><code>&lt;&lt;[-]delimiterword
+here-document
+delimiterword</code></pre></div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

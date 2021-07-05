@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Run OpenVAS security scanner in Docker container and scan any host for vulnerabilities</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					openvas docker security
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Run OpenVAS security scanner in Docker container and scan any host for vulnerabilities</h2>
+					<div class="news_box">
+						<p>Run Docker container which listens at https port <strong>443</strong> and have admin password <strong>iliketurtles</strong>:
+						<pre><code>docker run -d -p 443:443 -p 9390:9390 -e OV_PASSWORD=iliketurtles --name openvas9 ctdc/openvas</code></pre>
+Before to scan you need to update the vulnerability databases. Enter to the contaner:
+<pre><code>docker exec -it openvas9 bash</code></pre>
+and issue following commands to update:
+<pre><code>greenbone-nvt-sync --rsync
+greenbone-certdata-sync
+greenbone-scapdata-sync</code></pre>
+The update might take up to half an hour, depends of your Internet speed connection.<br/><br/>
+Now you can login to <strong>https://localhost:443</strong> and perform the scan. For quick scan use the Scan Wizard.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

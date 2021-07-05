@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Get how many layers your Docker image is composed of</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Get how many layers your Docker image is composed of</h2>
+					<div class="news_box">
+						<p>To know how many layers your image is composed of, and how large they are, run the <strong>docker history</strong> command, as in the following example:
+<pre><code>$ docker history docker-bp
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+35536d376bab        4 days ago          /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon…   0B                  
+f555329ef265        4 days ago          /bin/sh -c #(nop) COPY dir:7be492d9e6b762086…   225B                
+1915735df6e5        4 days ago          /bin/sh -c #(nop) COPY file:6883710475eaef4d…   182B                
+fb60981a374a        4 days ago          /bin/sh -c #(nop)  EXPOSE 80                    0B                  
+f6500d006555        4 days ago          /bin/sh -c apk add --no-cache --repository h…   1.41MB              
+599206500cb5        4 days ago          /bin/sh -c #(nop)  ENV NGINX_VERSION=1.16.1-…   0B                  
+a187dde48cd2        9 months ago        /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B                  
+&lt;missing&gt;           9 months ago        /bin/sh -c #(nop) ADD file:0c4555f363c2672e3…   5.6MB</code></pre>
+For each layer you can see:
+<ul><li>The layer’s unique hash</li>
+	<li>When that layer was created</li>
+	<li>The command that created it</li>
+	<li>The layer’s size</li></ul></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

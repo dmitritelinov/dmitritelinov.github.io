@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | docker-compose example with NodeJS and Redis</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker dockercompose redis nodejs
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>docker-compose example with NodeJS and Redis</h2>
+					<div class="news_box">
+<p>Create working dir and change to it:
+<pre><code>$ mkdir visits
+$ cd visits</code></pre>
+Create <strong>package.json</strong> file for <strong>NodeJS</strong>:
+<pre><code>$ cat package.json 
+{
+  "dependencies": {
+    "express": "*",
+    "redis": "2.8.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}</code></pre>
+Create an <strong>index.js</strong> file for <strong>NodeJS</strong> which uses <strong>Express</strong> and <strong>Redis</strong>:
+<pre><code>$ cat index.js 
+const express = require('express');
+const redis = require('redis');
+const app = express();
+const client = redis.createClient({
+  host: 'redis-server',
+  port: 6379
+  });
+client.set('visits', 0);
+app.get('/', (req, res) =&gt; {
+  client.get('visits', (err, visits) =&gt; {
+    res.send('Number of visits is ' + visits);
+    client.set('visits', parseInt(visits) + 1);
+  });
+  });
+app.listen(8081, () =&gt; {
+  console.log('Listening on port 8081');
+});</code></pre>
+Create <strong>Dockerfile</strong> for <strong>NodeJS</strong> app:
+<pre><code>$ cat Dockerfile 
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY ./index,js .
+CMD ["npm", "start"]</code></pre>
+Create <strong>docker-compose</strong> file which will start the <strong>Redis</strong> and <strong>NodeJS</strong> app:
+<pre><code>$ cat docker-compose.yml 
+version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: always
+    build: .
+    ports:
+      - "4001:8081"</code></pre>
+Bring up the containers:
+<pre><code>$ docker-compose up -d</code></pre>
+Test the application by going to the <strong>http://localhost:4001/</strong> using the browser<br/>
+After finishing testing, bring down the containers:
+<pre><code>$ docker-compose down</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Ansible File module</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ansible
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Ansible File module</h2>
+					<div class="news_box">
+						<p>Which allows you to set attributes of files and do other useful things with files, symlinks and directories.<br/><br/>
+						Using the <strong>file</strong> module with the combitation with <strong>path</strong> and <strong>state</strong> it would provide us with all we need to fulfill the same outcome as the <strong>touch</strong> command in Linux.<br/><br/>
+Examples:
+<pre><code>ansible all -m file -a 'path=/tmp/test state=touch'
+ansible all -m file -a 'path=/tmp/test state=file mode=600'</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

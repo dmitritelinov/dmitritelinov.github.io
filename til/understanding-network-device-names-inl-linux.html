@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Understanding network device names in Linux</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					linux udev bios
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Understanding network device names in Linux</h2>
+					<div class="news_box">
+						<p><strong>biosdevname udev</strong> helper utility uses device names that reveal information about physical location and <strong>systemd-udevd</strong> generates the network device names</p><br/>
+						<p><strong>em123</strong> - Ethernet Motherboard Portnumber<br/>
+						<strong>p&lt;port&gt;p&lt;slot&gt;</strong> - PCI, PCI port, PCI card network interface<br/>
+						<strong>p&lt;slot&gt;p&lt;ethernet port&gt;_&lt;virtual interface&gt;</strong> - Virtual function<br/>
+						<strong>eno123</strong> - EtherNet Onboard<br/><br/>
+						if driver doesn't reveal sufficient information, <strong>eth0</strong> etc, is used</p><br/>
+						<p><strong>biosdevname</strong> in its simplest form takes a kernel device name as an argument, and returns the BIOS-given name it "should" be.<br/><br/>
+							<strong>systemd-udevd</strong> listens to kernel events. For every event, <strong>systemd-udevd</strong> executes matching instructions specified in <strong>udev</strong> rules.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Notifications and subscriptions in Chef</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					chef
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Notifications and subscriptions in Chef</h2>
+					<div class="news_box">
+						<p>Notifications and subscriptions are properties common to all Chef resources: all resources have the ability to notify or subscribe to another resource if its state changes someway.<br/>
+						This is particular useful for configuration files: for example to change a specific configuration of a service on a disk and then reload the corresponding service that needs that configuration file.<br/>
+For this we can send a notification:
+<pre><code>notifies :action, 'resource[name]', :timer</code></pre>
+There are 3 types of timers:
+<ul><li><strong>:before</strong> - means, go ahead and notify this particular resource to take action before my actual resource that I'm embedded inside of</li>
+	<li><strong>:delayed</strong> - execute the resource that I'm inside of and then send a notification
+		<li><strong>:immediately</strong> - run as quickly as possible</li></ul><br/>
+		<strong>Example of notifications</strong>:
+<pre><code>template '/var/www/html/index.html' do
+  source 'index.html.erb'
+  variables(:name =&gt; "Dmitri-notify")
+  notifies :restart, 'service[apache2]', :immediately
+end
+
+service 'apache2' do
+  action [:enable, :start ]
+end</code></pre>
+Output:
+<pre><code>  * template[/var/www/html/index.html] action create
+    - update content in file /var/www/html/index.html from 160ee1 to ce8ed4
+    --- /var/www/html/index.html	2021-01-18 20:20:31.138788451 +0000
+    +++ /var/www/html/.chef-index20210222-2120-esasqo.html	2021-02-22 20:47:53.184162155 +0000
+    @@ -1,4 +1,4 @@
+    -Hello Dmitri
+    +Hello Dmitri-notify
+     HOSTNAME: buster
+     IPADDRESS: 192.168.121.94
+     &lt;img src='image.png'&gt;
+  * service[apache2] action restart
+    - restart service service[apache2]</code></pre><br/>
+We can also go in the opposite direction, instead of <strong>notifies</strong> we also have <strong>subscribes</strong>:<pre><code>subscribes :action, 'resource[name]', :timer</code></pre>
+we can actually listen to another resource and then take action<br/><br/>
+<strong>Example of subscription</strong>:
+<pre><code>template '/var/www/html/index.html' do
+  source 'index.html.erb'
+  variables(:name =&gt; "Dmitri")
+end
+
+service 'apache2' do
+  action [:enable, :start ]
+  subscribes :restart, 'template[/var/www/html/index.html]', :immediately
+end</code></pre>
+
+Output:
+<pre><code>  * template[/var/www/html/index.html] action create
+    - update content in file /var/www/html/index.html from ce8ed4 to 160ee1
+    --- /var/www/html/index.html	2021-02-22 20:47:53.184162155 +0000
+    +++ /var/www/html/.chef-index20210222-2687-1j8d863.html	2021-02-22 20:50:55.821208344 +0000
+    @@ -1,4 +1,4 @@
+    -Hello Dmitri-notify
+    +Hello Dmitri
+     HOSTNAME: buster
+     IPADDRESS: 192.168.121.94
+     &lt;img src='image.png'&gt;
+  * service[apache2] action restart
+    - restart service service[apache2]</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

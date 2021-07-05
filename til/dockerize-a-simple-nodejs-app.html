@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Dockerize a simple NodeJS app</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker nodejs
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Dockerize a simple NodeJS app</h2>
+					<div class="news_box">
+<p>Create a working directory:
+<pre><code>mkdir simpleweb
+cd simpleweb</code></pre>
+Create a package.json file:
+<pre><code>$ cat package.json 
+{
+  "dependencies": {
+    "express": "*"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}</code></pre>
+Create a NodeJS app:
+<pre><code>$ cat index.js 
+const express = require('express');
+const app = express();
+app.get('/', (req, res) =&gt; {
+  res.send('Hello, world!');
+  });
+  app.listen(8080, () =&gt; {
+  console.log('Listening on port 8080');
+  });</code></pre>
+Create a Dockerfile:
+<pre><code>$ cat Dockerfile 
+FROM node:alpine
+WORKDIR /usr/app
+COPY ./package.json .
+RUN npm install
+COPY ./index.js .
+CMD ["npm", "start"]</code></pre>
+Build and tag the image:
+<pre><code>docker build -t simpleweb .</code></pre>
+Run the dockerized app:
+<pre><code>docker run -p 8080:8080 simpleweb</code></pre>
+Open the browser and navigate to <strong>http://127.0.0.1:8080</strong></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | bash if</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					bash
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>bash if</h2>
+					<div class="news_box">
+						Simple if:
+<pre><code>if [ -d /etc]; then
+echo "/etc exists"
+fi</code></pre>
+if with else
+<pre><code>if [ -f /etc/fstab ]; then
+  echo "/etc/fstab exists"
+else
+  echo "/etc/fstab does not exists"
+fi</code></pre>
+if with elif and else
+<pre><code>if [ $1 = "y" ]; then
+  echo "yes"
+elif [ $1 = "n" ]; then
+  echo "no"
+else
+  echo "other"
+fi</code></pre>
+if with test
+<pre><code>if test -e /etc/hosts; then
+  echo "/etc/hosts exists"
+fi</code></pre>
+if with || and [[ ]]<br/>
+|| - other option is &&<br/>
+[[ ]] - ability to use the entire expression within the brackets themselves, also fives possiblity to use regex and file globbing within expression
+<pre><code>if [[ -f /etc/fstab || -d /var2 ]]; then
+  echo "true"
+else
+  echo "false"
+fi</code></pre>
+if with && and [ ]
+[ ] - a single expression
+<pre><code>if [ -f /etc/fstab ] && [ -d /var2 ]; then
+  echo "true"
+else
+  echo "false"
+fi</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Docker ecosystem</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Docker ecosystem</h2>
+					<div class="news_box">
+						<p><strong>Docker</strong> is a platform or ecosystem around creating and running containers that can hold just what you need for a single application or technology stack. You can assemble a stack of components that you need, run and destroy them, keeping the system clean and ucluttered with packages and data you no longer need. A container in a nutshell is a program with it's own isolated set of hardware resources. So it kind of has it's owns little space of memory, networking, CPU and disk space.<br/><br/>
+						The ecosystem consist of:<br/>
+						<ul><li><strong>Docker CLI</strong>. In a short, you use <strong>Docker CLI</strong> to deploy a <strong>Docker</strong> container, interact with <strong>Docker Server</strong>, pull images and so on. There are a large number of <strong>Docker CLI</strong> commands, which provide information relating to various objects on a given <strong>Docker</strong> host or <strong>Docker Swarm</strong> cluster.</li>
+							<li><strong>Docker Server</strong>. Builds <strong>Dockerfil</strong>es and turns them into usable images, run the containers, maintain the containers, upload the images, creates networks, keep the logs etc.. It is the core of <strong>Docker</strong> and nothing else will run without it</li>
+							<li><strong>Docker Images</strong>. A <strong>Docker Image</strong> is a read-only template that contains a set of instructions for creating a container. It provides a convenient way to package up applications and which you can share with other <strong>Docker</strong> users. Images have hash, name and tag and have the layered structure. Mostly are created from <strong>Dockerfile</strong>: each instruction from <strong>Dockerfile</strong> is creating a layer which can be reused in future builds of images.</li>
+							<li><strong>Docker Hub</strong>. Provides public and private repositories for images. This is a location where your <strong>Docker</strong> images are actually stored and comprises a collection of related images.</li>
+							<li><strong>Docker Compose</strong>. Allows to assemble application consisting of multiple containers simpler, you can declare all of them in a single configuration file started with one command.</li>
+							<li><strong>Docker Machine</strong> and <strong>Swarm</strong>. <strong>Machine</strong> - provides a set of tools for moving and scaling your local projects to a variety of virtualization and cloud providers. When combined with <strong>Swarm</strong>, <strong>Machine</strong> can create clusters of <strong>Docker</strong> instances that can be treated as one, single, large <strong>Docker</strong> instance.</li></ul></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

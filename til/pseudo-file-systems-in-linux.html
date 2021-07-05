@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Pseudo file systems in Linux</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+proc sys dev linux
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Pseudo file systems in Linux</h2>
+					<div class="news_box">
+A pseudo file system does not exists on the hard disk, it exists only in RAM when the system is running. These are primary pseudo filesystems in Linux:<br /><br />
+<strong>/proc</strong><br />
+Contains information about the processes running on the system. Processes are listed by PID in this directory along with some additional hardware information (cpuinfo, meminfo, partitions etc.)<br /><br />
+<strong>/sys</strong><br />
+Contains information about hardware and kernel modules<br /><br />
+<strong>/dev</strong><br />
+Contains actual handles to all devices that are connected to the system. Any piece of hardware thats get picked by udev, which is actual device manager, gets added to /dev. The udev works in conjunction to D-Bus which is data bus service that passes all information about everything going on within system to other services and devices.
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

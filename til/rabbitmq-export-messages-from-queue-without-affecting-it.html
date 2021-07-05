@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | RabbitMQ export messages from queue without affecting it</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					rabbitmq
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>RabbitMQ export messages from queue without affecting it</h2>
+					<div class="news_box">
+						<p>I'm using this tool: <a href="https://github.com/dubek/rabbitmq-dump-queue">rabbitmq-dump-queue</a>.<br/><br/>
+The steps:
+<pre><code>wget https://github.com/dubek/rabbitmq-dump-queue/releases/download/v0.3/rabbitmq-dump-queue-v0.3-linux-amd64.tgz
+tar xvf rabbitmq-dump-queue-v0.3-linux-amd64.tgz
+cd rabbitmq-dump-queue-v0.3-linux-amd64/
+ls -la
+mkdir out
+./rabbitmq-dump-queue -uri="amqp://rmq_admin:password@localhost:5672/" -queue=queue -max-messages=50 -output-dir=./out/</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Setup Apache vhost with LetsEncrypt certificate on Debian</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					apache letsencrypt debian
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Setup Apache vhost with LetsEncrypt certificate on Debian</h2>
+					<div class="news_box">
+						<p>Setup virtualhost on /etc/apache2/sites-available/<strong>domain.tld</strong>.conf:
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName <strong>domain.tld</strong>
+    ServerAdmin webmaster@<strong>domain.tld</strong>
+    DocumentRoot /var/www/html
+    &lt;Directory /var/www/html&gt;
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+    &lt;/Directory&gt;
+    ErrorLog ${APACHE_LOG_DIR}/<strong>domain.tld</strong>-error.log
+    CustomLog ${APACHE_LOG_DIR}/<strong>domain.tld</strong>-access.log combined
+&lt;/VirtualHost&gt;</code></pre><br/><br/>
+Enable website:
+<pre><code>sudo a2ensite <strong>domain.tld</strong>
+systemctl reload apache2</code></pre><br/><br/>
+Install LetsEncrypt:
+<pre><code>apt update
+apt install snapd
+snap install core
+snap refresh core
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot</code></pre><br/><br/>
+Install certificate for <strong>domain.tld</strong>:
+<pre><code>certbot --apache -d <strong>domain.tld</strong>
+systemctl restart apache2</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

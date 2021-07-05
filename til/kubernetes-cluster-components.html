@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Kubernetes cluster components</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Kubernetes cluster components</h2>
+					<div class="news_box">
+						<p><strong>Control plane components</strong><br/>
+						<strong>kube-apiserver</strong><br/>
+						The API Server services REST operations and provides the frontend to the cluster's shared state through which all other components interact.<br/><br/>
+						<strong>kube-controller-manager</strong><br/>
+						Control the cluster's objects. For example: responding when nodes go down, maintaining the correct number of pods for every replication controller object in the system, populates the endpoints object etc.<br/><br/>
+						<strong>kube-scheduler</strong><br/>
+						Will manage which node will take up the work (where to place the objects, pods for example). It schedules Pods to specific nodes based on labels, taints and tolerations set for the Pods.<br/><br/>
+						<strong>etcd</strong><br/>
+						Consistent and highly-available B+tree key value store used as Kubernetes backing store for all cluster data.<br/><br/>
+						<strong>optional addons</strong><br/>
+						Like DNS - implemented as coredns Pod, you'll always see it. Dashboard is a optional component that provides a web-based interface that allows you to work with Kubernetes. And you can work with components for cluster level resource monitoring and cluster level logging.<br/><br/><br/>
+						<strong>Worker components</strong><br/>
+						<strong>kubelet</strong><br/>
+						An agent that runs on each node in the cluster. It makes sure that containers are running in a Pod.<br/><br/>
+						<strong>kube-proxy</strong><br/>
+						Coordinate communication, is a network proxy that runs on each node and uses iptables, implementing part of the Kubernetes Service concept.<br/><br/>
+						<strong>container runtime</strong><br/>
+						like docker, rktd, containerd.That takes care actually of running the containers<br/><br/>
+						<strong>supervisord</strong><br/>
+						Monitors an guarantees the availability of the kubelet and container runtime.<br/><br/>
+						<strong>network agent</strong><br/>
+						Implements a software defined networking solution such as weave. An important components which needs to be installed separately.<br/><br/>
+						<strong>logging</strong><br/>
+The CNCF project Fluentd is used for unified logging in the cluster. A Fluentd agent must be installed on all of the Kubernetes nodes and if it not the case - you need to rely to the logging on the individual Pods.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

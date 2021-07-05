@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Read yaml values from encrypted file with ansible-vault using python</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+yaml python ansible
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Read yaml values from encrypted file with ansible-vault using python</h2>
+					<div class="news_box">
+Create an encrypted file <b>secrets.yml</b> with ansible-vault and enter a password:
+<pre><code>ansible-vault create secrets.yml</code></pre>
+Fill it with following contents:
+<pre><code>user: IamUsername
+password: IamPassWord</code></pre>
+Create a new python file <b>vault.py</b> which will read the <b>password</b> variable from the above encrypted yaml file:
+<pre><code>import subprocess
+import yaml
+
+def getCreds():
+    cmd = "ansible-vault view secrets.yml"
+    process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (result, error) = process.communicate()
+
+    resultYaml = yaml.load(result)
+
+    user = resultYaml['user']
+    password = resultYaml['password']
+
+    return(user, password)
+
+user, password = getCreds()
+print (password)</code></pre>
+Run the script. This is output:
+<pre><code>$ python3.6 vault.py</code></pre> 
+Vault password: <i>< enter password for encrypted yaml file ></i><br />
+IamPassWord</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

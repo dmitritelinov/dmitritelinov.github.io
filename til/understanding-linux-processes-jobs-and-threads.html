@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Understanding Linux processes, jobs and threads</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					linux systemd
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Understanding Linux processes, jobs and threads</h2>
+					<div class="news_box">
+						<p>The start of all processes is the <strong>init</strong> process which currently is <strong>systemd</strong>. This is the process that always has the PID 1 which identifies it as the top level process.</p><br/>
+						<p>From the <strong>init</strong> process, everything else is started: as a child of <strong>init</strong> process. Children can have children for themselves as well.</p><br/>
+						<p>In a parent-child relationship, the children depend on the availability of the parent. And if the parent goes away, then your child will be in problems.<br/>
+						If you will kill the parent, the children will disappear.</p><br/>
+						<p>A <strong>thread</strong> is like a process within a process, running several tasks at the same time. That's what we call a multi-threaded process.</p><br/>
+						<p>A <strong>job</strong> is a process that is running from your current shell environment. Ordinary users can manage their own jobs.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

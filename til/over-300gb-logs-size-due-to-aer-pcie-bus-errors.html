@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Over 300GB logs size due to "AER PCIe Bus" errors</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Over 300GB logs size due to "AER PCIe Bus" errors</h2>
+					<div class="news_box">
+Got a new PC and installed Debian on it. After a week, I realized that /var/log grew up in size up to 300GB - kern.log was full of such messages:
+<pre><code>db kernel: [7.936] pcieport 0000:00:1b.4: AER: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Receiver ID)
+db kernel: [7.936] pcieport 0000:00:1b.4: AER: device [8086:a2eb] error status/mask=00000001/00002000
+db kernel: [7.936] pcieport 0000:00:1b.4: AER: [ 0] RxErr                 
+db kernel: [7.936] pcieport 0000:00:1b.4: AER: Corrected error received: 0000:00:1b.4</code></pre>
+Launched lspci to see which device is causing the error to appear: it was a PCI wireless card. Found the fix quickly in the Internet: to add "<strong>pci=nommconf</strong>" to kernel parameters.
+Other resources recommend "<strong>pci=noaer</strong>", but this do not resolve the problem - it only surpress AER messages from the devices.<br /><br />
+The Debian fix:<br />
+1) In <strong>/etc/default/grub</strong> set <strong>pci=nommconf</strong> in line:
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT="quiet"</code></pre>
+so it will become:
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT="quiet pci=nommconf"</code></pre>
+2) Regenerate kernel files and update grub:
+<pre><code>update-grub</code></pre>
+3) Finally reboot:
+<pre><code>reboot</code></pre>
+
+This snippet, which explains problem in depth, was taken from <a href="https://unix.stackexchange.com/questions/327730/what-causes-this-pcieport-00000003-0-pcie-bus-error-aer-bad-tlp">stackexchange answer</a> to a similar problem:<br />
+<pre><code>I can give at least a few details, even though I cannot fully explain what happens.<br />
+As described for example here, the CPU communicates with the PCIe bus controller by transaction layer packets (TLPs). The hardware detects when there are faulty ones, and the Linux kernel reports that as messages.<br />
+The kernel option pci=nommconf disables Memory-Mapped PCI Configuration Space, which is available in Linux since kernel 2.6. Very roughly, all PCI devices have an area that describe this device (which you see with lspci -vv), and the originally method to access this area involves going through I/O ports, while PCIe allows this space to be mapped to memory for simpler access.<br />
+That means in this particular case, something goes wrong when the PCIe controller uses this method to access the configuraton space of a particular device. It may be a hardware bug in the device, in the PCIe root controller on the motherboard, in the specific interaction of those two, or something else.<br />
+By using pci=nommconf, the configuration space of all devices will be accessed in the original way, and changing the access methods works around this problem. So if you want, it's both resolving and suppressing it.</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

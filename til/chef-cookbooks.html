@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Chef cookbooks</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					chef
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Chef cookbooks</h2>
+					<div class="news_box">
+						<p>Cookbooks are the way to us to group our Recipes into a set of configuration instructions, give a version number and track changes in the future. A cookbook allows us to describe what a set of configuration instructions are meant to accomplish. They contain also any supporting components that the recipes might access to, such as static configuration files, templates and version control.<br/>
+Generate a cookbook:
+<pre><code>chef generate cookbook cookbooks/workstation</code></pre>
+<strong>cookbooks/workstation</strong> - the directory where the cookbook is stored
+<pre><code>$ tree  cookbooks/
+cookbooks/
+`-- workstation
+    |-- Berksfile
+    |-- README.md
+    |-- chefignore
+    |-- metadata.rb
+    |-- recipes
+    |   `-- default.rb
+    |-- spec
+    |   |-- spec_helper.rb
+    |   `-- unit
+    |       `-- recipes
+    |           `-- default_spec.rb
+    `-- test
+        `-- recipes
+	    `-- default_test.rb</code></pre>
+<strong>Berksfile</strong> - This file is used to manage dependencies for cookbook<br/>
+<strong>chefignore</strong> - very simlar to <strong>gitignore</strong> and <strong>dockerignore</strong>, the directories that you will like to exclude from your Chef server. These usually are the directories <strong>spec/</strong> and <strong>test/</strong> - directories used for testing cookbook locally.<br/>
+<strong>metadata.rb</strong> - contains just common information about the version, maintainer of the cookbook, licencing information, short description about how to use cookbook. Also, we can store dependencies inside the metadata file - essentially you should think about them as libraries: cookbooks can call other cookbooks and utilize recipes outside of another cookbook.<br/>
+<strong>README.md</strong> - you can put here how to utilize this cookbook using Markdown syntax. When you will look in cookbooks in the Supermarket or a Github repository - you'll see the README display.<br/>
+<strong>recipes</strong> - this directory intuitively contains all your recipes. There is a default recipe.<br/>
+<strong>spec/</strong> and <strong>test/</strong> - in the future you might want to take a Test Driven approach to building your cookbooks and your infrastructure. That's what these directories are for: <strong>spec/</strong> is for unit testing your cookbooks using a common Unit testing framework called RSpec for Ruby and RSpec can be used to test functionality pieces of your code do. In addition to this we have integration testing (<strong>test/</strong> - directory) using a framework called Test Kitchen. These are common directories to include in your <strong>chefignore</strong> file</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

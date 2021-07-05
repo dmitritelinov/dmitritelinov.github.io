@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Setup grafana with Cloudwatch without IAM user</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+grafana aws awsiam awsec2
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Setup grafana with Cloudwatch without IAM user</h2>
+					<div class="news_box">
+<ol><li>Install grafana</li>
+<li>Create a Grafana policy:
+<pre><code>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowReadingMetricsFromCloudWatch",
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:ListMetrics",
+                "cloudwatch:GetMetricStatistics",
+                "cloudwatch:GetMetricData"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowReadingTagsInstancesRegionsFromEC2",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeTags",
+                "ec2:DescribeInstances",
+                "ec2:DescribeRegions"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre></li>
+<li>Create a Grafana_role role and assign the above policy to it. Also, in trust entities use this json:
+<pre><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::xxx:role/Grafana_role", # use arn from Grafana_role
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}</code></pre></li>
+<li>Attach role Grafana_role to the running EC2 Grafana instance</li>
+<li>Go to datasources in Grafana and add new Cloudwatch datasource, put the arn of Grafana_role and you can add graphs. There is an option to test connection</li></ol>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

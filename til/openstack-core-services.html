@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | OpenStack core services</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					openstack
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>OpenStack core services</h2>
+					<div class="news_box">
+<p>Core services are those that you'll typically see in every cloud:
+<ul><li><strong>Nova (Compute)</strong> - which si taking care of the virtual machines. It is not the hypervisor, it is the part of the cloud that it is talking to the underline hypervisor to decide where the VM is going to run</li>
+	<li><strong>Swift (Object Storage)</strong>- the cloud storage needs to be flexible: you do not want to be bound to the physical HDDs. <strong>Swift</strong> is going to provide you the Object storage which is just about the flexibility</li>
+	<li><strong>Glance (Image)</strong> - in a cloud you don't install the VMs, you deploy them of on a image. An image is a ready to run VM instance and <strong>Glance</strong> is providing access to those instances.</li>
+	<li><strong>Cinder (Volume)</strong> - if you start an instance of an image there is no place to write on an image, it is like booting Linux from LiveDVD - so the volumes for writing should be used. <strong>Swift</strong> is used as storage backend for <strong>Glance</strong> and <strong>Cinder</strong></li>
+	<li><strong>Neutron (Networking)</strong> - in OpenStack it is software defined networking</li></ul></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Specify in the Ansible inventory that no transport mechanism like SSH is required</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ansible
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Specify in the Ansible inventory that no transport mechanism like SSH is required</h2>
+					<div class="news_box">
+<p>In inventory:
+<pre><code>[control]
+localhost ansible_connection=local</code></pre>
+Test:
+<pre><code>$ ansible -i inv all -m shell -a 'id'
+localhost | CHANGED | rc=0 &gt;&gt;
+uid=1000(dmitritelinov) gid=1000(dmitritelinov) groups=1000(dmitritelinov),27(sudo),998(docker)
+$ su
+Password: 
+# ansible -i inv all -m shell -a 'id'
+localhost | CHANGED | rc=0 &gt;&gt;
+uid=0(root) gid=0(root) groups=0(root)</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

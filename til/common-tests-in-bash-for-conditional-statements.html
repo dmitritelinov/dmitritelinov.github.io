@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Common tests in bash for conditional statements</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+                                        <h2>til</h2>
+test bash
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Common tests in bash for conditional statements</h2>
+					<div class="news_box">
+Expressions:
+<pre><code>! expression # the expression is false</code></pre>
+Strings:
+<pre><code>-n string # the length of the string is greater than zero
+-z string # the length of the string is zero (empty)
+string1 = string2 # string 1 is equal to string2
+string1 != string2 # string1 is not equal to string2</code></pre>
+Integer:
+<pre><code>integer1 -eq integer2 # integer1 is equal to integer2
+integer1 -ne integer2 # integer1 is not equal to integer2
+integer1 -gt integer2 # integer1 is greater than integer2
+integer1 -lt integer2 # integer1 is less than integer2
+integer1 -ge integer2 # integer1 is greater than or equal to integer2
+integer1 -le integer2 # integer1 is less than or equal to integer2</code></pre>
+Files:
+<pre><code>-d file # the file exists and is a directory
+-f file # the file exists
+-r file # the file exists and the read permission is granted
+-s file # the file exists and its size is greater than zero
+-w file # the file exists and the write permission is granted
+-x file # the file exists and execute permission is granted</code></pre>
+Examples:
+<pre><code>$ test 5 -eq 5
+$ echo $?
+0
+$ test 5 -eq 4
+$ echo $?
+</code></pre>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

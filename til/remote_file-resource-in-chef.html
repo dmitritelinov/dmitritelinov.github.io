@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | remote_file resource in Chef</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					chef
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>remote_file resource in Chef</h2>
+					<div class="news_box">
+						<p><strong>remote_file</strong> resource can be used whenever you want to download some file off a remote server somewhere. It is very similar to the <strong>file</strong> resource or the <strong>cookbook_file</strong> and you can use it to actually create some file on a node.<br/><br/>
+						Example in a cookbook.<br/>
+						<strong>apache/recipes/server.rb</strong>:
+						<pre><code>...
+remote_file '/var/www/html/image.png' do
+  source 'https://miro.medium.com/max/700/0*hPVHCGVgepguJt8I'
+end
+template '/var/www/html/index.html' do
+  source 'index.html.erb'
+  variables(:name =&gt; "Dmitri") 
+end
+...</code></pre>
+<strong>apache/templates/index.html.erb</strong>:
+<pre><code>Hello &lt;%= @name %&gt;
+HOSTNAME: &lt;%= node['hostname'] %&gt;
+IPADDRESS: &lt;%= node['ipaddress'] %&gt;
+&lt;img src='image.png'&gt;</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>

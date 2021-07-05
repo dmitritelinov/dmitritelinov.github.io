@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Prepare an Ansible testing environment</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ansible
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Prepare an Ansible testing environment</h2>
+					<div class="news_box">
+						We will have 2 Centos 8 hosts: controller and host1<br/><br/>
+						On controller add to the /etc/hosts file:
+						<pre><code>192.168.122.y controller.example.com controller
+192.168.122.x node1.example.com node1</code></pre><br/>
+						Copy the hosts file to node1:
+						<pre><code>scp /etc/hosts node1:/etc/</code></pre><br/>
+						On both nodes install EPEL and python3:
+						<pre><code>yum install -y python3 epel-release</code></pre><br/>
+						On controller install Ansible:
+						<pre><code>yum install ansible</code></pre><br/>
+						On both nodes add Ansible user to wheel group to allow elevating privileges:
+						<pre><code>usermod -aG wheel dmitritelinov</code></pre><br/>
+						On both nodes create a sudoers snap-in file to allow sudo without password. /etc/sudoers.d/dmitritelinov:
+						<pre><code>dmitritelinov ALL=(ALL) NOPASSWD: ALL</code></pre><br/>
+						On controller node as user dmitritelinov:
+						<pre><code>ssh-keygen
+ssh-copy-id node1
+ssh-copy-id controller
+mkdir testproject
+cd testproject</code></pre><br/>
+						Create a inventory file inside testproject directory on controller host:
+						<pre><code>[all]
+controller
+node1</code></pre><br/>
+						(Optional) Create an ansible.cfg file inside testproject directory on controller host:
+						<pre><code>[privilege_escalation]
+become=True
+become_method=sudo
+become_user=root
+become_ask_pass=False</code></pre><br/>
+						Test Ansible configuration from controller host:
+						<pre><code>ansible all -i inventory -m command -a id</code></pre><br/>
+						To add another host (node2 for example):<br/>
+- modify /etc/hosts file and copy it on all servers<br/>
+- install python3 and epel-release on the node2<br/>
+- add Ansible user to the wheel group<br/>
+- add sudo snap-in file for Ansible user<br/>
+- copy public key of Ansible user to node2 with ssh-copy-id
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
