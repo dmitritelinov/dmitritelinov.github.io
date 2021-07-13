@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Troubleshooting MySQL Master/Slave replication</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					mysql
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Troubleshooting MySQL Master/Slave replication</h2>
+					<div class="news_box">
+						<p>Here are the instruction about how to manual sync the master and slave DBs.<br/><br/>
+Run on master MySQL shell:
+<pre><code>mysql&gt; RESET MASTER;
+Query OK, 0 rows affected (0.13 sec)
+mysql&gt; FLUSH TABLES WITH READ LOCK;
+Query OK, 0 rows affected (0.00 sec)
+mysql&gt; SHOW MASTER STATUS;
++-------------------+----------+--------------+------------------+------------------------------------------+
+| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set                        |
++-------------------+----------+--------------+------------------+------------------------------------------+
+| mysqld-bin.000001 |     1990 |              |                  | 8cfd65ec-7caa-11ea-a450-901b0e959f81:1-4 |
++-------------------+----------+--------------+------------------+------------------------------------------+
+1 row in set (0.00 sec)</code></pre>
+Take a note for <strong>File</strong> and <strong>Position</strong>.<br/><br/>
+Dump all databases with <strong>mysqldump</strong>:
+<pre><code>mysqldump -u'user' -p'pwd' -h '127.0.0.1' -P '3306' --set-gtid-purged=OFF --column-statistics=0 --no-tablespaces --single-transaction --all-databases --triggers --routines --master-data --flush-privileges | gzip -5 &gt; backup-j.sql.gz</code></pre>
+After data is dumped run on master <strong>MySQL</strong> console - to unlock the tables:
+<pre><code>mysql&gt; UNLOCK TABLES;</code></pre>
+Copy the backup from master and import it. After the import is finished - restart again <strong>MySQL</strong> daemon:
+<pre><code>scp -i ~/.ssh/key.pem user@master_ip:~/backup-j.sql.gz ./
+gunzip backup-j.sql.gz
+mysql -u root -p'slave_password' -h localhost &lt; ./backup-j.sql
+systemctl restart mysqld</code></pre>
+On slave try to login with master credentials:
+<pre><code>mysql -u master -p -h master_ip</code></pre>
+On slave <strong>MySQL</strong> console issue the following to connect to master and start slave. Enter the values noted before:
+<pre><code>mysql&gt; CHANGE MASTER TO MASTER_HOST='master_ip', MASTER_PORT=4306, MASTER_USER='master_user', MASTER_PASSWORD='master_pwd', MASTER_LOG_FILE='mysqld-bin.000001', MASTER_LOG_POS=1990, GET_MASTER_PUBLIC_KEY=1;
+mysql&gt; START SLAVE;</code></pre>
+After some time, check slave status:
+<pre><code>mysql&gt; SHOW SLAVE STATUS \G;</code></pre>
+Finally, try to create a new database on master and check if it was replicated to slave. Delete new-created database.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
