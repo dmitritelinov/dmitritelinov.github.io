@@ -22,7 +22,7 @@
 					<h2>Troubleshooting MySQL Master/Slave replication</h2>
 					<div class="news_box">
 						<p>Here are the instruction about how to manual sync the master and slave DBs.<br/><br/>
-Run on master MySQL shell:
+Run on master <strong>MySQL</strong> shell:
 <pre><code>mysql&gt; RESET MASTER;
 Query OK, 0 rows affected (0.13 sec)
 mysql&gt; FLUSH TABLES WITH READ LOCK;
@@ -39,7 +39,7 @@ Dump all databases with <strong>mysqldump</strong>:
 <pre><code>mysqldump -u'user' -p'pwd' -h '127.0.0.1' -P '3306' --set-gtid-purged=OFF --column-statistics=0 --no-tablespaces --single-transaction --all-databases --triggers --routines --master-data --flush-privileges | gzip -5 &gt; backup-j.sql.gz</code></pre>
 After data is dumped run on master <strong>MySQL</strong> console - to unlock the tables:
 <pre><code>mysql&gt; UNLOCK TABLES;</code></pre>
-Copy the backup from master and import it. After the import is finished - restart again <strong>MySQL</strong> daemon:
+Copy the backup from master and import it. After the import is finished - restart <strong>MySQL</strong> daemon:
 <pre><code>scp -i ~/.ssh/key.pem user@master_ip:~/backup-j.sql.gz ./
 gunzip backup-j.sql.gz
 mysql -u root -p'slave_password' -h localhost &lt; ./backup-j.sql
