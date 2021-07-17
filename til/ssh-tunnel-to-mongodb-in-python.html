@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | SSH tunnel to MongoDB in Python</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ssh python mongodb
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>SSH tunnel to MongoDB in Python</h2>
+					<div class="news_box">
+<p><pre><code>from sshtunnel import SSHTunnelForwarder
+import pymongo
+import pprint
+import json
+
+MONGO_HOST = "x.x.x.x"
+MONGO_DB = "ids"
+SSH_USER = "dmitri.telinov"
+SSH_KEY = "/Users/dtelinov/.ssh/id_rsa"
+SSH_KEY_PW = ""
+server = SSHTunnelForwarder(
+    (MONGO_HOST, 999),
+    ssh_username=SSH_USER,
+    ssh_pkey=SSH_KEY,
+    ssh_private_key_password=SSH_KEY_PW,
+    remote_bind_address=('127.0.0.1', 27017)
+)
+
+server.start()
+
+client = pymongo.MongoClient('127.0.0.1', server.local_bind_port) # server.local_bind_port is assigned local port
+db = client[MONGO_DB]
+
+# execute search
+for post in db.users.find( {"type" : "system"}, {"username.encryptedData":1,"_id":0} ):
+    data = json.dumps(post)
+    o = json.loads(data)
+
+    print o['username']['encryptedData']
+
+server.stop()</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
