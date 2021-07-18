@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Hello world in NodeJS and Express</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					nodejs express docker
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Hello world in NodeJS and Express</h2>
+					<div class="news_box">
+						<p>This example can be used to dockerize or to play around with NodeJS and Express.<br/>
+Prerequisites:
+<pre><code>mkdir node-helloworld
+cd Desktop/node-helloworld</code></pre>
+index.js contents:
+<pre><code>var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  res.send('Hello World!');
+});
+
+var server = app.listen(3000, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});</code></pre>
+package.json contents:
+<pre><code>{
+  "name": "myhelloworld",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "^v12.21.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}</code></pre>
+Run:
+<pre><code>npm install
+npm start</code></pre>
+To test - navigate to <strong>http://localhost:3000</strong></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
