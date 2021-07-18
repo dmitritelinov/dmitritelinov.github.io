@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Install a Kubernetes cluster on AWS with kops</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes kops aws
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Install a Kubernetes cluster on AWS with kops</h2>
+					<div class="news_box">
+<p>Install prerequisites:
+<pre><code>sudo apt install python3-pip</code></pre>
+Install AWS CLI:
+<pre><code>sudo pip install awscli</code></pre>
+In IAM add a user <strong>kops</strong> with programmatic access. Note down your AWS keys.<br/>
+Add your AWS keys to AWS CLI tool:
+<pre><code>aws configure</code></pre>
+Download and install binaries:
+<pre><code>wget https://github.com/kubernetes/kops/releases/download/v1.21.0/kops-linux-amd64
+sudo mv kops-linux-amd64 /usr/local/bin/kops
+sudo chmod +x /usr/local/bin/kops
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo mv kubectl /usr/local/bin/kubectl
+sudo chmod +x /usr/local/bin/kubectl</code></pre>
+Generate an SSH key which will be used to connect to the kops cluster:
+<pre><code>ssh-keygen -f .ssh/id_rsa</code></pre>
+Create a S3 bucket in your chosen region for kops state. I named it s3-kops-12345. Use this page to determine which region is faster: <a href="/til/cloudping-info-measure-latency-from-your-browser-to-each-aws-region.html">cloudping.info - measure latency from your browser to each AWS region</a><br/>
+Add hosted zone - I used <strong>kops.qwerty.md</strong>, which is my domain. Make sure that it resolves.<br/>
+Create cluster - I used the following commands:
+<pre><code>kops create cluster --name=kops.qwerty.md --state=s3://s3-kops-12345 --zones=eu-west-2a --node-count=2 --node-size=t3.micro --master-size=t3.micro --dns-zone=kops.qwerty.md
+kops update cluster --name kops.qwerty.md --yes --admin --state=s3://s3-kops-12345</code></pre>
+Validate cluster - it will test if cluster DNS works well and if it is accesible:
+<pre><code>kops validate cluster --wait 10m</code></pre>
+Test cluster functionality:
+<pre><code>kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+kubectl expose deployment hello-minikube --type=NodePort --port=8080</code></pre>
+Get the port for new created service:
+<pre><code>kubectl get svc</code></pre>
+My output was:
+<pre><code>NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+hello-minikube   NodePort    100.67.254.62   &lt;none&gt;        8080:32259/TCP   9s
+kubernetes       ClusterIP   100.64.0.1      &lt;none&gt;        443/TCP          7m46s</code></pre>
+Edit Security Group for workers and add inbound port 32259 for your IP and connect to it:<br/>
+<strong>http://worker_ip:32259/</strong><br/>
+you should see an echo server page if everything works well.<br/>
+To delete cluster use the following command:
+<pre><code>kops delete cluster --name kops.qwerty.md --yes --state=s3://s3-kops-12345</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
