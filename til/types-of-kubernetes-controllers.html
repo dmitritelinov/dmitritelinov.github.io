@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Types of Kubernetes Controllers</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Types of Kubernetes Controllers</h2>
+					<div class="news_box">
+						<p>Most Kubernetes users do not create Pods directly; instead they create a Deployment, CronJob, StatefulSet, or other <strong>Controller</strong> which manages the Pods for them.<br/><br/>
+						There is a list of most used <strong>Pod Controllers</strong>:
+						<ul><li><strong>ReplicaSet</strong> - creates a stable set of pods, all running the same workload. You will almost never create this directly</li>
+							<li><strong>Deployment</strong> - is the most common way to get your app on Kubernetes. It maintains a ReplicaSet with the desired configuration, with some additional configuration for managing updates and rollbacks</li>
+							<li><strong>StatefulSet</strong> - is used to manage stateful applications with persistent storage. Pod names are persistent and are retained when rescheduled (app-0, app-1). Storage stays associated with replacement pods, and volumes persist when pods are deleted</li>
+							<li><strong>Job</strong> - creates one or more short-lived Pods and expects them to successfully terminate</li>
+							<li><strong>CronJob</strong> - creates Jobs on a schedule</li>
+							<li><strong>DaemonSet</strong> - ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them. As nodes are removed from the cluster, those Pods are garbage collected. Common for system processes like CNI, Monitor agents, proxies, etc.</li></ul></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
