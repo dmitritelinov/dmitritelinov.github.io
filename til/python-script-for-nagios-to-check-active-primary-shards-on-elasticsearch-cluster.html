@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Python script for Nagios to check active primary shards on Elasticsearch cluster</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					python nagios elasticsearch
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Python script for Nagios to check active primary shards on Elasticsearch cluster</h2>
+					<div class="news_box">
+<p><pre><code>#!/usr/bin/env python
+
+import argparse
+import requests
+import sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-e', '--elasticsearch_host', dest='elasticsearch_host', help='Elasticsearch host (FQDN).')
+parser.add_argument('-w', '--warning', dest='threshold_warning', help='WARNING threshold (greater than or equal to).')
+parser.add_argument('-c', '--critical', dest='threshold_critical', help='CRITICAL threshold (greater than or equal to).')
+
+args = parser.parse_args()
+es = args.elasticsearch_host
+warning = args.threshold_warning
+critical = args.threshold_critical
+
+try:
+  req = requests.get(es)
+  data = req.json()
+  current = data['active_primary_shards']
+except requests.exceptions.RequestException as e:
+  print "Unknow error {}".format(e)
+  sys.exit(3)
+
+if int(current) &gt; int(warning) and int(current) &lt; int(critical):
+  print "WARNING - Number of active shards is: {}".format(current)
+  sys.exit(1)
+elif int(current) &gt; int(critical):
+  print "CRITICAL - Number of active shards is: {}".format(current)
+  sys.exit(2)
+else:
+  print "OK - Number of active shards is: {}".format(current)</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
