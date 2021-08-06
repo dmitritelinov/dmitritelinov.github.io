@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Vim - navigating the file by words, paragraphs and sentences</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					vim
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Vim - navigating the file by words, paragraphs and sentences</h2>
+					<div class="news_box">
+						<p>Vim understands several text objects such as words, sentences, paragraphs, blocks etc. We can move through the file using these objects too.<br/><br/>
+Words - a word in vim is simply a sequence a non-blank characters:<br/>
+<strong>w</strong> - move to the next word<br/>
+<strong>W</strong> - move to the next word including special symbols<br/>
+<strong>b</strong> - move to the beginning of previous word<br/>
+<strong>B</strong> - move to the beginning of previous word including special symbols<br/>
+<strong>e</strong> - move to the end of the word<br/>
+<strong>E</strong> - move to the end of the word including special symbols<br/><br/>
+note that Vim considers punctiation as a word with lowercase items - <strong>w</strong>, <strong>e</strong>, <strong>b</strong><br/>
+capital items <strong>W</strong>, <strong>E</strong>, <strong>B</strong> - ignores puctuation and uses whitespaces as word boundaries<br/><br/>
+The above commands can be preceeded by a number. Example:
+<strong>5w</strong> - move next to 5 words<br/><br/>
+Paragraphs and sentences:<br/>
+<strong>{</strong> - go to the previous paragrath<br/>
+<strong>}</strong> - go to the next paragrath<br/>
+<strong>(</strong> - go to the previous sentence<br/>
+<strong>)</strong> - go to the next sentence<br/><br/>
+<strong>%</strong> - go to the matching pair of the brackets, paranthesis, quotes etc</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
