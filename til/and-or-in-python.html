@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | and/or in Python</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					python
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>and/or in Python</h2>
+					<div class="news_box">
+						<p><strong>and</strong><br/>
+It gives you the first value if it is False, otherwise it gives you the second value<br/><br/>
+<strong>Example</strong>:
+<pre><code>x = True and False
+print(x) # False
+x = 3 and 0
+print(x) # 0
+x = 0 and 3
+print(x) # 0</code></pre><br/><br/>
+<strong>or</strong><br/>
+Gives you the first value if it is True, otherwise it gives you the second value<br/><br/>
+<strong>Example 1</strong>:
+<pre><code>x = 3 or 0
+print(x) # 3
+x = 0 or 3
+print(x) # 3</code></pre><br/>
+<strong>Example 2</strong>:
+<pre><code>name = "" # can use name = input("Enter your name: ")
+surname = "Telinov" # can use surname = input("Enter your surname: ")
+greeting = name or f"Mr. {surname}"
+print(greeting) # outputs "Mr. Telinov"</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
