@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Nova (Compute) in Openstack</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					openstack
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Nova (Compute) in Openstack</h2>
+					<div class="news_box">
+						<p>It is that interfaces to hypervisor - it is not a hyperviser itself. Supports a wide range of hypervisors and directs placement of virtual machines by talking to hypervisor.<br/><br/>
+The default supported hypervisor is KVM, this is because OpenStack is very Linux oriented. But others are supported as well, QEMU, HyperV - also you can use VSphere a method to contact ESXi.<br/><br/>
+Typically the machines cannot be moved between hypervisors - you cannot have a hybrid cloud where a multitude of hypervisors are used.<br/><br/>
+Networking is no more included in <strong>Nova</strong>, it was in early days - not more relevant anymore as there is a separate component for that - <strong>Neutron</strong>.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
