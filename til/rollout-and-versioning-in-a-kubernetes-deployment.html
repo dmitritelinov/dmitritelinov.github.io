@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Rollout and versioning in a Kubernetes Deployment</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Rollout and versioning in a Kubernetes Deployment</h2>
+					<div class="news_box">
+						<p>When you first create a Deployment it triggers a Rollout: a new Rollout creates a new Deployment Revision. Let's call it Revision 1.<br/>
+						In the future, when the application is upgraded - a new Rollout is triggered and a new Deployment Revision is created named Revision 2.<br/>
+						This helps us to keep track the changes we made to the Deployment and enables us to rollback to the previous version of Deployment if necessary.<br/><br/>
+You can see the status of Rollout:
+<pre><code>kubectl rollout status deployment/my-deployment</code></pre>
+To see the Revision and history of Rollouts:
+<pre><code>kubectl rollout history deployment/my-deployment</code></pre>
+To undo the changes:
+<pre><code>kubectl rollout undo deployment/my-deployment</code></pre>
+Alternatively, you can rollback to a specific Revision by specifying it with <strong>--to-revision</strong> option:
+<pre><code>kubectl rollout undo deployment/my-deployment --to-revision=3</code></pre>
+To record the change cause use <strong>--record</strong> option. The cause will be saved in the Annotations section of the Deployment:
+<pre><code>kubectl create -f deployment.yaml --record</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
