@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | WireGuard VPN client configuration on Ubuntu</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					wireguard ubuntu
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>WireGuard VPN client configuration on Ubuntu</h2>
+					<div class="news_box">
+<p>Install the package and prerequisites:
+<pre><code>apt install wireguard resolvconf</code></pre>
+Create a private and public key:
+<pre><code>cd /etc/wireguard
+umask 077
+wg genkey &gt; private-key
+wg pubkey &gt; public-key &lt; private-key</code></pre>
+Create a config file:
+<pre><code>cat /etc/wireguard/wg0.conf
+[Interface]
+PrivateKey = <strong>{{ enter private key from /etc/wireguard }}</strong>
+Address = <strong>{{ enter ip address provided by administrator }}</strong>
+DNS = 10.0.1.133
+
+[Peer]
+PublicKey = <strong>{{ enter server public key provided by administrator }}</strong>
+AllowedIPs = 10.0.0.0/16 # enter your range
+Endpoint = <strong>x.x.x.x</strong>:55000</code></pre>
+Create systemd service and start it:
+<pre><code>systemctl enable wg-quick@wg0.service
+systemctl start wg-quick@wg0.service
+systemctl status wg-quick@wg0.service</code></pre>
+Check connection
+<pre><code>wg</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
