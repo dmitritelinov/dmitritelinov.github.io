@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | awk example - add a string at the begginning of the each line</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					awk bash
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>awk example - add a string at the begginning of the each line</h2>
+					<div class="news_box">
+						<p>Add <strong>127.0.0.1</strong> at the beginning of the each line:
+						<pre><code>cat /etc/passwd | awk '{ print "127.0.0.1 " $1 }'</code></pre>
+The output will be:
+<pre><code>127.0.0.1 root:x:0:0:root:/root:/bin/bash
+127.0.0.1 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+127.0.0.1 bin:x:2:2:bin:/bin:/bin/sh
+127.0.0.1 sys:x:3:3:sys:/dev:/bin/sh
+127.0.0.1 sync:x:4:65534:sync:/bin:/bin/sync
+127.0.0.1 games:x:5:60:games:/usr/games:/bin/sh
+...</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
