@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Vim - navigating the file by the lines</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					vim
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Vim - navigating the file by the lines</h2>
+					<div class="news_box">
+						<p><strong>0</strong> - go to the beginning of the line<br/>
+<strong>Shift+6</strong> or <strong>^</strong> - go to the first non-blank character in line<br/>
+<strong>Shift+4</strong> or <strong>$</strong> - go to the end of the line<br/>
+<strong>3$</strong> - go the the end to the next 3rd line<br/><br/>
+<strong>gg</strong> - jump to the first line<br/>
+<strong>G</strong> - jump to the last line<br/>
+<strong>25gg</strong> or <strong>25G</strong> - go to 25th line<br/>
+<strong>50%</strong> - go to the middle of the file<br/>
+<strong>vim +25 file.txt</strong> - go to the line 25 at opening the file<br/><br/>
+You can also use Line mode to jump to a specific line as well:<br/>
+<strong>:1</strong> and hit <strong>&lt;Enter&gt;</strong> - jump to the first line<br/>
+<strong>:25</strong> and hit <strong>&lt;Enter&gt;</strong> - jump to the line 25<br/>
+<strong>:$</strong> and hit <strong>&lt;Enter&gt;</strong> - jump to the last line without knowing the total number of lines in the file<br/><br/>
+If you are familiar with Regular expressions you might notice reusing the symbols <strong>^</strong> - beginning and <strong>$</strong> - the end<br/><br/>
+If you want to know how many lines are in the file press:<br/>
+<strong>Ctrl+g</strong><br/>
+and check the status line at the bottom<br/>
+To get more information like character count and word count, press:<br/>
+<strong>g Ctrl+g</strong><br/><br/>
+In Line mode:<br/>
+<strong>:set ruler</strong><br/>
+and hit <strong>&lt;Enter&gt;</strong><br/>
+Set the ruler in the status bar at the bottom<br/><br/>
+To turn off the ruler use:<br/>
+<strong>:set noruler</strong><br/>
+and hit <strong>&lt;Enter&gt;</strong><br/><br/>
+To toggle ruler on/off:<br/>
+<strong>:set ruler!</strong><br/>
+and hit <strong>&lt;Enter&gt;</strong></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
