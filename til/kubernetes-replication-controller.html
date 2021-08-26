@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Kubernetes Replication Controller</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Kubernetes Replication Controller</h2>
+					<div class="news_box">
+						<p>The <strong>ReplicationController</strong> will ensure a specified number of pod replicas will run at all time.<br/>
+Pods created with <strong>ReplicationController</strong> will automatically be replaced if they fail, get deleted or are terminated.<br/>
+A <strong>ReplicationController</strong> is similar to a process supervisor, but instead of supervising individual processes on a single node, the ReplicationController supervises multiple pods across multiple nodes.<br/>
+<strong>ReplicationController</strong> is often abbreviated to "rc" in discussion, and as a shortcut in kubectl commands.<br/><br/>
+The <strong>ReplicationController</strong> helps up run multiple instances of a single pod in the Kubernetes cluster thus providing high availability. Even if you have a single pod the <strong>ReplicationController</strong> can help by automatically bringing up a new pod when the existing one fails. Thus the <strong>ReplicationController</strong> that the specified number of pods are runing at all times even it is just one or one hundred.<br/>
+The <strong>ReplicationController</strong> spans across multiple nodes in the cluster.<br/>
+<strong>ReplicationController</strong> is the older technology that is being replaced by Replica Set. Replica Set is the new, recommended way to setup the replication.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
