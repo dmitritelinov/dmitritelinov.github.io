@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Kubernetes Service types</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Kubernetes Service types</h2>
+					<div class="news_box">
+						<p><strong>ClusterIP</strong><br/>
+						A ClusterIP service is the default type of service in Kubernetes. It creates a service inside the Kubernetes cluster, which can be accessed by other applications in the cluster, without allowing external access.<br/><br/>
+<strong>NodePort</strong><br/>
+A NodePort service opens a specific port on all the Nodes in the cluster, and any traffic sent to that port is forwarded to the service. The service cannot be accessed from the cluster IP.<br/><br/>
+<strong>LoadBalancer</strong><br/>
+A LoadBalancer is a standard way to expose a Kubernetes service externally so it can be accessed over the internet. If you are using Google Kubernetes Engine (GKE), this creates a Network Load Balancer with one IP address, which external users can access and are then forwarded to the relevant node in your Kubernetes cluster. A LoadBalancer can also be accessed in the same way as a ClusterIP or NodePort</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
