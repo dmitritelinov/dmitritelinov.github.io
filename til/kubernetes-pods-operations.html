@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Kubernetes Pods operations</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Kubernetes Pods operations</h2>
+					<div class="news_box">
+<p>Get list of pods:
+<pre><code>kubectl get po</code></pre><br/>
+Get list of pods in wide format:
+<pre><code>kubectl get po -o wide</code></pre><br/>
+Get details about specific pod (for example Image used for container):
+<pre><code>kubectl describe po <strong>{{ pod_name }}</strong></code></pre><br/>
+Run pod imperatively:
+<pre><code>kubectl run <strong>{{ pod_name }}</strong> --image=<strong>{{ pod_image }}</strong></code></pre><br/>
+Extract the running pod definition to a file:
+<pre><code>kubectl get pod <strong>{{ pod_name }}</strong> -o yaml &gt; <strong>{{ pod_manifest }}</strong>.yaml</code></pre><br/>
+Generate pod manifest imperatively (do not create the pod itself):
+<pre><code>kubectl run <strong>{{ pod_name }}</strong> --image=<strong>{{ pod_image }}</strong> --dry-run=client -o yaml</code></pre><br/>
+Create a pod from manifest file:
+<pre><code>kubectl create -f <strong>{{ pod_manifest }}</strong>.yaml
+kubectl apply -f <strong>{{ pod_manifest }}</strong>.yaml</code></pre><br/>
+Edit manifest of running pod:
+<pre><code>kubectl edit po <strong>{{ pod_name }}</strong></code></pre><br/>
+Delete pod:
+<pre><code>kubectl delete po <strong>{{ pod_name }}</strong></code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
