@@ -29,7 +29,7 @@ kubectl get rc nginx-rc -o wide
 kubectl get rc nginx-rc -o yaml
 kubectl get rc nginx-rc -o json</code></pre>
 Describe the ReplicationController:
-<pre><code>kubectl describe rc/nginx-rc</code></pre>
+<pre><code>kubectl describe rc nginx-rc</code></pre>
 Scale up the replicas:
 <pre><code>kubectl scale rc nginx-rc --replicas=5</code></pre>
 Edit the running manifest file:
