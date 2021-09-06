@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Kubernetes ReplicationController example of manifest file</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Kubernetes ReplicationController example of manifest file</h2>
+					<div class="news_box">
+						<p><pre><code>apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-nginx
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+	image: nginx</code></pre>
+						We have 2 <strong>metadata</strong> sections in the definition file: one for ReplicationController, another for the Pod - and the same for <strong>spec</strong> sections: one for each.<br/><br/>
+The <strong>selector</strong> is not a required field in case of ReplicationController, but it is still available. When you skip it, it assumes that it is the same as the Pod labels provided in definition file.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
