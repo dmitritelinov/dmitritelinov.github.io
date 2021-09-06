@@ -24,10 +24,10 @@
 <p>Create a ReplicationController:
 <pre><code>kubectl create -f nginx-rc.yml</code></pre>
 Get the ReplicationController:
-<pre><code>kubectl get rc/nginx-rc
-kubectl get rc/nginx-rc -o wide
-kubectl get rc/nginx-rc -o yaml
-kubectl get rc/nginx-rc -o json</code></pre>
+<pre><code>kubectl get rc nginx-rc
+kubectl get rc nginx-rc -o wide
+kubectl get rc nginx-rc -o yaml
+kubectl get rc nginx-rc -o json</code></pre>
 Describe the ReplicationController:
 <pre><code>kubectl describe rc/nginx-rc</code></pre>
 Scale up the replicas:
