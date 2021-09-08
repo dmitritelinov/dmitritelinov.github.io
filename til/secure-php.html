@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Secure PHP</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					php security
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Secure PHP</h2>
+					<div class="news_box">
+						<p>Some security tips, that helps to avoid common mistakes and protect the server from the most frequent attacks.<br/><br/>
+						<strong>Configuration file</strong><br/>
+When using PHP in a production environment, you should have the following settings in php.ini:
+<pre><code>safe_mode = Off
+register_globals = Off
+expose_php = Off
+allow_url_fopen = Off
+allow_url_include = Off
+log_errors = On
+display_errors = Off
+error_log = /var/log/phperror.log
+memory_limit = 32M
+post_max_size = 12M
+upload_max_filesize = 8M
+max_execution_time = 120
+max_input_time = 60
+enable_dl = Off
+disable_functions="popen,exec,system,passthru,proc_open,shell_exec,show_sour
+ce,phpinfo,eval"
+session.use_only_cookies = 1</code></pre><br/>
+<strong>Error log</strong>
+All PHP errors will be stored in file /var/log/phperror.log. The following lines creates it and set the
+permissions:
+<pre><code>touch /var/log/phperror.log
+chmod 666 /var/log/phperror.log</code></pre>
+<strong>Description of directives</strong><br/>
+Below is a description of directives used to secure PHP:<br/><br/>
+<strong>safe_mode</strong><br/>
+It is primarily intended to provide file access limits to prevent users from accessing files that do no
+belong to them. This setting will be depreciated and should be avoided.<br/><br/>
+<strong>register_globals</strong><br/>
+Disables automatic variable creation. This means that all PHP script must use the $_REQUEST,
+$_GET, or $_POST arrays to retrieve user-provided data. This directive is responsible for many
+security issues in web applications because it allowed attackers to freely manipulate global variables.<br/><br/>
+<strong>expose_php</strong><br/>
+Hide PHP Version in Apache from remote users requests. Obviously there is no reason to let end users
+know about the server's PHP version.<br/><br/>
+<strong>allow_url_fopen</strong><br/>
+This directive allows to reference remote resources as if they are local files. It is recommended to leave
+it disabled unless your application requires it.<br/><br/>
+<strong>allow_url_include</strong><br/>
+This directive allows to include/require remote resources as if they are local files. As above directive, it
+is recommended to leave it disabled.<br/><br/>
+<strong>log_errors</strong><br/>
+When enabled, log_errors instructs PHP to log all errors to the file indicated by the error_log
+directive.<br/><br/>
+<strong>display_errors</strong><br/>
+PHP error messages display should be disabled on production servers to avoid information leaks about
+your system environment from badly written scripts.<br/><br/>
+<strong>error_log</strong><br/>
+All PHP errors will be stored in file /var/log/phperror.log. The two above lines in Error log section
+creates that file<br/><br/>
+<strong>memory_limit</strong><br/>
+To prevent poorly written scripts from consuming all of the available memory, this directive can be
+used to indicate a maximum amount of memory consumed by a script.<br/><br/>
+<strong>post_max_size</strong><br/>
+Controls the size of HTTP form submissions. You may tweak the values to suit your needs.<br/><br/>
+<strong>upload_max_filesize</strong><br/>
+Maximum allowed size for uploaded files<br/><br/>
+<strong>max_execution_time</strong><br/>
+Maximum execution time of each script. You may tweak the values to suit your need.<br/><br/>
+<strong>max_input_time</strong><br/>
+Maximum amount of time each script may spend parsing request data.<br/><br/>
+<strong>enable_dl</strong><br/>
+This directive is used to enable or disable the dl() function that allows runtime loading of PHP
+extensions. It makes possible to bypass some restrictions, so it is recommended to be disabled unless
+your application requires it.<br/><br/>
+<strong>disable_functions</strong><br/>
+Directive allows to disable several security-sensitive functions. Previously, this necessitated hand-
+					     editing the C code from which PHP was made. For functions reference you can use this list<br/><br/>
+<strong>session.use_only_cookies</strong><br/>
+Reduce the risk of session fixation by only allowing session IDs to be passed as cookies. In other words
+enabling this setting prevents attacks involved passing session ids in URLs.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
