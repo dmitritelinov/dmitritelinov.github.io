@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Scale replicaset to n replicas in Kubernetes</title>
+		<title>pctags.com | notes from kb.txt | Scaling Replicaset</title>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="/style.css" rel="stylesheet" type="text/css" />
@@ -19,9 +19,14 @@
                         </div> <!-- end of sidebar -->
 			<div id="content">
 				<div class="content_box">
-					<h2>Scale replicaset to n replicas in Kubernetes</h2>
+					<h2>Scaling Replicaset</h2>
 					<div class="news_box">
-						<p><pre><code>kubectl scale --replicas=<em>{{ n }}</em> replicaset <em>{{ replicaset_name }}</em></code></pre></p>
+						<p><ul><li>Update definition file:
+								<pre><code>kubectl replace -f replicaset-definition.yml</code></pre></li>
+								<li>Use scale option with file:
+									<pre><code>kubectl scale --replicas=6 -f replicaset-definition.yml</code></pre></li>
+									<li>Use scale option with type:
+										<pre><code>kubectl scale --replicas=6 rs rs-nginx</code></pre></li></ul></p>
 					</div>
 				</div>
 			</div> <!-- end of content -->
