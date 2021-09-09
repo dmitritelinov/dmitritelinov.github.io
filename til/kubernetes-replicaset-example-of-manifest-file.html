@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Kubernetes example - replicaset yaml in declarative way</title>
+		<title>pctags.com | notes from kb.txt | Kubernetes ReplicaSet another of manifest file</title>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="/style.css" rel="stylesheet" type="text/css" />
@@ -19,28 +19,27 @@
                         </div> <!-- end of sidebar -->
 			<div id="content">
 				<div class="content_box">
-					<h2>Kubernetes example - replicaset yaml in declarative way</h2>
+					<h2>Kubernetes ReplicaSet example of manifest file</h2>
 					<div class="news_box">
-<p><pre><code>---
-apiVersion: apps/v1
+<p><pre><code>apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: my-rs
+  name: rs-nginx
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-nginx
+      app: nginx 
   template:
     metadata:
+      name: nginx
       labels:
-        app: my-nginx
+        app: nginx
     spec:
       containers:
-        - image: nginx:1.13
-          name: nginx
-          ports:
-            - containerPort: 80</code></pre></p>
+      - name: nginx-container
+        image: nginx</code></pre>
+The main difference from ReplicationController is that ReplicaSet requires a selector. ReplicaSet can manage pods that are not created during ReplicaSet creation: for example there are a pods created before creation of ReplicaSet.</p>
 					</div>
 				</div>
 			</div> <!-- end of content -->
