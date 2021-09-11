@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Reference by DNS in namespaces in Kubernetes</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Reference by DNS in namespaces in Kubernetes</h2>
+					<div class="news_box">
+<p>In the same namespace:
+<pre><code>db-service</code></pre>
+In the other namespace:
+<pre><code>db-service.dev.svc.cluster.local</code></pre>
+When the service is created a DNS name in this format is added:<br/>
+<strong>cluster.local</strong> - default domain of the Kubernetes cluster<br/>
+<strong>svc</strong> - subdomain for service<br/>
+<strong>dev</strong> - namespace<br/>
+<strong>db-service</strong> - service name</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
