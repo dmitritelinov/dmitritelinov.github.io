@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | CMD in Dockerfile</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>CMD in Dockerfile</h2>
+					<div class="news_box">
+						<p>Defines the program that will be run within the container when it starts.<br/><br/>
+For nginx image is the:
+<pre><code>CMD ["nginx"] # nginx command</code></pre>
+For the mysql image is the:
+<pre><code>CMD ["mysqld"] # mysql command</code></pre>
+If this process finishes or crashes - the container exits as well.<br/>
+There are different ways to specify the CMD:
+<ul><li>simple shell form
+		<pre><code>CMD sleep 5</code></pre></li>
+		<li>JSON array format
+			<pre><code>CMD ["sleep", "5"]</code></pre></li></ul>
+To override this command for a running container pass the option [COMMAND] to the docker executable:
+<pre><code>docker run ubuntu [COMMAND]</code></pre>
+for example:
+<pre><code>docker run ubuntu sleep 10</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
