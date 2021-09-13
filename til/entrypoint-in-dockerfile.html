@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | ENTRYPOINT in Dockerfile</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					docker
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>ENTRYPOINT in Dockerfile</h2>
+					<div class="news_box">
+<p>The ENTRYPOINT instruction is like the CMD instruction as you can specify the program to be run then the container starts.
+<pre><code>docker run ubuntu [COMMAND]</code></pre>
+And everything you specify in [COMMAND] will get appended to ENTRYPOINT.<br/>
+For example if you have ENTRYPOINT as sleep and [COMMAND] as 10:
+<pre><code>docker run ubuntu 10</code></pre>
+the command that will run will be:
+<pre><code>sleep 10</code></pre>
+To modify ENTRYPOINT during the runtime use --entrypoint switch:
+<pre><code>docker run --entrypoint sleep2.0 ubuntu 10</code></pre>
+The final command at statup will be:
+<pre><code>sleep2.0 10</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
