@@ -21,14 +21,14 @@
 				<div class="content_box">
 					<h2>ENTRYPOINT in Dockerfile</h2>
 					<div class="news_box">
-<p>The ENTRYPOINT instruction is like the CMD instruction as you can specify the program to be run then the container starts.
+						<p>The <strong>ENTRYPOINT</strong> instruction in Dockerfile is like the <strong>CMD</strong> instruction as you can specify the program to be run then the container starts.
 <pre><code>docker run ubuntu [COMMAND]</code></pre>
-And everything you specify in [COMMAND] will get appended to ENTRYPOINT.<br/>
-For example if you have ENTRYPOINT as sleep and [COMMAND] as 10:
+And everything you specify in <strong>[COMMAND]</strong> will get appended to <strong>ENTRYPOINT</strong>.<br/>
+For example if you have <strong>ENTRYPOINT</strong> as <em>sleep</em> and <strong>[COMMAND]</strong> as <em>10</em>:
 <pre><code>docker run ubuntu 10</code></pre>
 the command that will run will be:
 <pre><code>sleep 10</code></pre>
-To modify ENTRYPOINT during the runtime use --entrypoint switch:
+To modify <strong>ENTRYPOINT</strong> during the runtime use <strong>--entrypoint</strong> switch for docker command:
 <pre><code>docker run --entrypoint sleep2.0 ubuntu 10</code></pre>
 The final command at statup will be:
 <pre><code>sleep2.0 10</code></pre></p>
