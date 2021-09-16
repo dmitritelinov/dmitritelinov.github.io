@@ -27,13 +27,13 @@ spec.initContainers[*].image
 spec.activeDeadlineSeconds
 spec.tolerations</code></pre><br/>
 To make it possible:
-<ul><li>Extract pod manifest:
+<ol><li>Extract pod manifest:
 		<pre><code>kubectl get pod webapp -o yaml &gt; my-new-pod.yaml</code></pre></li>
 		<li>Edit the file <strong>my-new-pod.yaml</strong></li>
 		<li>Delete the old pod:
 <pre><code>kubectl delete pod webapp</code></pre></li>
 <li>Create new pod from edited manifest:
-	<pre><code>kubectl create -f my-new-pod.yaml</code></pre></li></ul></p>
+	<pre><code>kubectl create -f my-new-pod.yaml</code></pre></li></ol></p>
 					</div>
 				</div>
 			</div> <!-- end of content -->
