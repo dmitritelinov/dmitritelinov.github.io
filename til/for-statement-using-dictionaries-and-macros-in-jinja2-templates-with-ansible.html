@@ -38,7 +38,7 @@
 <pre><code>...
 {% import backend.j2 as backend %}
 backend refinery
-{% for server, value in haproxy_backends.iteritems() %}
+{% for server, value in haproxy_backends.items() %}
 backend (server, value.ip)
 {% endfor %}
 ...</code></pre>
