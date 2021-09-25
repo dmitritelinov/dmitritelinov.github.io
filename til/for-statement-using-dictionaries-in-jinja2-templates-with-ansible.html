@@ -32,15 +32,13 @@
     mode: 0644
   notify: reload haproxy
 ...</code></pre>
-
 <strong>templates/haproxy.cfg.j2</strong>:
 <pre><code>...
 backend refinery
-{% for server, value in haproxy_backends.iteritems() %}
+{% for server, value in haproxy_backends.items() %}
     server {{ server }} {{ value.ip }}:8080 check
 {% endfor %}
 ...</code></pre>
-
 <strong>defaults/main.yml</strong>:
 <pre><code>...
 haproxy_stats: true
