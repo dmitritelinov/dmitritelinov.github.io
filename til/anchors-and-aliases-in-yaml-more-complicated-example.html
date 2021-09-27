@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Anchors and aliases in YAML - more complicated example</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					yaml
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Anchors and aliases in YAML - more complicated example</h2>
+					<div class="news_box">
+<p>The YAML:
+<pre><code>services:
+  # Node.js gives OS info about the node (Host)
+  nodeinfo: &amp;function
+    image: functions/nodeinfo:latest
+    labels:
+      function: "true"
+    depends_on:
+      - gateway
+    networks:
+      - functions
+    environment:
+      no_proxy: "gateway"
+      https_proxy: $https_proxy
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == linux'
+  # Uses `cat` to echo back response, fastest function to execute.
+  echoit:
+    &lt;&lt;: *function
+    image: functions/alpine:health
+    environment:
+      fprocess: "cat"
+      no_proxy: "gateway"
+      https_proxy: $https_proxy</code></pre><br/>      
+will become:
+<pre><code>services:
+  # Node.js gives OS info about the node (Host)
+  nodeinfo:
+    image: functions/nodeinfo:latest
+    labels:
+      function: "true"
+    depends_on:
+      - gateway
+    networks:
+      - functions
+    environment:
+      no_proxy: "gateway"
+      https_proxy: $https_proxy
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == linux'
+  # Uses `cat` to echo back response, fastest function to execute.
+  echoit:
+    image: functions/alpine:health
+    labels:
+      function: "true"
+    depends_on:
+      - gateway
+    networks:
+      - functions
+    environment:
+      fprocess: "cat"
+      no_proxy: "gateway"
+      https_proxy: $https_proxy
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == linux'</code></pre>
+The anchor and alias here look a bit different than the simple list example!. We want to refer to the nodeinfo service mapping. To do that, the &amp;function anchor is placed after <strong>nodeinfo</strong> is declared, and before the first key-value pair in the mapping.<br/><br/>
+In <strong>echoit</strong>, the first key-value pair uses <strong>&lt;&lt;</strong> as the key. This is a special key that indicates key-values from another mapping should be merged into this mapping. That other mapping is comes from the alias <strong>*function</strong> in this case. So the key-values for image, labels, depends_on, network, environment, and deploy from <strong>nodeinfo</strong> are merged into <strong>echoit</strong>, first. Then we overide the values for <strong>image</strong> and <strong>environment</strong> because they differ from <strong>nodeinfo</strong>. The end result is the same definitions, but without repeating items like labels and network.<br/><br/>
+So the <strong>nodeinfo</strong> service was used to provide the base definition for <strong>echoit</strong>, which then override specific key-values like <strong>image</strong> and <strong>environment</strong>.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
