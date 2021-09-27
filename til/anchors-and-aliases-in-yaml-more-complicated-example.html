@@ -82,7 +82,7 @@ will become:
       placement:
         constraints:
           - 'node.platform.os == linux'</code></pre>
-The anchor and alias here look a bit different than the simple list example!. We want to refer to the nodeinfo service mapping. To do that, the &amp;function anchor is placed after <strong>nodeinfo</strong> is declared, and before the first key-value pair in the mapping.<br/><br/>
+We want to refer to the <strong>nodeinfo</strong> service mapping. To do that, the <strong>&amp;function</strong> anchor is placed after <strong>nodeinfo</strong> is declared, and before the first key-value pair in the mapping.<br/><br/>
 In <strong>echoit</strong>, the first key-value pair uses <strong>&lt;&lt;</strong> as the key. This is a special key that indicates key-values from another mapping should be merged into this mapping. That other mapping is comes from the alias <strong>*function</strong> in this case. So the key-values for image, labels, depends_on, network, environment, and deploy from <strong>nodeinfo</strong> are merged into <strong>echoit</strong>, first. Then we overide the values for <strong>image</strong> and <strong>environment</strong> because they differ from <strong>nodeinfo</strong>. The end result is the same definitions, but without repeating items like labels and network.<br/><br/>
 So the <strong>nodeinfo</strong> service was used to provide the base definition for <strong>echoit</strong>, which then override specific key-values like <strong>image</strong> and <strong>environment</strong>.</p>
 					</div>
