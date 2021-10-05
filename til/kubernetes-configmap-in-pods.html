@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Kubernetes ConfigMap in Pods</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Kubernetes ConfigMap in Pods
+					<div class="news_box">
+						<p>ConfigMap <strong>spec.containers.env</strong>:
+<pre><code>env:
+- name: APP_COLOR
+  valueFrom:
+    configMapKeyRef: 
+      name: my-cm # The ConfigMap containing the value you want to assign to APP_COLOR
+      key: color  # Specify the key associated with the value</code></pre>    
+Use <strong>spec.containers.envFrom</strong> to define all of the ConfigMap's data as container environment variables. The key from the ConfigMap becomes the environment variable name in the Pod:
+<pre><code>envFrom:
+- configMapRef:
+    name: special-config</code></pre>
+Add the ConfigMap data as files to the directory specified as <strong>spec.containers.volumeMounts.mountPath</strong>.<br/>
+<strong>spec.volumes</strong>:
+<pre><code>volumes:
+- name: config-volume
+  configMap:
+    # Provide the name of the ConfigMap containing the files you want
+    # to add to the container
+    name: special-config</code></pre>
+<strong>spec.containers.volumeMounts</strong>:
+<pre><code>volumeMounts:
+- name: config-volume
+  mountPath: /etc/config</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
