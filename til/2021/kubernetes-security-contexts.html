@@ -22,13 +22,13 @@
 					<h2>Kubernetes Security Contexts</h2>
 					<div class="news_box">
 						<p>If you configure the Security Contexts at the pod and container level, settings on the container level will override those at the pod level.<br/><br/>
-Examples:
-<pre><code>spec.securityContext:
-securityContext:
+						Examples:<br/>
+<strong>spec.securityContext</strong>:
+<pre><code>securityContext:
   runAsUser: 1000</code></pre><br/>  
-To set them at container level move everything above to the <strong>spec.containers.securityContext</strong>. Note that capabilities can be defined only at the container level:
-<pre><code>spec.containers.securityContext:
-securityContext:
+To set them at container level move everything above to the <strong>spec.containers.securityContext</strong>. Note that capabilities can be defined only at the container level:<br/>
+<strong>spec.containers.securityContext</strong>:
+<pre><code>securityContext:
   runAsUser: 1000
   capabilities:
     add: {"MAC_ADMIN"}</code></pre></p>
