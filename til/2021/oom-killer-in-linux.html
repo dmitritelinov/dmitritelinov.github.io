@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | OOM killer in Linux</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					linux
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>OOM killer in Linux</h2>
+					<div class="news_box">
+						<p>The "OOM Killer" or "Out of Memory Killer" is a process that the Linux kernel employs when the system is critically low on memory.<br/><br/>
+						Whenever out of memory failure occurs, the out_of_memory() function will be called. Within it the select_bad_process() function is used which gets a score from the badness() function. The most ‘bad’ process is the one that will be sacrificed.<br/><br/>
+The above listed criteria mean that when selecting a process to kill the OOM Killer will choose a process using lots of memory and has lots of child processes and which are not system processes. An application such as Apache, MySQL, Nginx, Clamd (ClamAV), or a mail server will make an good candidate.</p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
