@@ -1,7 +1,7 @@
-129630 || Build software better, together || https://github.com/apps/guardrails || #security || 20200920
-45546 || Google's DeepMind AI Just Taught Itself To Walk || https://www.youtube.com/watch?v=gn4nRCC9TwQ || #ml || 20180827
-41116 || Quantum Computers Explained – Limits of Human Technology || https://www.youtube.com/watch?v=JhHMJCUmq28 || #notag || 20180826
-34794 || The World's Most Powerful Laptop! || https://www.youtube.com/watch?v=k_GM1JA608Y || #hardware || 20180825
+GuardRails || https://github.com/apps/guardrails || #security
+Google's DeepMind AI Just Taught Itself To Walk || https://www.youtube.com/watch?v=gn4nRCC9TwQ || #ai
+Quantum Computers Explained – Limits of Human Technology || https://www.youtube.com/watch?v=JhHMJCUmq28 || #hardware
+The World's Most Powerful Laptop! || https://www.youtube.com/watch?v=k_GM1JA608Y || #hardware
 34101 || The Map of Mathematics || https://www.youtube.com/watch?v=OmJ-4B-mS-Y || #math || 20180822
 26929 || ASTOUNDING: 1 + 2 + 3 + 4 + 5 + ... = -1/12 || https://www.youtube.com/watch?v=w-I6XTVZXww || #math || #til
 25419 || Amazing Technology Invented By MIT - Tangible Media || https://www.youtube.com/watch?v=lvtfD_rJ2hE || #notag || 20180828
