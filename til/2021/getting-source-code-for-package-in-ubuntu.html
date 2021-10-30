@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Getting source code for package in Ubuntu</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					ubuntu
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Getting source code for package in Ubuntu</h2>
+					<div class="news_box">
+						<p><ol><li>Open <strong>/etc/apt/sources.list</strong> and uncomment <strong>deb-src</strong> lines of respective repositories</li>
+							<li>Don't forget to retrieve the updated package lists:
+								<pre><code>sudo apt update</code></pre></li>
+								<li>Install <strong>dpkg-dev</strong>:
+									<pre><code>sudo apt-install dpkg-dev</code></pre></li>
+									<li>Go to your ~ folder and download the source (htop for example):
+										<pre><code>sudo apt source htop</code></pre></li></ol></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
