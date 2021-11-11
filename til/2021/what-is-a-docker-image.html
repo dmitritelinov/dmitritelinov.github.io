@@ -21,7 +21,15 @@
 				<div class="content_box">
 					<h2>What is a Docker image</h2>
 					<div class="news_box">
-<p>Single file with all of the dependencies and configs required to run a program. Essentially it is a file system snapshot and startup command used to create a container.</p>
+						<p>Single file with all of the dependencies and configs required to run a program. Essentially it is a file system snapshot and startup command used to create a container.<br/><br/>
+Characteristics:
+<ul><li>from image the containers are run</li>
+<li>they are kept in Docker registries</li>
+<li>have hash, name and tag</li>
+<li>have layered structure</li>
+<li>they are created from instructions stored in Dockerfile</ii></ul>
+Images are not packaged into one large binary; instead, they are packaged into discrete layers, each of which has its own unique identifier. When images are moved around, they are moved as a collection of layers, which provides a huge advantage.<br/><br/>
+If one host has an image with five layers and another host needs the same image, it only needs to fetch the layers that it doesn’t already have. So if it has two of the five layers already, it only needs to fetch three layers to rebuild the entire container.</p>
 					</div>
 				</div>
 			</div> <!-- end of content -->
