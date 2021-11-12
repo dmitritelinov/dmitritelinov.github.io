@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | Taints and tolerations in Kubernetes</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					kubernetes
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>Taints and tolerations in Kubernetes</h2>
+					<div class="news_box">
+						<p>Taints and tolerations are used to set restrictions on what pods can be scheduled on a node. Taints are set on nodes, tolerations - on pods.<br/><br/>
+To taint a node:
+<pre><code>kubectl taint nodes node-name key=value:taint-effect
+kubectl taint nodes node1 app=blue:NoSchedule</code></pre>
+the taint-effect defines what will happen to the pods if they do not tolerate the taint:
+<ul><li>NoSchedule - pod will not be scheduled on the node</li>
+<li>PreferNoSchedule - the system will try to avoid placing the pod on the node, but that is not guaranteed</li>
+<li>NoExecute - new pods will not be scheduled on the node, and existing pods on the node if any - will be evicted if they do not tolerate the taint</li></ul>
+To remove a taint from a node add a - (minus) at the end of taint:
+<pre><code>kubectl taint nodes node-name key=value:taint-effect-</code></pre>
+Tolerations are added to pods inside <strong>spec.tolerations</strong> of the Pod definition:
+<pre><code>spec:
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"</code></pre><br/>
+When the Kubernetes cluster is first setup, a taint is set to Master node automatically to prevent any pod to being scheduled on this Node. This is best practice. To see this taint:
+<pre><code>kubectl describe node master | grep Taint</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
