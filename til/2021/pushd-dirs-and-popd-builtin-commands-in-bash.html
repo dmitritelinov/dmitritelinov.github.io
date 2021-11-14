@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>pctags.com | notes from kb.txt | pushd, dirs and popd - builtin commands in bash</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="content_wrapper">
+			<div id="sidebar">
+                                <div class="sidebar_box">
+					<h2>til</h2>
+					bash
+                                </div>
+                                <div class="sidebar_box_bottom"></div>
+                        </div> <!-- end of sidebar -->
+			<div id="content">
+				<div class="content_box">
+					<h2>pushd, dirs and popd - builtin commands in bash</h2>
+					<div class="news_box">
+						<p><pre><code>[~]$ pushd /tmp
+/tmp ~
+[/tmp]$ pushd /etc
+/etc /tmp ~
+[/etc]$ pushd /home/
+/home /etc /tmp ~
+[/home]$ pushd /usr/local/
+/usr/local /home /etc /tmp ~
+[/usr/local]$ dirs -v
+ 0  /usr/local
+ 1  /home
+ 2  /etc
+ 3  /tmp
+ 4  ~
+[/usr/local]$ cd ~3
+[/tmp]$ pwd
+/tmp
+[/tmp]$ cd ~1
+[/home]$ dirs -v
+ 0  /home
+ 1  /home
+ 2  /etc
+ 3  /tmp
+ 4  ~
+[/home]$ popd
+/home /etc /tmp ~
+[/home]$ popd
+/etc /tmp ~
+[/etc]$ dirs -c
+[/etc]$ popd
+bash: popd: directory stack empty</code></pre></p>
+					</div>
+				</div>
+			</div> <!-- end of content -->
+		</div>
+	</body>
+</html>
