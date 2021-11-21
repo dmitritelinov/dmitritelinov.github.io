@@ -1,33 +1,33 @@
-GuardRails || https://github.com/apps/guardrails || #security
-Google's DeepMind AI Just Taught Itself To Walk || https://www.youtube.com/watch?v=gn4nRCC9TwQ || #ai
-Quantum Computers Explained – Limits of Human Technology || https://www.youtube.com/watch?v=JhHMJCUmq28 || #hardware
-The World's Most Powerful Laptop! || https://www.youtube.com/watch?v=k_GM1JA608Y || #hardware
-34101 || The Map of Mathematics || https://www.youtube.com/watch?v=OmJ-4B-mS-Y || #math || 20180822
-26929 || ASTOUNDING: 1 + 2 + 3 + 4 + 5 + ... = -1/12 || https://www.youtube.com/watch?v=w-I6XTVZXww || #math || #til
-25419 || Amazing Technology Invented By MIT - Tangible Media || https://www.youtube.com/watch?v=lvtfD_rJ2hE || #notag || 20180828
-23358 || Inside a Google data center || https://www.youtube.com/watch?v=XZmGGAbHqa0 || #hardware || 20180813
-22987 || 15 Sorting Algorithms in 6 Minutes || https://www.youtube.com/watch?v=kPRA0W1kECg || #algorithms || 20180813
-19282 || Google's Deep Mind Explained! - Self Learning A.I. || https://www.youtube.com/watch?v=TnUYcTuZJpM || #ml || 20180827
-19140 || The Map of Physics || https://www.youtube.com/watch?v=ZihywtixUYo || #physics || 20180828
+141897 || GuardRails || https://github.com/apps/guardrails || #security || 20211121
+22418 || The Map of Mathematics || https://www.youtube.com/watch?v=OmJ-4B-mS-Y || #math || 20211121
+21303 || Quantum Computers Explained – Limits of Human Technology || https://www.youtube.com/watch?v=JhHMJCUmq28 || #hardware || 20211121
+19117 || Inside a Google data center || https://www.youtube.com/watch?v=XZmGGAbHqa0 || #hardware || 20211121
 17922 || Bell's Theorem: The Quantum Venn Diagram Paradox || https://www.youtube.com/watch?v=zcqZHYo7ONs || #physics || 20180823
 17916 || Edward Snowden: How Your Cell Phone Spies on You || https://www.youtube.com/watch?v=VFns39RXPrU || #hardware || 20191116
 17825 || iPhone 7 Scratch test - BEND TEST - Durability video! || https://www.youtube.com/watch?v=0vYfAqEyGV0 || #hardware || 20180825
+17559 || The World's Most Powerful Laptop! || https://www.youtube.com/watch?v=k_GM1JA608Y || #hardware || 20211121
 17199 || [HD] Steve Jobs - iPhone Introduction in 2007 (Complete) || https://www.youtube.com/watch?v=9hUIxyE2Ns8 || #hardware || 20180814
 16715 || Google Data Center 360° Tour || https://www.youtube.com/watch?v=zDAYZU4A3w0 || #hardware || 20180828
 16547 || 15-Yr-Old Kelvin Doe Wows M.I.T. || https://www.youtube.com/watch?v=XOLOLrUBRBY || #notag || 20180829
+15430 || Amazing Technology Invented By MIT - Tangible Media || https://www.youtube.com/watch?v=lvtfD_rJ2hE || #notag || 20211121
+15390 || Google's DeepMind AI Just Taught Itself To Walk || https://www.youtube.com/watch?v=gn4nRCC9TwQ || #ai || 20211121
 15364 || MarI-O - Machine Learning for Video Games || https://www.youtube.com/watch?v=qv6UVOQ0F44 || #notag || 20180819
 15108 || Keynote (Google I-O '18) || https://www.youtube.com/watch?v=ogfYd705cRs || #notag || 20180819
 14608 || The Infinite Hotel Paradox - Jeff Dekofsky || https://www.youtube.com/watch?v=Uj3_KqkI9Zo || #math || 20180820
 13634 || How Machines Learn || https://www.youtube.com/watch?v=R9OHn5ZF4Uo || #ml || 20180829
 13498 || Kali Linux || https://www.kali.org/ || #security #kali #linux || 20200427
 13079 || But what is the Fourier Transform? A visual introduction. || https://www.youtube.com/watch?v=spUNpyF58BY || #math || 20180816
+12567 || The Map of Physics || https://www.youtube.com/watch?v=ZihywtixUYo || #physics || 20211121
 12025 || Blockchain Expert Explains One Concept in 5 Levels of Difficulty | WIRED || https://www.youtube.com/watch?v=hYip_Vuv8J0 || #blockchain || 20180814
 11704 || Visualizing the Riemann hypothesis and analytic continuation || https://www.youtube.com/watch?v=sD0NjbwqlYw || #math || #til
+11397 || Google's Deep Mind Explained! - Self Learning A.I. || https://www.youtube.com/watch?v=TnUYcTuZJpM || #ai || 20211121
 11033 || Bitcoin: How Cryptocurrencies Work || https://www.youtube.com/watch?v=kubGCSj5y3k || #blockchain || 20180824
 10578 || 14-Year-Old Prodigy Programmer Dreams In Code || https://www.youtube.com/watch?v=DBXZWB_dNsw || #notag || 20180816
 10563 || Demonstrating Quantum Supremacy || https://www.youtube.com/watch?v=-ZNEzzDcllU || #hardware || 20191116
+10361 || 15 Sorting Algorithms in 6 Minutes || https://www.youtube.com/watch?v=kPRA0W1kECg || #algorithms || 20211121
 10322 || How a CPU is made || https://www.youtube.com/watch?v=qm67wbB5GmI || #hardware || 20180814
 9819 || Let's Talk About Google Duplex! || https://www.youtube.com/watch?v=USXoINPEhoA || #notag || 20180903
+9597 || ASTOUNDING: 1 + 2 + 3 + 4 + 5 + ... = -1/12 || https://www.youtube.com/watch?v=w-I6XTVZXww || #math || 20211121
 9264 || The mind behind Linux | Linus Torvalds || https://www.youtube.com/watch?v=o8NPllzkFhE || #linux || 20180809
 8942 || Fourier Transform, Fourier Series, and frequency spectrum || https://www.youtube.com/watch?v=r18Gi8lSkfM || #math || 20180830
 8583 || P vs. NP and the Computational Complexity Zoo || https://www.youtube.com/watch?v=YX40hbAHx3s || #computerscience || 20180821
