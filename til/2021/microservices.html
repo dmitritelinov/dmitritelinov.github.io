@@ -14,6 +14,8 @@
 			<h2>Microservices</h2>
 			<p>An application is broken down into its smallest constituent parts, and each part is a program. This is the microservice architecture.</p>
 			<p>Standing at the opposite end of the spectrum of a monolithic application, a microservice is responsible for handling only one small part of the overall application’s processing.</p>
+			<p>With all this theory, a simple example may better explain how this works. Imagine an ecommerce website. We can think of several tasks that jointly comprise this sort of website. There is a product catalog, user accounts and shopping carts, a payment processor that handles the security-sensitive process of monetary transactions, and a frontend through which customers view items and select their purchases. There is also an administrative interface where the store owners manage inventory and fulfill orders.</p>
+			<p>The cloud native approach to such an application, though, is to break this ecommerce application into multiple pieces. One handles payment transactions. Another tracks the product catalog. Yet another provides the administrative, and so on. These services then communicate with each other over the network using well-defined REST APIs.</p>
 		</div>
         </body>
 </html>
