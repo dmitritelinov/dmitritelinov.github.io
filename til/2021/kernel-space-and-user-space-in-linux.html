@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Kernel Space and User Space in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Kernel Space and User Space in Linux</h2>
+			<p>One of important functions of a Linux kernel is a memory management. The memory is separated within the LInux kernel known as:
+			<ul><li>kernel space - in which kernel executes and provides its services. A process running here has unrestricted access to the hardware (kernel code, kernel extensions, device drivers)</li>
+			<li>user space - all processes running outside the kernel, reside here, which have restricted access to hardware. User programs manipulate data by making a special request to the kernel called System Calls (Ex. open a file, list processes, defining a variable - open(), fork(), readdir() strlen() etc.)</li></ul></p>
+		</div>
+        </body>
+</html>
