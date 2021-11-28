@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Helm application example | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Helm application example</h2>
+			<p>We know several distinct Kubernetes resources: A Pod, a ConfigMap, a Deployment, and a Service. Each of these performs some discrete role. But an application typically requires more than one of these.</p>
+			<p>For example, the WordPress CMS system can be run inside of Kubernetes. But typically it would need at least a Deployment (for the WordPress server), a ConfigMap for configuration and probably a Secret (to keep passwords), a few Service objects, a StatefulSet running a database, and a few role-based access control (RBAC) rules. Already, a Kubernetes description of a basic WordPress site would span thousands of lines of YAML. At the very core of Helm is this idea that all of those objects can be packaged to be installed, updated, and deleted together.</p>
+		</div>
+        </body>
+</html>
