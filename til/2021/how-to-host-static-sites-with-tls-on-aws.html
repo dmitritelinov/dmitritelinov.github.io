@@ -19,7 +19,7 @@ Request a public certificate. Enter two records in the domain name: domain.tld a
 One for domain name: domain.tld and another for www.domain.tld. Uncheck - block all public access to make the bucket public. In the ACL set Everyone to Read.<br/>
 Enable static website hosting: for domain.tld bucket - set index as index.hrml and for www.domain.tld set is as redirect request via https to domain.tld.<br/>
 Upload files to domain.tld bucket.</li>
-				<li>CloudFront distributions
+				<li>CloudFront distributions<br/>
 We’ll use two separate CloudFront distributions: one to specifically handle domain.tld, and a second to handle www.domain.tld to make it SEO friendly:<br/>
 Origin - set target S3 bucket<br/>
 Redirect HTTP to HTTPS<br/>
@@ -27,7 +27,7 @@ Compress objects automatically<br/>
 Alternate domain name: set domain.tld or www.domain.tld respectively<br/>
 SSL Certificate - select the certificate you created above<br/>
 Default Root Object: set to index.html</li>
-				<li>Configure Route53
+				<li>Configure Route53<br/>
 					Create two A aliases for domain.tld and www.domain.tld which will point to respective CloudFront distributions</li></ol></p>
 		</div>
         </body>
