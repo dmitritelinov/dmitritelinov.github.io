@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>How to host static sites with TLS on AWS | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>How to host static sites with TLS on AWS</h2>
+			<p><ol><li>Register or transfer nameservers to AWS</li>
+				<li>Create SSL certificate for domain<br/>
+Request a public certificate. Enter two records in the domain name: domain.tld and www.domain.tld. Select DNS validation - this will add some entries for domain in Route53</li>
+				<li>Create S3 buckets<br/>
+One for domain name: domain.tld and another for www.domain.tld. Uncheck - block all public access to make the bucket public. In the ACL set Everyone to Read.<br/>
+Enable static website hosting: for domain.tld bucket - set index as index.hrml and for www.domain.tld set is as redirect request via https to domain.tld.<br/>
+Upload files to domain.tld bucket.</li>
+				<li>CloudFront distributions
+We’ll use two separate CloudFront distributions: one to specifically handle domain.tld, and a second to handle www.domain.tld to make it SEO friendly:<br/>
+Origin - set target S3 bucket<br/>
+Redirect HTTP to HTTPS<br/>
+Compress objects automatically<br/>
+Alternate domain name: set domain.tld or www.domain.tld respectively<br/>
+SSL Certificate - select the certificate you created above<br/>
+Default Root Object: set to index.html</li>
+				<li>Configure Route53
+					Create two A aliases for domain.tld and www.domain.tld which will point to respective CloudFront distributions</li></ol></p>
+		</div>
+        </body>
+</html>
