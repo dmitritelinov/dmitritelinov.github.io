@@ -2,23 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>Check password protected certificate expiration date with OpenSSL | dmitritelinov</title>
+                <title>TIL by #openssl | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
-
         <body>
 		<div class="wrap">
-			<h2>Check password protected certificate expiration date with OpenSSL</h2>
-			<p><div class="news_box">
-<b>PKS</b>
-<pre><code>openssl pkcs12 -passin pass:{{cert_password}} \
--passout pass:{{cert_password}} -in certificate.p12 \
--out /dev/stdout | openssl x509 -in /dev/stdin -noout -enddate</code></pre>
-<b>X509</b>
-<pre><code>openssl x509 -in certificate.crt -noout -enddate</code></pre></p>
+			<h2>#openssl</h2>
+			<a href="/til/2019/check-password-protected-certificate-expiration-date-with-openssl.html">Check password protected certificate expiration date with OpenSSL</a><br/>
 		</div>
         </body>
 </html>
