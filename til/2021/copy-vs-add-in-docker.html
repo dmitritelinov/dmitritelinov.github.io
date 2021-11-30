@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>COPY vs ADD in Docker | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+        <body>
+		<div class="wrap">
+			<h2>COPY vs ADD in Docker</h2>
+			<p>The major difference is that ADD can do more than COPY.</p>
+			<p>A valid use case for ADD is when you want to extract a local tar file into a specific directory in your Docker image. This is exactly what the Alpine image does with:
+			<pre><code>ADD rootfs.tar.gz /</code></pre></p>
+			<p>Also, ADD allows {{ src }} to be a URL</p>
+			<p>If you are copying local files to your Docker image, always use COPY because it’s more explicit.</p>
+			<p>COPY is same as ADD, but without the tar and remote URL handling.</p>
+		</div>
+        </body>
+</html>
