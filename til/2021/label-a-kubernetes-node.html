@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #kubernetes | dmitritelinov</title>
+                <title>Label a Kubernetes node | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,10 +11,11 @@
 
         <body>
 		<div class="wrap">
-			<h2>#kubernetes</h2>
-			<a href="/til/2021/label-a-kubernetes-node.html">Label a Kubernetes node</a><br/>
-			<a href="/til/2021/rkt.html">rkt</a><br/>
-			<a href="/til/2021/kubevirt.html">KubeVirt</a><br/>
+			<h2>Label a Kubernetes node</h2>
+			<p>To label a node, use the command:
+			<pre><code>kubectl label nodes {{ node }} {{ label-key }}={{ label-value }}</code></pre></p>
+			<p>Example:
+			<pre><code>kubectl label nodes node1 size=Large</code></pre></p>
 		</div>
         </body>
 </html>
