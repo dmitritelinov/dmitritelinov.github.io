@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Run the command directly without the alias in bash - suppress alias substitution | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Run the command directly without the alias in bash - suppress alias substitution</h2>
+			<p>Use a “\” (backslash) before the command to run it without the alias. The backslash escape character can be used before a shell command to override any aliases. For example if rm was made into an alias for rm -i then typing “rm” would actually run rm -i.</p>
+			<p>The (Bourne/POSIX) shell specification says that alias substitution in an interactive shell is suppressed when any character of the command word is quoted. A backslash is one way to do that, but there are also other well known ways to quote: single and double quotes. All of the following will suppress alias substitution:
+			<pre><code>\curl
+cur\l
+\c\u\r\l
+"c"url
+"curl"
+"c""u""r""l"
+'curl'
+'cu'"rl"</code></pre></p>
+			<p>Using \curl is just the most common and readable way.</p>
+		</div>
+        </body>
+</html>
