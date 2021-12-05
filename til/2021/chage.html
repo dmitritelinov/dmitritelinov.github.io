@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>chage | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>chage</h2>
+			<p>This command is used to view and change the user password expiry information<br/>
+To view the list of options that can be used with the chage command use these options:
+<pre><code>chage --help
+chage -h</code></pre>
+To view the account aging information for user linda:
+<pre><code>chage -l linda</code></pre>
+To set the last password change date to your specified date. useful if you want to expire the current password. The below command sets when (in days) the password is last changed for user linda. The parameter may also be expressed in the format YYYY-MM-DD):
+<pre><code>chage -d 0 linda
+chage -d 1970-01-01 linda</code></pre>
+Specify the date when the account should expire:
+<pre><code>chage -E 2030-01-01 linda</code></pre>
+Use -M or -m option to specify the maximum and minimum number of days between password change:
+<pre><code>chage -M 5 linda
+chage -m 1 linda</code></pre>
+<strong>chage</strong> allows you to set to change the password after its expiry date. Once you set the limit of days using the -I option, it would allow the user to change the account password during its inactivity period:
+<pre><code>chage -I 10 linda</code></pre>
+Use -W option to give prior warning before the password expires. By default, the value is set to 7 days:
+<pre><code>chage -W 10 linda</code></pre></p>
+		</div>
+        </body>
+</html>
