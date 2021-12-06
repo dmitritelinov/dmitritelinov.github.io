@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Basic steps with Vagrant and libvirt (KVM) | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Basic steps with Vagrant and libvirt (KVM)</h2>
+			<p>Create a basic directory:
+			<pre><code>mkdir centos
+cd centos</code></pre>
+			After this command a <strong>Vagrantfile</strong> will be created in the <strong>centos</strong> directory:
+<pre><code>vagrant init generic/centos8</code></pre>
+Adjust the <strong>Vagrantfile</strong> to match these lines:
+<pre><code>Vagrant.configure("2") do |config|
+  config.vm.box = "generic/centos8"
+  config.vm.hostname = "foohost"
+  config.vm.synced_folder "/mnt/ntfs/vagrant", "/vagrant_data"
+  config.vm.provider "libvirt" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+  config.vm.define "Centos8-demo" do |t|
+  end
+  config.vm.provision "shell", inline: &lt;&lt;-SHELL
+    yum -y update
+    yum -y upgrade
+  SHELL
+end</code></pre>
+Launch the virtual machine:
+<pre><code>vagrant up --provider=libvirt</code></pre>
+SSH to it with:
+<pre><code>vagrant ssh</code></pre>
+Stop it:
+<pre><code>vagrant halt</code></pre>
+Destroy (delete all files):
+<pre><code>vagrant destroy</code></pre></p>
+		</div>
+        </body>
+</html>
