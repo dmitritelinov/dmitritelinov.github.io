@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Multi-container Pods in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Multi-container Pods in Kubernetes</h2>
+			<p>There are different patterns of multi-container Pods in Kubernetes such as:
+			<ul><li>Ambassador - A container that proxy the network connection to the main container. For example to proxy the connection to the Dev, Test or Prod databases</li>
+				<li>Adapter -A container that transform output of the main container. For example it will transform the logs for log agent to specified standard</li>
+				<li>Sidecar - An extra container in your pod to enhance or extend the functionality of the main container. For example - a log application that will forward logs to log agent</li></ul></p>
+			<p>Multi-container Pods share same:
+			<ul><li>lifecycle - containers are created and destroyed together</li>
+				<li>network - containers share same network space, they can refer each other as localhost</li>
+				<li>storage - containers havea access to the same storage volumes</li></ul></p>
+		</div>
+        </body>
+</html>
