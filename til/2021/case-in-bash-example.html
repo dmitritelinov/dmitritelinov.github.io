@@ -2,18 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #bash | dmitritelinov</title>
+                <title>case in bash example | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#bash</h2>
-			<a href="/til/2021/case-in-bash-example.html">case in bash example</a><br/>
-			<a href="/til/2021/some-ps1-escape-characters.html">Some PS1 escape characters</a><br/>
-			<a href="/til/2021/run-the-command-directly-without-the-alias-in-bash-suppress-alias-substitution.html">Run the command directly without the alias in bash - suppress alias substitution</a>
+			<h2>case in bash example</h2>
+			<p><pre><code>#!/bin/bash
+
+echo
+echo Please choose an option
+echo
+echo a - Display date and time
+echo b - Show kernel version
+echo c - List users logged in
+echo d - Check system uptime
+echo
+
+read option
+
+case $option in
+	a) date;;
+	b) uname -a;;
+	c) who;;
+	d) uptime;;
+	*) echo Invalid choice - Bye.
+esac</code></pre></p>
 		</div>
         </body>
 </html>
