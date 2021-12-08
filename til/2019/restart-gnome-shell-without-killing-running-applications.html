@@ -1,32 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Restart Gnome-shell without killing running applications</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Restart Gnome-shell without killing running applications | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-					gnome ubuntu
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Restart Gnome-shell without killing running applications</h2>
-					<div class="news_box">
-Sometimes Gnome-shell freezes with background processes still running. To restart it "nicely" you can call it's internal restart function over dbus with following command:
+        <body>
+		<div class="wrap">
+			<h2>Restart Gnome-shell without killing running applications</h2>
+			<p>Sometimes Gnome-shell freezes with background processes still running. To restart it "nicely" you can call it's internal restart function over dbus with following command:
 <pre><code>dbus-send --type=method_call --print-reply --dest=org.gnome.Shell /org/gnome/Shell \
-org.gnome.Shell.Eval string:'global.reexec_self()'</code></pre>
-					</div>
-				</div>
-			</div> <!-- end of content -->
+org.gnome.Shell.Eval string:'global.reexec_self()'</code></pre></p>
 		</div>
-	</body>
+        </body>
 </html>
