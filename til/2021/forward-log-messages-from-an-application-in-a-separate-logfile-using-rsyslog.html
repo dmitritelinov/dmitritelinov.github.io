@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Forward log messages from an application in a separate logfile using rsyslog | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Forward log messages from an application in a separate logfile using rsyslog</h2>
+			<p>Open <strong>/etc/rsyslog.conf</strong> and add to the end:
+			<pre><code># define template name and logfile where application logs will be forwarded
+$template testapp, "/var/log/testapplog"
+
+# if application name is 'testapp' then apply the above defined template
+if $programname contains 'testapp' then ?testapp
+
+# prevent messages that matched the condition on above line to be processed further
+# without this line, the message will end up in /var/log/testapplog and in /var/log/messages.
+&amp; ~</code></pre>
+			Restart <strong>rsyslog</strong> after making the above changes:
+<pre><code>$ sudo systemctl restart rsyslog</code></pre>
+Generate a test message from app testapp:
+<pre><code>$ logger -i -t testapp testmessage</code></pre>
+After that, you can find a logfile with message in it:
+<pre><code>$ sudo ls -la /var/log/testapplog 
+-rw-r----- 1 root adm 49 Dec  9 21:48 /var/log/testapplog
+$ sudo tail /var/log/testapplog 
+Dec  9 21:48:58 db testapp[3011931]: testmessage</code></pre></p>
+		</div>
+        </body>
+</html>
