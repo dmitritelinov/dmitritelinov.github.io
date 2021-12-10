@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Node Affinity types | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Node Affinity types</h2>
+			<p>This defines the behaviour of the scheduler with respective Node Affinity and the stages in the lifecycle of the Pod. There are currently those types of Node Affinity available:
+			<ul><li>requiredDuringSchedulingIgnoredDuringExecution</li>
+				<li>preferredDuringSchedulingIgnoredDuringExecution</li>
+				<li>requiredDuringSchedulingRequiredDuringExecution</li></ul></p>
+			<p>There are two states in the lifecycle of the Pod when considering Node Affinity:
+			<ul><li>DuringScheduling - when the Pod does not exist and it is created for the first time</li>
+				<li>DuringExecution - is the state when the Pod has been running and the change was made to environment that affects Node Affinity (for example - remove the label of a node)</li></ul></p>
+			<p>DuringScheduling:
+			<ul><li>Required - the scheduler will mandate to place the Pod on a node with given Affinity rules. If it cannot find one - the pod will not be scheduled.</li>
+				<li>Preffered - used in cases if the Pod placement on a running node is less important than running the workload itself. In cases then the matching node is not found - the scheduler will simply ignore Affinity rules and will try to place the Pod on any available node</li></ul></p>
+			<p>DuringExecution:
+			<ul><li>Ignored - pods will continue to run, and any changes to Node Affinity will not impact them once them are scheduled</li>
+				<li>Required - will evict any Pods that are running on a nodes that do not meet the Affinity rules. In simple words, if the label of a node will be deleted, any Pods which uses this label in Affinity rules will be evicted.</li></ul></p>
+		</div>
+        </body>
+</html>
