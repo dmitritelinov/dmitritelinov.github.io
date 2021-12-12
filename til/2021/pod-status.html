@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Pod Status | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Pod Status</h2>
+			<p>It tells us where the Pod is in the lifecycle. You can see Pod status in the output of the following command:
+			<pre><code>kubectl get pod</code></pre></p>
+			<p>This gives only a high level summary of a POd:
+			<ul><li>Pending - then the Pod is first created it is in the Pending state. This is when Scheduler tries to figure out where to place the Pod. If the Scheduler cannot find  a place to put the Pod, it remains in this state</li>
+				<li>ContainerCreating - once the Pod is scheduled it goes to the ContainerCreating status where the images required for the application are pulled and the container starts</li>
+				<li>Running - once all containers in the Pod starts it goies into Running state, and it continues to be until program completes successfully or it is terminated</li></ul></p>
+		</div>
+        </body>
+</html>
