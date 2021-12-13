@@ -15,7 +15,7 @@
 			<p><ul><li>Stop your mongodb server:<pre><code>use admin
 db.shutdownServer()</code></pre></li>
 <li>Open /etc/mongod.conf and comment the <strong>replication.replSetName</strong> lines:<pre><code>#replication:
-   #replSetName: rs0</code></pre></li>
+#replSetName: rs0</code></pre></li>
 <li>Start your mongo server</li>
 <li>Go to mongo shell and drop local database:<pre><code>use local
 db.dropDatabase()</code></pre></li>
