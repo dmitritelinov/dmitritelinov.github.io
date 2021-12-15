@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Pod Conditions in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Pod Conditions in Kubernetes</h2>
+			<p>Conditions complement <a href="/til/2021/pod-status-in-kubernetes.html">Pod Status</a>, it is an array of True/False values that tell us the state of the Pod:
+			<ul><li>PodScheduled. Then the Pod is scheduled on a node, this condition is set to True</li>
+				<li>Initialized. Respective when the Pod is initialized - this value is set to True</li>
+				<li>ContainersReady. True - when the all containers in the Pod are ready</li>
+				<li>Ready. True - when the Pod itself are considered ready and it is ready to accept user traffic</li></ul>
+To check the condidtions, run:
+<pre><code>kubectl describe po</code></pre>
+and look to the Conditions section. Also the condtition <strong>Ready</strong> can be viewed with:
+<pre><code>kubectl get po</code></pre>
+check READY field</p>
+		</div>
+        </body>
+</html>
