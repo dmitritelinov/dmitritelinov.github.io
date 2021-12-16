@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Deploy Python Flask hello world app using Gunicorn | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Deploy Python Flask hello world app using Gunicorn</h2>
+			<p>Create main.py file:
+			<pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return 'Hello, World!'
+
+if __name__=='__main__':
+    app.run()</code></pre>    
+Install gunicorn:
+<pre><code>sudo pip install gunicorn</code></pre>
+Run Flask app on port 8000 with Gunicorn:
+<pre><code>gunicorn main:app</code></pre>
+where:<br/>
+<strong>main</strong> - name on the python file
+<strong>app</strong> - name of Flask application component<br/>
+Spin multiple workers by adding <strong>-w</strong> option to the command:
+<pre><code>gunicorn main:app -w 3</code></pre></p>
+		</div>
+        </body>
+</html>
