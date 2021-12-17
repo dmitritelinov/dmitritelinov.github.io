@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Order to resolve the domain in Linux (hosts file or DNS) | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Order to resolve the domain in Linux (hosts file or DNS)</h2>
+			<p>Open the file <strong>/etc/nsswitch.conf</strong> and find the line with hosts:
+			<pre><code>hosts:          files dns</code></pre>
+			It lists the services in order of priority, which are used to find the IP address for the domain name. The column <strong>files</strong> means the use of the <strong>/etc/hosts</strong> file, and the <strong>dns</strong> means use of the Domain Name Service.<br/>
+If <strong>files</strong> are located before <strong>dns</strong>, this means that the system will first try to find the domain in <strong>/etc/hosts</strong>, and only then by DNS.</p>
+		</div>
+        </body>
+</html>
