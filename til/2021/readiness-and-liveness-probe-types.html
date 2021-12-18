@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Readiness and liveness probe types | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Readiness and liveness probe types</h2>
+			<p><strong>HTTP Test - /api/ready</strong>
+			<pre><code>readinessProbe:
+  httpGet:
+    path: /api/ready
+    port: 8080</code></pre>
+<strong>TCP Test - 3306</strong>
+<pre><code>readinessProbe:
+  tcpSocket:
+    port: 3306</code></pre>
+<strong>Exec Command</strong>
+<pre><code>readinessProbe:
+  exec:
+    command:
+    - cat
+    - /app/is_ready</code></pre>
+There are additional options to consider:
+<ul><li>readinessProbe.initialDelaySeconds - if your application needs a time to warm-up</li>
+	<li>readinessProbe.periodSeconds - specify how often to probe</li>
+	<li>readinessProbe.failureThreshold - if you want to make more attempts to probe (default - 3)</li></ul>
+<strong>Same implies to liveness probes: just replace readinessProbe with livenessProbe</strong></p>
+		</div>
+        </body>
+</html>
