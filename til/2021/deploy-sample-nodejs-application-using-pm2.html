@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Deploy sample NodeJS application using PM2 | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Deploy sample NodeJS application using PM2</h2>
+			<p>Clone app:
+			<pre><code>cd /opt
+git clone https://github.com/contentful/the-example-app.nodejs</code></pre>
+
+Get the dependencies:
+<pre><code>cd the-example-app.nodejs/
+npm install</code></pre>
+Install PM2 globally:
+<pre><code>npm install pm2@latest -g</code></pre>
+Run the app with PM2:
+<pre><code>pm2 start app.js</code></pre>
+Stop the app:
+<pre><code>pm2 delete app.js</code></pre>
+Run the app with 4 forks:
+<pre><code>pm2 start app.js -i 4</code></pre></p>
+		</div>
+        </body>
+</html>
