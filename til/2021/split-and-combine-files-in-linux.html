@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Split and combine files in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Split and combine files in Linux</h2>
+			<p>Assume myfile is a 160KB file:
+			<pre><code>split -b 40k myfile segment</code></pre>
+This will output four 40KB files: segmentaa, segmentab, segmentac, and segmentad</p>
+			<p>Assume myfile is 3000 lines long:
+<pre><code>split -l 500 myfile segment</code></pre>
+This will output six 500-line files: segmentaa, segmentab, segmentac, segmentad, segmentae, and segmentaf</p>
+			<p>You can combine them with <strong>cat</strong> command</p>
+		</div>
+        </body>
+</html>
