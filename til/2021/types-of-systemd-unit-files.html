@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Types of systemd unit files | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Types of systemd unit files</h2>
+			<p>Unit files are stored in <strong>/usr/lib/systemd/system</strong> and <strong>/etc/systemd/system</strong>. There are several types of them:
+			<ul><li>Service - this is the unit file that you would activate to manage the service</li>
+<li>Mount - to replace mounts that are coming trough /etc/fstab</li>
+<li>Timer - which is are replacement for starting jobs through cron at specific time</li>
+<li>Automount - which is closely tied together with the Mount unit type to automatically mount directories when they are needed</li>
+<li>Target - a very specific unit type. A Target is basically a group of unit files, but a Target can also be used as an endpoint. Examples: multiuser.target and graphical.target - defines the state that your machine should be booting in</li>
+<li>Path - which is a unit which is monitoring activity in some directory</li>
+<li>Device - A device file recognized by the kernel</li>
+<li>Scope - An externally created process</li>
+<li>Slice - A group of hierarchically organized units that manage system processes</li>
+<li>Snapshot - A saved state of the systemd manager</li>
+<li>Socket - An inter-process communication socket</li>
+<li>Swap - A swap device or a swap file</li></ul></p>
+		</div>
+        </body>
+</html>
