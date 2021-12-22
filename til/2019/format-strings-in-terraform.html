@@ -1,27 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Format strings in Terraform</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Format strings in Terraform | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-terraform
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Format strings in Terraform</h2>
-					<div class="news_box">
-<pre><code>variable "elbs" {
+        <body>
+		<div class="wrap">
+			<h2>Format strings in Terraform</h2>
+			<p><pre><code>variable "elbs" {
   description = "ELB names on which to create the alarm"
   type        = list(string)
   default     = ["elb1", "elb2", "elb3"]
@@ -29,16 +20,14 @@ terraform
 
 resource "aws_cloudwatch_metric_alarm" "healthy_host_count" {
   count = length(var.elbs)
-  alarm_name                = <b>format("%s-%s","healthy_host_count", var.elbs[count.index])</b>
-  alarm_description         = <b>format("%s-%s","healthy_host_count", var.elbs[count.index])</b>
+  alarm_name                = <strong>format("%s-%s","healthy_host_count", var.elbs[count.index])</strong>
+  alarm_description         = <strong>format("%s-%s","healthy_host_count", var.elbs[count.index])</strong>
 ...
   dimensions = {
     LoadBalancerName = var.elbs[count.index]
   }
-}</code></pre>This will create 3 AWS CloudWatch alarms with names/descriptions: <b>healthy_host_count-elb1</b>, <b>healthy_host_count-elb2</b> and <b>healthy_host_count-elb3</b>.
-					</div>
-				</div>
-			</div> <!-- end of content -->
+}</code></pre>
+This will create 3 AWS CloudWatch alarms with names/descriptions: <strong>healthy_host_count-elb1</strong>, <strong>healthy_host_count-elb2</strong> and <strong>healthy_host_count-elb3</strong>.</p>
 		</div>
-	</body>
+        </body>
 </html>
