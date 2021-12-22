@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Metrics Server in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Metrics Server in Kubernetes</h2>
+			<p>If you are using Minikube, this command will enable Metrics Server:
+			<pre><code>minikube addons enable metrics-server</code></pre>
+For the others, you need to clone the repo and deploy the metric-server separately:
+<pre><code>git clone https://github.com/kubernetes-incubator/metrics-server.git
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</code></pre>
+Once deployed - give the Metrics Server time to collect and process data. Once processed the cluster performance can be viewed by the commands:
+<pre><code>kubectl top node
+kubectl top pod</code></pre>
+How the statistics are gathered: Kubernetes runs an agent on each node known a s kubelet which is responsible for receiving instructions from Kubernetes API master server and running Pods on the nodes.
+The kubelet also contain a subcomponent known as cAdvisor which is reponsible for receiving performance metrics from Pods and expose them to the kubelet API and make them available for the Metrics Server.</p>
+		</div>
+        </body>
+</html>
