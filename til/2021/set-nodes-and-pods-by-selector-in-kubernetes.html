@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Get nodes and pods by selector in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Get nodes and pods by selector in Kubernetes</h2>
+			<p>Nodes:
+			<pre><code>kubectl get nodes --selector beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux</code></pre>
+Pods:
+<pre><code>kubectl get pods --selector app=App1,tier=frontend</code></pre>
+You can also use <strong>-l</strong> (labels) option, it is the same - it supports '=', '==', and '!='</p>
+		</div>
+        </body>
+</html>
