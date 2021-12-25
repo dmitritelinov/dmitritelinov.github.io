@@ -1,33 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Drop multiple measurements from InfluxDB database using a pattern</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Drop multiple measurements from InfluxDB database using a pattern | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-influxdb grep
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Drop multiple measurements from InfluxDB database using a pattern</h2>
-					<div class="news_box">
-<pre><code>influx --execute 'show measurements' --database={{ db_name }} | grep {{ m_pattern }} |xargs -I{} \
-influx --database={{ db_name }} --execute 'drop measurement "{}"'</code></pre><b>{{ db_name }}</b> - is a InfluxDB database name, ex: idata<br />
-<b>{{ m_pattern }}</b> - a measurement pattern to grep for, ex: "^app-"<br /><br />
-It will show all measurements from <b>{{ db_name }}</b> InfluxDB database, grep them by <b>{{ m_pattern }}</b> and finally drop the matched measurements
-					</div>
-				</div>
-			</div> <!-- end of content -->
+        <body>
+		<div class="wrap">
+			<h2>Drop multiple measurements from InfluxDB database using a pattern</h2>
+			<p><pre><code>influx --execute 'show measurements' --database={{ db_name }} | grep {{ m_pattern }} |xargs -I{} \
+influx --database={{ db_name }} --execute 'drop measurement "{}"'</code></pre>
+			<strong>{{ db_name }}</strong> - is a InfluxDB database name, ex: idata<br/>
+<strong>{{ m_pattern }}</strong> - a measurement pattern to grep for, ex: "^app-"<br/><br/>
+It will show all measurements from <strong>{{ db_name }}</strong> InfluxDB database, grep them by <strong>{{ m_pattern }}</strong> and finally drop the matched measurements</p>
 		</div>
-	</body>
+        </body>
 </html>
