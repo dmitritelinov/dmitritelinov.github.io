@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Deployment strategy in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Deployment strategy in Kubernetes</h2>
+			<p>For example you have 5 replicas of your application instance deployed. There are 2 methods to update them:
+			<ul><li>Recreate - one way to upgrade this to the newer version is to destroy all of replicas and then create newer versions of the application instances. The problem with this, is that application will have downtime. Thankfully, this is not a default option.</li>
+				<li>Rolling update. The another strategy to not destroy replicas at once, but instead taking down some of instances of older version and bring up the newer version. This way - application never goes down and the upgrade is seamless. This is default option if you do not specify the type of deployment strategy.</li></ul></p>
+		</div>
+        </body>
+</html>
