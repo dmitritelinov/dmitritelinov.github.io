@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>debugfs basic usage in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>debugfs basic usage in Linux</h2>
+			<p>First, list files with inodes in a target filesystem:
+<pre><code>$ cd /mnt
+$ ls -il</code></pre>
+Use debugfs to open the filesystem in debug mode in Linux:
+<pre><code>debugfs /dev/vgstriped/lvdata</code></pre>
+That is a pretty dangerous mode that allows you to do a lot of things that you shouldn't never be doing on an open file system. Note that the filesystem shouldn't be used by processes and have open files.<br/><br/>
+So, with debugfs you can do advanced stuff on an ext4 filesystem such as:
+<ul><li>looking into an inode:
+<pre><code>debugfs: stat &lt;14&gt;</code></pre>
+14 - is the target inode to look to, and you will get a lot of information about this inode: permissions, flags, acls, extents and so on</li>
+<li>dumping contents of an inode
+<pre><code>debugfs: dump &lt;22&gt; dumped</code></pre>
+22 - is the target inode to be dumped<br/>
+dumped - is the file name where the contents will be stored</li></ul></p>
+		</div>
+        </body>
+</html>
