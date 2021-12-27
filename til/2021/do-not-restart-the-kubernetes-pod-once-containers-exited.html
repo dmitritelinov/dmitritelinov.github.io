@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Do not restart the Kubernetes Pod once containers exited | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Do not restart the Kubernetes Pod once containers exited</h2>
+			<p>Use the <strong>spec.restartPolicy</strong> and set it to <strong>Never</strong>.<br/><br/>
+			The spec of a Pod has a restartPolicy field with possible values Always, OnFailure, and Never. The default value is Always.<br/>
+			After containers in a Pod exit, the kubelet restarts them with an exponential back-off delay (10s, 20s, 40s, …), that is capped at five minutes.<br/><br/>
+An example of such container could be this one:
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: math-pod
+spec:
+  containers:
+  - name: math-add
+    image: ubuntu
+    command: ['expr', '10', '+', '23' ]
+  restartPolicy: Never</code></pre></p>
+		</div>
+        </body>
+</html>
