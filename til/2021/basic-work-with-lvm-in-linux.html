@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Basic work with LVM in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Basic work with LVM in Linux</h2>
+			<p>To start - check the partitions:
+			<pre><code># cat /proc/partitions
+major minor  #blocks  name
+  11        0    1920096 sr0
+ 252        0   20971520 vda
+ 252        1    1048576 vda1
+ 252        2   19921920 vda2
+   8       16    1048576 sdb
+   8        0    1048576 sda
+ 253        0   17821696 dm-0
+ 253        1    2097152 dm-1</code></pre> 
+			I have sda and sdb: both are 1 GB in size.<br/><br/>
+			So, first create a Volume Group named <strong>vgstriped</strong>:
+<pre><code># vgcreate vgstriped /dev/sda /dev/sdb
+  Physical volume "/dev/sda" successfully created.
+  Physical volume "/dev/sdb" successfully created.
+  Volume group "vgstriped" successfully created</code></pre>
+Show what we have:
+<pre><code># pvs
+  PV         VG                    Fmt  Attr PSize    PFree   
+  /dev/sda   vgstriped             lvm2 a--  1020.00m 1020.00m
+  /dev/sdb   vgstriped             lvm2 a--  1020.00m 1020.00m
+  /dev/vda2  fedora_localhost-live lvm2 a--   &lt;19.00g       0</code></pre>
+Let's use lvcreate to create a striped logical volume named lvdata:
+<pre><code># lvcreate -L 1G -i2 -I64 -n lvdata vgstriped 
+  Logical volume "lvdata" created.</code></pre>
+Options:
+<ul><li>-L 1G - the size of logical volume</li>
+<li>-i2 - amount of volumes that is should be striped on</li>
+<li>-I64 - will define a stripe size of 64 KB</li>
+<li>-n lvdata - volume name will be lvdata</li></ul>
+Let's use <strong>lvs</strong> to see if it was successful:
+<pre><code># lvs
+  LV     VG                    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   fedora_localhost-live -wi-ao---- &lt;17.00g                                                    
+  swap   fedora_localhost-live -wi-ao----   2.00g                                                    
+  lvdata vgstriped             -wi-a-----   1.00g</code></pre>
+If you want more information use <strong>lvdisplay</strong> command:
+<pre><code># lvdisplay /dev/vgstriped/lvdata 
+  --- Logical volume ---
+  LV Path                /dev/vgstriped/lvdata
+  LV Name                lvdata
+  VG Name                vgstriped
+  LV UUID                4beSCk-Zffc-dvRc-dRBm-zYex-ref6-ra06ZH
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2021-12-24 21:44:06 +0200
+  LV Status              available
+  # open                 0
+  LV Size                1.00 GiB
+  Current LE             256
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     512
+  Block device           253:2</code></pre>
+likewise there are <strong>vgdisplay</strong> and <strong>pvdisplay</strong> commands.<br/><br/>
+Once we created a logical volume, let's put a filesystem an top of it:
+<pre><code># mkfs.ext4 /dev/vgstriped/lvdata 
+mke2fs 1.45.5 (07-Jan-2020)
+Discarding device blocks: done                            
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: 4f97cdad-a383-4b34-9e92-a6ca7d17d570
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done</code></pre>
+And now we have a filesystem, we can mount it:
+<pre><code># mount /dev/vgstriped/lvdata /mnt/
+# df -h
+Filesystem                               Size  Used Avail Use% Mounted on
+devtmpfs                                 970M     0  970M   0% /dev
+tmpfs                                    990M     0  990M   0% /dev/shm
+tmpfs                                    990M  1.5M  989M   1% /run
+/dev/mapper/fedora_localhost--live-root   17G  7.2G  8.6G  46% /
+tmpfs                                    990M  100K  990M   1% /tmp
+/dev/vda1                                976M  179M  731M  20% /boot
+tmpfs                                    198M   96K  198M   1% /run/user/1000
+/dev/sr0                                 1.9G  1.9G     0 100% /run/media/user/Fedora-WS-Live-32-1-6
+/dev/mapper/vgstriped-lvdata             976M  2.6M  907M   1% /mnt</code></pre>
+Let's copy some data to this mounted volume:
+<pre><code># cp -r /etc/[abc]* /mnt/</code></pre>
+Now, we have some data in there:
+<pre><code># cd /mnt/
+# ls
+abrt     alternatives  at.deny     bash_completion.d       bluetooth    ceph         chrony.keys  cron.d       cron.monthly     crypttab   cupshelpers
+adjtime  anaconda      audit       bashrc                  brlapi.key   chkconfig.d  cifs-utils   cron.daily   crontab          csh.cshrc  lost+found
+aliases  anacrontab    authselect  bindresvport.blacklist  brltty       chromium     cni          cron.deny    cron.weekly      csh.login
+alsa     asound.conf   avahi       binfmt.d                brltty.conf  chrony.conf  containers   cron.hourly  crypto-policies  cups</code></pre>
+
+One of benefits of working with LVM is that you can easily resize LVM volumes. If we type vgs:
+<pre><code># vgs
+  VG                    #PV #LV #SN Attr   VSize   VFree   
+  fedora_localhost-live   1   2   0 wz--n- &lt;19.00g       0 
+  vgstriped               2   1   0 wz--n-   1.99g 1016.00m</code></pre>
+we can see that we have <strong>VFree</strong> of approximately 1G in <strong>vgstriped</strong>.<br/>
+If you have available disk space in the Volume Group it is very easy to resize, just add more disk space.<br/>
+If you do not have available disk space in the Volume Group - you need to add additional physical volumes, otherwise you cannot resize.<br/><br/>
+There are a couple of options that can be used in <strong>lvresize</strong> command:
+<pre><code># lvresize --help
+  lvresize - Resize a logical volume
+
+  Resize an LV by a specified size.
+  lvresize -L|--size [+|-]Size[m|UNIT] LV
+	[ -l|--extents [+|-]Number[PERCENT] ]
+	[ -r|--resizefs ]
+	[    --poolmetadatasize [+]Size[m|UNIT] ]
+	[ COMMON_OPTIONS ]
+	[ PV ... ]
+
+  Resize an LV by specified PV extents.
+  lvresize LV PV ...
+	[ -r|--resizefs ]
+	[ COMMON_OPTIONS ]
+
+  Resize a pool metadata SubLV by a specified size.
+  lvresize --poolmetadatasize [+]Size[m|UNIT] LV_thinpool
+	[ COMMON_OPTIONS ]
+	[ PV ... ]
+
+  Common options for command:
+	[ -A|--autobackup y|n ]
+	[ -f|--force ]
+	[ -i|--stripes Number ]
+	[ -I|--stripesize Size[k|UNIT] ]
+	[ -n|--nofsck ]
+	[    --alloc contiguous|cling|cling_by_tags|normal|anywhere|inherit ]
+	[    --nosync ]
+	[    --noudevsync ]
+	[    --reportformat basic|json ]
+	[    --type linear|striped|snapshot|mirror|raid|thin|cache|vdo|thin-pool|cache-pool|vdo-pool ]
+
+  Common options for lvm:
+	[ -d|--debug ]
+	[ -h|--help ]
+	[ -q|--quiet ]
+	[ -v|--verbose ]
+	[ -y|--yes ]
+	[ -t|--test ]
+	[    --commandprofile String ]
+	[    --config String ]
+	[    --driverloaded y|n ]
+	[    --nolocking ]
+	[    --lockopt String ]
+	[    --longhelp ]
+	[    --profile String ]
+	[    --version ]
+
+  Use --longhelp to show all options and advanced commands.</code></pre>  
+options -l and -L allows you to specify the size that should be added. -l allows to specify the percentage of free extets, With -L you can use absolute number +200M for example. <br/>
+-r - is very interesting option which should always be used, because it will automatically resize the filesystem as well<br/><br/>
+So, let's do a lvresize:
+<pre><code># lvresize -L +100M -r /dev/vgstriped/lvdata
+  Using stripesize of last segment 64.00 KiB
+  Rounding size (281 extents) up to stripe boundary size for segment (282 extents).
+  Size of logical volume vgstriped/lvdata changed from 1.00 GiB (256 extents) to 1.10 GiB (282 extents).
+  Logical volume vgstriped/lvdata successfully resized.
+resize2fs 1.45.5 (07-Jan-2020)
+Filesystem at /dev/mapper/vgstriped-lvdata is mounted on /mnt; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 1
+The filesystem on /dev/mapper/vgstriped-lvdata is now 288768 (4k) blocks long.</code></pre>
+Options used:
+<ul><li>-L +100M - to add 100Mb</li>
+	<li>-r - to resize the filesystem</li></ul>
+We can now see the size of the filesystem is set to 1.1Gb:
+<pre><code># df -h
+Filesystem                               Size  Used Avail Use% Mounted on
+devtmpfs                                 970M     0  970M   0% /dev
+tmpfs                                    990M     0  990M   0% /dev/shm
+tmpfs                                    990M  1.5M  989M   1% /run
+/dev/mapper/fedora_localhost--live-root   17G  7.2G  8.6G  46% /
+tmpfs                                    990M  100K  990M   1% /tmp
+/dev/vda1                                976M  179M  731M  20% /boot
+tmpfs                                    198M   96K  198M   1% /run/user/1000
+/dev/sr0                                 1.9G  1.9G     0 100% /run/media/user/Fedora-WS-Live-32-1-6
+/dev/mapper/vgstriped-lvdata             1.1G  7.1M 1000M   1% /mnt</code></pre>
+How to create the snapshot.<br/>
+A snapshot allows you to freeze the state of the logical volume which means that everything that will be added/removed after you created the snapshot, won't be visible in the snapshot.<br/>
+So, snapshots can be an easy way to revert to a previous state and snapshots can also help you to create backups on a filesystem where no files are open.<br/><br/>
+To create a snapshot:
+<pre><code># lvcreate -s -n lvdata_snap -L 100M /dev/vgstriped/lvdata
+  Logical volume "lvdata_snap" created.</code></pre>
+Options:
+<ul><li>-s - create snapshot</li>
+<li>-n lvdata_snap - the name of snapshot</li>
+<li>-L 100M - the size of snapshot</li></ul>
+Show the snapshot details:
+<pre><code># lvs
+  LV          VG                    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root        fedora_localhost-live -wi-ao---- &lt;17.00g                                                    
+  swap        fedora_localhost-live -wi-ao----   2.00g                                                    
+  lvdata      vgstriped             owi-aos---   1.10g                                                    
+  lvdata_snap vgstriped             swi-a-s--- 100.00m      lvdata 0.01</code></pre>
+you can see that <strong>lvdata_snap</strong> with origin <strong>lvdata</strong> has been created.<br/><br/>
+What is good about snapshots? One of the things is that they keep the original state of the logical volume.<br/>
+The logical volume is still mounted on /mnt, so let's remove files starting with b:
+<pre><code># cd /mnt/
+# rm -rf b*</code></pre>
+Now, let's unmount /mnt and mount the snapshot on /mnt:
+<pre><code># cd
+# umount /mnt 
+# mount /dev/vgstriped/lvdata_snap /mnt/</code></pre>
+And we will see that the files starting with b are still exists:
+<pre><code># cd /mnt/
+# ls
+abrt     alternatives  at.deny     bash_completion.d       bluetooth    ceph         chrony.keys  cron.d       cron.monthly     crypttab   cupshelpers
+adjtime  anaconda      audit       bashrc                  brlapi.key   chkconfig.d  cifs-utils   cron.daily   crontab          csh.cshrc  lost+found
+aliases  anacrontab    authselect  bindresvport.blacklist  brltty       chromium     cni          cron.deny    cron.weekly      csh.login
+alsa     asound.conf   avahi       binfmt.d                brltty.conf  chrony.conf  containers   cron.hourly  crypto-policies  cups</code></pre>
+That is what happening in the snapshot. Now, in the background LVM is working on copying all deleted files from the original Logical Volume to the snapshot.<br/>
+So, with every deletion. on the original Logical Volume - your snapshot will grow bigger. Which is something that could be monitored as well:
+<pre><code># lvs
+  LV          VG                    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root        fedora_localhost-live -wi-ao---- &lt;17.00g                                                    
+  swap        fedora_localhost-live -wi-ao----   2.00g                                                    
+  lvdata      vgstriped             owi-a-s---   1.10g                                                    
+  lvdata_snap vgstriped             swi-aos--- 100.00m      lvdata 0.33</code></pre>
+Previously the <strong>Data%</strong> was set to 0.01 and you can now see that it is set to something a lot higher.<br/>
+Note that if your original Logical Volume goes away, then the snapshot becomes useless as well.</p>
+		</div>
+        </body>
+</html>
