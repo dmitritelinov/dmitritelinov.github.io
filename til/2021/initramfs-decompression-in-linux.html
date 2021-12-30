@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>initramfs decompression in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>initramfs decompression in Linux</h2>
+			<p>The initramfs is an cpio archive. At boot time, the kernel unpacks that archive into ram, mounts and uses it as initial root file system. From there on the mounting of the real root file system occurs in user space.<br/><br/>
+Check the image:
+<pre><code>$ du -h /boot/initrd.img-5.10.0-8-amd64 
+45M	/boot/initrd.img-5.10.0-8-amd64
+$ file /boot/initrd.img-5.10.0-8-amd64 
+/boot/initrd.img-5.10.0-8-amd64: gzip compressed data, was "mkinitramfs-MAIN_6I6X0H", last modified: Thu Jul 29 13:21:08 2021, from Unix, original size modulo 2^32 160940544</code></pre>
+Create working directory where the image will be decompressed:
+<pre><code>$ mkdir /tmp/initramfs
+$ cd /tmp/initramfs/</code></pre>
+Decompress:
+<pre><code>$ zcat /boot/initrd.img-5.10.0-8-amd64 |cpio -i --no-absolute-filenames</code></pre>
+View the contents:
+<pre><code>$ tree</code></pre></p>
+		</div>
+        </body>
+</html>
