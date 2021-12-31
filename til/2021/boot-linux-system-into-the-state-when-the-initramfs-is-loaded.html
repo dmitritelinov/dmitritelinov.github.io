@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Boot Linux system into the state when the initramfs is loaded | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Boot Linux system into the state when the initramfs is loaded</h2>
+			<p>Press e in grub menu to edit the kernel parameters and add to the end of kernel load line:
+			<ul><li><strong>rd.break</strong> for RedHat based distributions</li>
+				<li><strong>break=init</strong> for Debian based</li></ul>
+			This options means that the boot process is stopping after loading initramfs.<br/><br/>
+To continue the boot to the normal system - type:
+<pre><code># exec init</code></pre></p>
+		</div>
+        </body>
+</html>
