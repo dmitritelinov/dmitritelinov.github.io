@@ -18,7 +18,7 @@ metadata:
   name: db-policy
 spec:
   podSelector:
-    matchLabels
+    matchLabels:
       role: db # Pods where the NetPol will be applied
   policyTypes:
   - Ingress
