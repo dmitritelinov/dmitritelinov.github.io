@@ -1,32 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Several methods to write ISO to flash drive</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Several methods to write ISO to flash drive | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-iso
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Several methods to write ISO to flash drive</h2>
-					<div class="news_box">
-This is what I've found so far:<ol><li><pre><code>dd if=<b>FILE-NAME.iso</b> of=<b>/dev/sdX</b> bs=1MB && sync</code></pre></li><li><a href="https://www.balena.io/etcher/">balenaEtcher</a></li><li>usb-creator (it is in the repos)</li><li><pre><code>curl -L https://git.io/bootiso -O
+        <body>
+		<div class="wrap">
+			<h2>Several methods to write ISO to flash drive</h2>
+			<p>This is what I've found so far:
+			<ol><li><pre><code>dd if=<b>FILE-NAME.iso</b> of=<strong>/dev/sdX</strong> bs=1MB &amp;&amp; sync</code></pre></li>
+			<li><a href="https://www.balena.io/etcher/">balenaEtcher</a></li>
+			<li>usb-creator (it is in the repos)</li>
+			<li><pre><code>curl -L https://git.io/bootiso -O
 chmod +x bootiso
-bootiso -d <b>/dev/sdX</b> <b>FILE-NAME.iso</b></code></pre></li><li><a href="https://rufus.ie" target="_blank">Rufus</a></li><li><a href="https://unetbootin.github.io" target="_blank">Unetbootin</a></li></ol>
-					</div>
-				</div>
-			</div> <!-- end of content -->
+bootiso -d <strong>/dev/sdX</strong> <strong>FILE-NAME.iso</strong></code></pre></li>
+			<li><a href="https://rufus.ie" target="_blank">Rufus</a></li>
+			<li><a href="https://unetbootin.github.io" target="_blank">Unetbootin</a></li></ol></p>
 		</div>
-	</body>
+        </body>
 </html>
