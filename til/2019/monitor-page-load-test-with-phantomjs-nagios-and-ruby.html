@@ -1,26 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Monitor page load with PhantomJS, Nagios and Ruby</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Monitor page load with PhantomJS, Nagios and Ruby | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-nagios ruby phantomjs
-                                </div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Monitor page load with PhantomJS, Nagios and Ruby</h2>
-					<div class="news_box">
-Used <a href="https://github.com/hggh/phantomjs-nagios" target="_blank">PhantomJS Nagios plugin</a> on CentOS machine with Nagios installed.<br /><ol><li>Install prerequisites:<pre><code>yum install glibc fontconfig freetype freetype-devel fontconfig-devel wget bzip2</code></pre></li><li>Download, unpack and install PhantomJS:<pre><code>wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+        <body>
+		<div class="wrap">
+			<h2>Monitor page load with PhantomJS, Nagios and Ruby</h2>
+			<p>Used <a href="https://github.com/hggh/phantomjs-nagios" target="_blank">PhantomJS Nagios plugin</a> on CentOS machine with Nagios installed.<br /><ol><li>Install prerequisites:<pre><code>yum install glibc fontconfig freetype freetype-devel fontconfig-devel wget bzip2</code></pre></li><li>Download, unpack and install PhantomJS:<pre><code>wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/
 ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
 phantomjs –version</code></pre></li><li>Install Ruby and prerequisites:<pre><code>yum install ruby ruby-devel gcc
@@ -37,10 +29,7 @@ command_line    $USER1$/check_http_load_time.rb --perf -p /usr/local/bin/phantom
     check_command           check_http_load_time!http://www.pctags.com!8!10
     notifications_enabled   1
     contact_groups          admins
-}</code></pre></li></ol>
-					</div>
-				</div>
-			</div> <!-- end of content -->
+}</code></pre></li></ol></p>
 		</div>
-	</body>
+        </body>
 </html>
