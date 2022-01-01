@@ -2,18 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #selinux | dmitritelinov</title>
+                <title>SELinux labels on files, processes and sockets | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#selinux</h2>
-			<a href="/til/2021/configure-selinux-to-allow-sshd-on-port-2022.html">Configure SELinux to allow SSHd on port 2022</a><br/>
-			<a href="/til/2021/check-selinux-status.html">Check SELinux status</a><br/>
-			<a href="/til/2022/selinux-labels-on-files-processes-and-sockets.html">SELinux labels on files, processes and sockets</a><br/>
+			<h2>SELinux labels on files, processes and sockets</h2>
+			<p>When you issue on a system where SELinux is enabled:
+			<ul><li>for file
+					<pre><code>ls -lZ /usr/sbin/httpd</code></pre></li>
+			<li>process
+<pre><code>ps axZ | grep httpd</code></pre></li>
+<li>socket
+<pre><code>netstat -tnlpZ | grep http</code></pre></li></ul></p>
 		</div>
         </body>
 </html>
