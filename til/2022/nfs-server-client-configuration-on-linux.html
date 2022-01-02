@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>NFS Server/Client configuration on Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>NFS Server/Client configuration on Linux</h2>
+			<p>Install NFS packages:
+			<pre><code>yum install nfs-utils libnfsidmap</code></pre>
+Once the packages are installed, enable and start NFS services:
+<pre><code>systemctl enable rpcbind
+systemctl enable nfs-server
+systemctl start rpcbind
+systemctl start nfs-server
+systemctl start rpc-statd
+systemctl start nfs-idmapd</code></pre>
+Create NFS share directory:
+<pre><code>mkdir /share
+touch /share/{a,b,c}
+echo test message &gt; /share/test</code></pre>
+Export share:
+<pre><code>cat /etc/exports
+/share 192.168.122.191(rw,sync,no_root_squash)<br/>
+exportfs -rv</code></pre>
+On client side:
+<pre><code>Install client package:
+yum install nfs-utils rpcbind</code></pre>
+Start rpcbind service:
+<pre><code>systemctl start rpcbind</code></pre>
+Show mount from NFS server:
+<pre><code>showmount -e 192.168.122.107
+Export list for 192.168.122.107:
+/share 192.168.122.191</code></pre>
+Mount NFS share:
+<pre><code>mkdir /mnt/share
+mount 192.168.122.107:/share /mnt/share/
+df -ah
+ls -la /mnt/share/
+touch /mnt/share/d</code></pre>
+To umount it, use umount command.</p>
+		</div>
+        </body>
+</html>
