@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Manifest examples of Kubernetes Ingress | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Manifest examples of Kubernetes Ingress</h2>
+			<p>To serve www.my-online-store.com/{{ wear | watch }}:
+			<pre><code>apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /wear
+        backend:
+          serviceName: wear-service
+          servicePort: 80
+      - path: /watch
+        backend:
+          serviceName: watch-service
+	  servicePort: 80</code></pre>
+To serve {{ wear | watch }}.my-online-store.com:
+<pre><code>apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  rules:
+  - host: wear.my-online-store.com
+    http:
+      paths:
+      - backend:
+          serviceName: wear-service
+          servicePort: 80
+  - host: watch.my-online-store.com
+    http:
+      paths:   
+      - backend:
+          serviceName: watch-service
+          servicePort: 80</code></pre></p>
+		</div>
+        </body>
+</html>
