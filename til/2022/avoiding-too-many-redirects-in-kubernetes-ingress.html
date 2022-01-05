@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Avoiding too many redirects in Kubernetes Ingress | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Avoiding too many redirects in Kubernetes Ingress</h2>
+			<p>Add to ingress manifest in the <strong>metadata.annotations</strong> section:
+			<pre><code>metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"</code></pre>    
+Without the rewrite-target option, this is what would happen:
+<pre><code>http://{{ ingress-service }}:{{ ingress-port }}/watch –&gt; http://{{ watch-service }}:{{ port }}/watch
+http://{{ ingress-service }}:{{ ingress-port }}/wear –&gt; http://{{ wear-service }}:{{ port }}/wear</code></pre>
+So, after you put the option it will become:
+<pre><code>http://{{ ingress-service }}:{{ ingress-port }}/watch –&gt; http://{{ watch-service }}:{{ port }}/
+http://{{ ingress-service }}:{{ ingress-port }}/wear –&gt; http://{{ wear-service }}:{{ port }}/</code></pre></p>
+		</div>
+        </body>
+</html>
