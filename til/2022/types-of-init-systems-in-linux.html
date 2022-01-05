@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Types of init systems in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Types of init systems in Linux</h2>
+			<p>Once the Linux kernel has completely loaded - it searches init process located at <strong>/sbin/init</strong>. This process is responsible for starting the user space environment.<br/><br/>
+The most common init implementation currently are:
+<ul><li><strong>System V</strong> - is the old solution, it has been around for a couple of decades. It uses runlevels to define the state a system should be booting in.<br/>
+		In every runlevel a specific amount of shell scripts is processed to reach the state that the system should be in. There is little standardization on the System V init shell scripts.<br/>
+If your system has an /etc/inittab, it is using System V</li>
+	<li><strong>Upstart</strong> - was created by Ubuntu and was the first serious attempt to replace System V. Upstart is reactionary: it receives events and runs jobs based on these events - this makes Upstart more flexible.<br/>
+		But still, Upstart is using shell scripts and uses many features that existed in System V already.<br/>
+		If your system has an /etc/init directory, it is using Upstart</li>
+	<li><strong>systemd</strong> is rapidly taking over the way how Linux systems are starting services. The goal of systemd project is "to provide an operating system that runs on top of Linux kernel".<br/>
+		It takes care of everything, which on ocasions scares experienced Linux administrators: mounting file systems, cron can go away - because you can schedule jobs, xinitd can go away - because systemd can do that as well, it can even spawn containers.<br/>
+		systemd is goal oriented: the administrator defines a target that needs to be reached and next - defines all that needs to be loaded to reach that state in Unit files.<br/>
+		Unit files specify loading of services and more, as well as dependencies that need to be met to load them. If your system has a directory /usr/lib/systemd - you're on systemd.<br/>
+systemd currently is the standard on all major Linux distributions.</li></ul></p>
+		</div>
+        </body>
+</html>
