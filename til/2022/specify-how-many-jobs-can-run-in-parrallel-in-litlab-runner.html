@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Specify how many jobs can run in parrallel in GitLab runner | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Specify how many jobs can run in parrallel in GitLab runner</h2>
+			<p>Use these options in <strong>/etc/gitlab-runner/config.toml</strong>:
+			<pre><code># Limits how many jobs can run concurrently, across all registered runners. 
+# Each [[runners]] section can define its own limit, but this value sets a maximum for all of those values combined.
+# For example, a value of 10 means no more than 10 jobs can run concurrently. 0 is forbidden.
+# If you use this value, the runner process exits with a critical error.
+concurrent = 6
+
+[[runners]]
+# limit option can limit how many jobs can be handled concurrently by this registered runner.
+# 0 (default) means do not limit.
+limit = 3
+# Limit number of concurrent requests for new jobs from GitLab. Default is 1.
+request_concurrency = 3</code></pre></p>
+		</div>
+        </body>
+</html>
