@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>MySQL basics after installation | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>MySQL basics after installation</h2>
+			<p>Get root password after installation:
+<pre><code>cat /var/log/mysqld.log | grep "temporary password"</code></pre>
+Connect as root user:
+<pre><code>mysql -u root -p{{ password_from_previous_step }}</code></pre>
+Change root user password:
+<pre><code>mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPassword4!';</code></pre>
+In case you do not want to run above query, run <strong>mysql_secure_installation</strong> script.<br/><br/>
+Create additional user:
+<pre><code>mysql&gt; CREATE USER 'john'@'localhost' IDENTIFIED BY 'MyNewPass4!';</code></pre>
+To create a user for specified host use it's IP address instead of localhost: 192.168.1.10, or use '%' for all hostnames.<br/><br/>
+After user is added - you must set the permissions what he will have:
+<pre><code>mysql&gt; GRANT {{ PERMISSION }} ON {{ db_table }} to 'john'@'localhost';</code></pre>
+There are the following permissions:<br/>
+ALL PRIVILEGES, CREATE, DROP, DELETE, INSERT, SELECT, UPDATE<br/>
+Example:
+<pre><code>mysql&gt; GRANT SELECT, UPDATE ON school.persons to 'john'@'%';
+mysql&gt; GRANT SELECT, UPDATE ON school.* to 'john'@'%';
+mysql&gt; GRANT ALL PRIVILEGES ON *.* to 'john'@'%';</code></pre>
+Show permission grants for an user:
+<pre><code>mysql&gt; SHOW GRANTS for 'john'@'localhost';</code></pre>
+Show all databases:
+<pre><code>mysql&gt; SHOW DATABASES;</code></pre>
+Create new database:
+<pre><code>mysql&gt; CREATE DATABASE school;</code></pre>
+Select or switch to new created database;
+<pre><code>mysql&gt; USE school;</code></pre>
+Create a new table in selected database:
+<pre><code>mysql&gt; CREATE TABLE persons
+(
+  Name varchar(255),
+  Age int,
+  Location varchar(255)
+);</code></pre>
+Show all tables is selected database:
+<pre><code>mysql&gt; SHOW TABLES;</code></pre>
+Add data to new created table:
+<pre><code>mysql&gt; INSERT INTO persons values("John Doe", 45, "New York");</code></pre>
+View data from table in selected database:
+<pre><code>mysql&gt; SELECT * FROM persons;</code></pre></p>
+		</div>
+        </body>
+</html>
