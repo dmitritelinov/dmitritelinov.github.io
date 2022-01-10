@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Persistent Volume in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Persistent Volume in Kubernetes</h2>
+			<p>A <strong>Persistent Volume</strong> is a cluster-wide pool of storage volumes configured by an administrator to be used by users deploying applications in the cluster.<br/>
+			The users can now select storage from this pool using <strong>Persistent Volume Claims</strong>.<br/>
+Example:
+<pre><code>apiVersion: v1:
+kind: PersistentVolume
+metadata:
+  name: pv-vol1
+spec:
+  accecssModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /tmp/data</code></pre>
+The accecssModes can be:
+<ul><li>ReadOnlyMany</li>
+<li>ReadWriteOnce</li>
+<li>ReadWriteMany</li></ul>
+You can replace hostPath with one of suppprted storage solutions:
+<pre><code>spec:
+  awsElasticBlockStore:
+    volumeID: {{ volume-id }}
+    fsType: ext4</code></pre>
+To list all created volumes run:
+<pre><code>kubectl get pv</code></pre></p>
+		</div>
+        </body>
+</html>
