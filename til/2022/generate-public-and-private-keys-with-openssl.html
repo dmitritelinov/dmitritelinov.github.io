@@ -2,17 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #openssl | dmitritelinov</title>
+                <title>Generate public and private keys with OpenSSL | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#openssl</h2>
-			<a href="/til/2019/check-password-protected-certificate-expiration-date-with-openssl.html">Check password protected certificate expiration date with OpenSSL</a><br/>
-			<a href="/til/2022/generate-public-and-private-keys-with-openssl.html">Generate public and private keys with OpenSSL</a><br/>
+			<h2>Generate public and private keys with OpenSSL</h2>
+			<p>Private:
+			<pre><code>openssl genrsa -out my-bank.key 1024</code></pre>
+Public:
+<pre><code>openssl rsa -in my-bank.key -pubout &gt; mybank.pem</code></pre></p>
 		</div>
         </body>
 </html>
