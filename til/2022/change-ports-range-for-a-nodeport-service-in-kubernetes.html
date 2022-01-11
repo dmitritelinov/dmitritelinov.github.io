@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Change ports range for a NodePort Service in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Change ports range for a NodePort Service in Kubernetes</h2>
+			<p>By default, the range of the service NodePorts is 30000-32768. This range contains 2768 ports, which means that you can create up to 2768 services with NodePorts. If you need more services, or you need to expose specific ports that are not in this range for certain applications, then you need to change the default range.</p>
+			<p>You could change this behavior by adding the <strong>--service-node-port-range=</strong> argument to the kube-apiserver in the init scripts</p>
+		</div>
+        </body>
+</html>
