@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>MongoDB basic steps after installation | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>MongoDB basic steps after installation</h2>
+			<p>View logs:
+			<pre><code>cat /var/log/mongodb/mongod.log</code></pre>
+Configuration file location:
+<pre><code>/etc/mongod.conf</code></pre>
+Enter MongoDB shell:
+<pre><code>mongo</code></pre>
+List the databases;
+<pre><code>mongo&gt; show dbs</code></pre>
+Create a new database or switch to a existing database:
+<pre><code>mongo&gt; use school</code></pre>
+To view which database you are switched to:
+<pre><code>mongo&gt; db</code></pre>
+Create collection inside the database:
+<pre><code>mongo&gt; db.createCollection("persons")</code></pre>
+List collections:
+<pre><code>mongo&gt; show collections</code></pre>
+To add the data to the collection:
+<pre><code>mongo&gt; db.persons.insert({
+        "name": "Jonh Doe",
+        "age": 45,
+        "location": "New York",
+        "salary": 5000
+       })</code></pre>
+Retrieve data from the database:
+<pre><code>mongo&gt; db.persons.find()</code></pre>
+Retrieve data from the database using a filter:
+<pre><code>mongo&gt; db.persons.find({"name": "John Doe"})</code></pre></p>
+		</div>
+        </body>
+</html>
