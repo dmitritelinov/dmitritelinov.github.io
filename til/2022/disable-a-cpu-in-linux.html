@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Disable a CPU in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Disable a CPU in Linux</h2>
+			<p><pre><code>echo 0 &gt; /sys/bus/cpu/devices/cpu3/online</code></pre>
+			to re-enable it - <strong>echo 1</strong>.<br/>
+To check the status:
+<pre><code>lscpu</code></pre></p>
+		</div>
+        </body>
+</html>
