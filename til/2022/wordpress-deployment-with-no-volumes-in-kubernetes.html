@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Wordpress Deployment with no volumes in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Wordpress Deployment with no volumes in Kubernetes</h2>
+			<p>wordpress-secrets.yml:
+<pre><code>apiVersion: v1
+kind: Secret
+metadata:
+  name: wordpress-secrets
+type: Opaque
+data:
+  db-password: cGFzc3dvcmQ=</code></pre>  
+wordpress-deploy-with-no-volumes.yml
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress:5-php7.4
+        ports:
+        - name: http-port
+          containerPort: 80
+        env:
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: wordpress-secrets
+                key: db-password
+          - name: WORDPRESS_DB_HOST
+            value: 127.0.0.1
+          - name: WORDPRESS_DB_USER
+            value: root
+          - name: WORDPRESS_DB_NAME
+            value: wordpress
+      - name: mysql
+        image: mysql:8
+        ports:
+        - name: mysql-port
+          containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: wordpress-secrets
+                key: db-password
+          - name: MYSQL_DATABASE
+            value: wordpress</code></pre>
+wordpress-service.yml
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-service
+spec:
+  ports:
+  - port: 31001
+    nodePort: 31001
+    targetPort: http-port
+    protocol: TCP
+  selector:
+    app: wordpress
+  type: NodePort</code></pre>
+If you are deploying on Minikube get the Wordpress Service url with the following command:
+<pre><code>minikube service wordpress-service --url</code></pre></p>
+		</div>
+        </body>
+</html>
