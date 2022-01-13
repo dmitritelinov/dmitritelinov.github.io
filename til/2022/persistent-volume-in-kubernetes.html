@@ -15,12 +15,12 @@
 			<p>A <strong>Persistent Volume</strong> is a cluster-wide pool of storage volumes configured by an administrator to be used by users deploying applications in the cluster.<br/>
 			The users can now select storage from this pool using <strong>Persistent Volume Claims</strong>.<br/>
 Example:
-<pre><code>apiVersion: v1:
+<pre><code>apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-vol1
 spec:
-  accecssModes:
+  accessModes:
     - ReadWriteOnce
   capacity:
     storage: 1Gi
