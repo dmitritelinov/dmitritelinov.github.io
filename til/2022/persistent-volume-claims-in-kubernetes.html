@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Persistent Volume Claims in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Persistent Volume Claims in Kubernetes</h2>
+			<p>Persistent Volumes and Persistent Volume Claims are two separate objects in Kubernetes: an administrator creates a set of Persistent Volumes and a user creates Persistent Volume Claims to use the storage.<br/>
+			Once the PVC are created, Kubernetes binds the Volumes to Claims based on the request and properties set on the Volume:
+			<ul><li>Sufficient Capacity</li>
+<li>Access Modes</li>
+<li>Volume Modes</li>
+<li>Storage Class</li></ul>
+Every PVC is bound to a single PV. Hovewer, if there are multiple possible matches for a single Claim and you would like specifically use the particular Volume you could still use Labels and Selectors to bind to the right Volumes.<br/>
+If there are no Volumes available the PVC will remain in the Pending state until newer Volumes made available.<br/><br/>
+Example of PVC:
+<pre><code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myclaim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi</code></pre></p>
+		</div>
+        </body>
+</html>
