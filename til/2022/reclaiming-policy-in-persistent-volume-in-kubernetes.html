@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Reclaiming policy in Persistent Volume in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Reclaiming policy in Persistent Volume in Kubernetes</h2>
+			<p>What happens with the underlying PV when the PVC is deleted? You can choose what is to happen to the Volume by using the option persistentVolumeReclaimPolicy:
+			<ul><li>Retain. Default option - the PV will remain until it is manually deleted by the administrator. It is not available for the reuse by the other Claims</li>
+<li>Delete. It can be deleted automatically and freeing up the storage</li>
+<li>Recycle. The data in the Volume will be wiped for making it available for other Claims</li></ul></p>
+		</div>
+        </body>
+</html>
