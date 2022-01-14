@@ -14,10 +14,10 @@
 			<h2>Managing dirty memory in Linux</h2>
 			<p>Dirty memory is memory that has changed and still needs to be committed to disk. The writes are not written immediately, but there are buffered and written in intervals or once the buffer is filled up.<br/><br/>
 /proc tunables are available to manage dirty memory timeout parameters - by default dirty memory is written every 30 seconds:
-<pre><code>$ cat /proc/sys/vm/dirty_expire_centisecs 
+<pre><code># cat /proc/sys/vm/dirty_expire_centisecs 
 3000</code></pre>
 You can change this value:
-<pre><code>$ echo 6000 &gt; /proc/sys/vm/dirty_expire_centisecs</code></pre></p>
+<pre><code># echo 6000 &gt; /proc/sys/vm/dirty_expire_centisecs</code></pre></p>
 		</div>
         </body>
 </html>
