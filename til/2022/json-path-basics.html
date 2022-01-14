@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>JSON path basics | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>JSON path basics</h2>
+			<p>JSON path is a query language that can help you parse data represended in JSON format.<br/><br/>
+Example 1 - given JSON:
+<pre><code>{
+  "car": {
+    "color": "blue",
+    "price": "$20,000"
+  },
+  bus: {
+    "color": "white",
+    "price": "$120,000"
+  }
+}</code></pre>
+$ - in JSON path denotes the root element<br/><br/>
+Get car details:
+<pre><code>$.car</code></pre>
+Result:
+<pre><code>[
+  {
+    "color": "blue",
+    "price": "$20,000"
+  }
+]</code></pre>
+Get bus details:
+<pre><code>$.bus</code></pre>
+Result:
+<pre><code>[
+  {
+    "color": "white",
+     "price": "$120,000"
+  }
+]</code></pre>
+Get car's color:
+<pre><code>$.car.color</code></pre>
+Result:
+<pre><code>[
+  "blue"
+]</code></pre>
+Get bus's price:
+<pre><code>$.bus.price</code></pre>
+Result:
+<pre><code>[
+  "$120,000"
+]</code></pre>
+Example 2 - given JSON:
+<pre><code>[
+  "car",
+  "bus",
+  "truck",
+  "bike"
+]</code></pre>
+Get the 1st element:
+<pre><code>$[0]</code></pre>
+Result:
+<pre><code>[
+  "car"
+]</code></pre>
+Get the 4th element:
+<pre><code>$[3]</code></pre>
+Result:
+<pre><code>[
+  "bike"
+]</code></pre>
+Get the 1st and 4th elements:
+<pre><code>$[0,3]</code></pre>
+Result:
+<pre><code>[
+  "car",
+  "bike"
+]</code></pre>
+Example 3 - given JSON:
+<pre><code>{
+  "car": {
+    "color": "blue",
+    "price": "$20,000",
+    wheels: [
+      {
+        "model": "X345ERT",
+        "location": "front-right"
+      },
+      {
+        "model": "X346GRX",
+        "location": "front-left"
+      },
+      {
+        "model": "X236DEM",
+        "location": "rear-right"
+      },
+      {
+        "model": "X987XMV",
+        "location": "rear-left"
+      }
+    ]
+  }
+}</code></pre>
+Get the model of the 2nd wheel:
+<pre><code>$.car.wheels[1].model</code></pre>
+Result:
+<pre><code>[
+  "X346GRX"
+]</code></pre>
+Example 4 - given JSON:
+<pre><code>[
+  12,
+  43,
+  23,
+  12,
+  56,
+  43,
+  93,
+  32,
+  45,
+  63,
+  27,
+  8,
+  78
+]</code></pre>
+Get all numbers greater than 40:
+<pre><code>$[?(@ &gt; 40 )]</code></pre>
+<strong>@</strong> - each item in the list<br/><br/>
+Instead of @ &gt; 40 could be:
+<ul><li>@ == 40</li>
+<li>@ !=40</li>
+<li>@ in [40,43,45]</li>
+<li>@ nin [40,43,45]</li></ul>
+Result:
+<pre><code>[
+  43,
+  56,
+  43,
+  93,
+  45,
+  63,
+  78"
+]</code></pre>
+From Example 3 get the model of the rear-right wheel:
+<pre><code>$.car.wheels[?(@.location == "rear-right")].model</code></pre>
+Result:
+<pre><code>[
+  "X236DEM"
+]</code></pre></p>
+		</div>
+        </body>
+</html>
