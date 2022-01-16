@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Viewing and changing default systemd target | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Viewing and changing default systemd target</h2>
+			<p>To view the default target:
+			<pre><code>systemctl get-default</code></pre>
+You can also check this symlink:
+<pre><code>ls -lt /etc/systemd/system/default.target</code></pre>
+To change the default target use this command:
+<pre><code>systemctl set-default multi-user.target</code></pre></p>
+		</div>
+        </body>
+</html>
