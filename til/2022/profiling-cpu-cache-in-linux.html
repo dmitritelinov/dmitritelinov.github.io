@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Profiling CPU cache in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Profiling CPU cache in Linux</h2>
+			<p>We can see how effectively cache is being used by using:
+			<pre><code>valgrind --tool=cachegrind ls</code></pre>
+cachegrind is a tool for doing cache simulations and annotating your source line-by-line with the number of cache misses. In particular, it records:
+<ul><li>L1 instruction cache reads and misses</li>
+<li>L1 data cache reads and read misses, writes and write misses</li>
+<li>L2 unified cache reads and read misses, writes and writes misses</li></ul></p>
+		</div>
+        </body>
+</html>
