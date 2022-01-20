@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Python for loop examples | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Python for loop examples</h2>
+			<p>Example 1:
+			<pre><code>friends = ["Rolf", "Jen", "Anne"]
+for friend in friends:
+  print(friend)</code></pre>
+Example 2:
+<pre><code>elements = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+for _ in elements:
+  print("Hello world!")</code></pre>
+Example 3:
+<pre><code>for index in range(10):
+  print(index)</code></pre>
+Example 4:
+<pre><code>for index in range(5, 10):
+  print(index)</code></pre>
+Output:
+<pre><code>5
+6
+7
+8
+9</code></pre>
+Example 5:
+<pre><code>for index in range(2, 20, 3):
+  print(index)</code></pre>
+Output:
+<pre><code>2
+5
+8
+11
+14
+17</code></pre>
+Example 6:
+<pre><code>students = [
+    {"name": "Rolf", "grade": 90},
+    {"name": "Bob", "grade": 70},
+    {"name": "Jen", "grade": 100},
+    {"name": "Anne", "grade": 80}
+]
+for student in students:
+  name = student["name"]
+  grade = student["grade"]
+  print(f"{name} has a grade of {grade}.")</code></pre>
+Output:
+<pre><code>Rolf has a grade of 90.
+Bob has a grade of 70.
+Jen has a grade of 100.
+Anne has a grade of 80.</code></pre></p>
+		</div>
+        </body>
+</html>
