@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Profiling memory leaks in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Profiling memory leaks in Linux</h2>
+			<p>You can use the same valgrind tool:
+			<pre><code>valgrind --tool=memcheck ./binary</code></pre>
+			<strong>memcheck</strong> is a memory error detector. It can detect the following problems that are common in C and C++ programs:
+			<ul><li>Accessing memory you shouldn't, e.g. overrunning and underrunning heap blocks, overrunning the top of the stack, and accessing memory after it has been freed</li>
+<li>Using undefined values, i.e. values that have not been initialised, or that have been derived from other undefined values</li>
+<li>Incorrect freeing of heap memory, such as double-freeing heap blocks, or mismatched use of malloc/new/new[] versus free/delete/delete[]</li>
+<li>Overlapping src and dst pointers in memcpy and related functions</li>
+<li>Passing a fishy (presumably negative) value to the size parameter of a memory allocation function</li>
+<li>Memory leaks</li></ul>
+On a modern machine, an L1 miss will typically cost around 10 cycles, and an L2 miss can cost as much as 200 cycles. Detailed cache profiling can be very useful for improving the performance of your program.</p>
+		</div>
+        </body>
+</html>
