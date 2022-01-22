@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Configuring iSCSI storage in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Configuring iSCSI storage in Linux</h2>
+			<p>The server 1 will be an iSCSI target, the server 2 - iSCSI client.<br/><br/>
+Let's see what we have on server 1:
+<pre><code>$ cat /proc/partitions 
+major minor  #blocks  name
+
+ 252        0   20971520 vda
+ 252        1    1048576 vda1
+ 252        2   19921920 vda2
+   8        0    1048576 sda
+  11        0    1048575 sr0
+ 253        0   17821696 dm-0
+ 253        1    2097152 dm-1</code></pre>
+there is an device with name sda which I want to share through iSCSI.<br/><br/>
+The utility to do that is targetcli:
+<pre><code># targetcli
+targetcli shell version 2.1.53
+Copyright 2011-2013 by Datera, Inc and others.
+For help on commands, type 'help'.
+
+/&gt; ls
+o- / ..................................................................... [...]
+  o- backstores .......................................................... [...]
+  | o- block .............................................. [Storage Objects: 0]
+  | o- fileio ............................................. [Storage Objects: 0]
+  | o- pscsi .............................................. [Storage Objects: 0]
+  | o- ramdisk ............................................ [Storage Objects: 0]
+  o- iscsi ........................................................ [Targets: 0]
+  o- loopback ..................................................... [Targets: 0]</code></pre>
+backstore is the storage that you want to share and iscsi is how you are going to expose the storage on a network.<br/><br/>
+Create a blockstorage object in the targetcli withthe name block1 using /dev/sda:
+<pre><code>/&gt; cd backstores/block 
+/backstores/block&gt; 
+/backstores/block&gt; create dev=/dev/sda name=block1
+Created block storage object block1 using /dev/sda.</code></pre>
+We can see it:
+<pre><code>/backstores/block&gt; ls
+o- block .................................................. [Storage Objects: 1]
+  o- block1 ......................... [/dev/sda (1.0GiB) write-thru deactivated]
+    o- alua ................................................... [ALUA Groups: 1]
+      o- default_tg_pt_gp ....................... [ALUA state: Active/optimized]</code></pre>
+Now we can go to iscsi:
+<pre><code>/backstores/block&gt; cd /iscsi 
+/iscsi&gt; create wwn=iqn.2022-01.com.example:target
+Created target iqn.2022-01.com.example:target.
+Created TPG 1.
+Global pref auto_add_default_portal=true
+Created default portal listening on all IPs (0.0.0.0), port 3260.</code></pre>
+wwn is a world wide name, that is unique IQN name as they call it in iSCSI which has a very structured format.<br/>
+It always starts with iqn. Next, it's the convention to use the year followed by the month and the inverse DNS name. And behind the colon, there's unique identifier (target).<br/>
+We can see that it is open and listening on port 3260 on all available IP adresses.<br/><br/>
+When we type ls, we can see it has created a lot of additional objects:
+<pre><code>/iscsi&gt; ls
+o- iscsi .......................................................... [Targets: 1]
+  o- iqn.2022-01.com.example:target .................................. [TPGs: 1]
+    o- tpg1 ............................................. [no-gen-acls, no-auth]
+      o- acls ........................................................ [ACLs: 0]
+      o- luns ........................................................ [LUNs: 0]
+      o- portals .................................................. [Portals: 1]
+        o- 0.0.0.0:3260 ................................................... [OK]</code></pre>
+Go deeper to tpg1 - target portal group and a portal is a target that it is listening on specific IP address and specific port.
+<pre><code>/iscsi&gt; cd iqn.2022-01.com.example:target/tpg1/
+/iscsi/iqn.20...e:target/tpg1&gt; ls
+o- tpg1 ................................................. [no-gen-acls, no-auth]
+  o- acls ............................................................ [ACLs: 0]
+  o- luns ............................................................ [LUNs: 0]
+  o- portals ...................................................... [Portals: 1]
+    o- 0.0.0.0:3260 ....................................................... [OK]</code></pre>
+In TPG there are 3 things need to be done:
+<ul><li>we need to specify the ACL, that is about access permissions</li>
+<li>we need to specify the LUN, that is about how the iSCSI block device is going to be stored</li>
+<li>there is a portal that has already been completed and it that is where it is going to listen on a network</li>
+ACL is the IQN name that you are going to use on the iSCSI initialtor. So let's go to the initiator.<br/><br/>
+So on server 2 - we need to find the iSCSI initiator name, to find it we need iSCSI software to be installed.
+<pre><code># yum install iscsi-initiator-utils
+The result, as now we should have the directory /etc/iscsi and inside it we should have the file <strong>initiatorname.iscsi</strong>.<br/>
+If you do not have it, generate a new one:
+<pre><code># echo "InitiatorName=$(/sbin/iscsi-iname)" &gt; /etc/iscsi/initiatorname.iscsi
+# systemctl restart iscsid</code></pre>
+Put this name to the server 1:
+<pre><code>/iscsi/iqn.20...e:target/tpg1&gt; cd acls 
+/iscsi/iqn.20...get/tpg1/acls&gt; create wwn=iqn.1994-05.com.redhat:9a9a8dfbbd8
+Created Node ACL for iqn.1994-05.com.redhat:9a9a8dfbbd8</code></pre>
+Continue with LUN:
+<pre><code>/iscsi/iqn.20...get/tpg1/acls&gt; cd ../luns 
+/iscsi/iqn.20...get/tpg1/luns&gt; create /backstores/block/block1 
+Created LUN 0.
+Created LUN 0-&gt;0 mapping in node ACL iqn.1994-05.com.redhat:9a9a8dfbbd8</code></pre>
+Exit from targetctl and enable target:
+<pre><code>systemctl enable target
+systemctl status target
+systemctl start target
+systemctl status target</code></pre>
+Now that the iSCSI target is listening we can go to server 2, which is the iSCSI initiator, and we can use the iscsiadm command. Type:
+<pre><code>man iscsiadm</code></pre>
+and copy some examples from man page and replace the IP:
+<pre><code># iscsiadm  --mode  discoverydb  --type sendtargets --portal 192.168.122.107 --discover
+192.168.122.107:3260,1 iqn.2022-01.com.example:target</code></pre>
+And there you can see that it has found the iSCSI target IQN and that is what I need in the next command that I'm going to run. Copy it again from the man page.
+Show /proc/partitions before of this:
+<pre><code># cat /proc/partitions
+major minor  #blocks  name
+
+ 252        0   20971520 vda
+ 252        1    1048576 vda1
+ 252        2   19921920 vda2
+  11        0    1048575 sr0
+ 253        0   17821696 dm-0
+ 253        1    2097152 dm-1</code></pre>
+and login to iSCSI:
+<pre><code>iscsiadm --mode node --targetname iqn.2022-01.com.example:target --portal 192.168.122.107:3260 --login
+# iscsiadm --mode node --targetname iqn.2022-01.com.example:target --portal 192.168.122.107:3260 --login
+Logging in to [iface: default, target: iqn.2022-01.com.example:target, portal: 192.168.122.107,3260]
+Login to [iface: default, target: iqn.2022-01.com.example:target, portal: 192.168.122.107,3260] successful.
+And there you can see that it is logging in and it was successfull.<br/><br/>
+The result of /proc/partitions:
+<pre><code># cat /proc/partitions 
+major minor  #blocks  name
+
+ 252        0   20971520 vda
+ 252        1    1048576 vda1
+ 252        2   19921920 vda2
+  11        0    1048575 sr0
+ 253        0   17821696 dm-0
+ 253        1    2097152 dm-1
+   8        0    1048576 sda</code></pre>
+We now have a disk with the name sda. And that is the iSCSI disk.
+And the next time the system will reboot it will automatically get iSCSI disk. and it will behave any local disk:
+<pre><code># lsscsi 
+[0:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0 
+[6:0:0:0]    disk    LIO-ORG  block1           4.0   /dev/sda</code></pre></p>
+		</div>
+        </body>
+</html>
