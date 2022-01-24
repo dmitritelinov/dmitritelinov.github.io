@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Headless service in Kubernetes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Headless service in Kubernetes</h2>
+			<p>Headless: a service that does have an IP.<br/><br/>
+			The default behavior of Kubernetes is to assign an internal IP address to the service. Through this IP address, the service will proxy and load-balance the requests to the pods behind.<br/>
+			If we explicitly set this IP address (clusterIP) to none, this is like telling Kubernetes "I don't need load balancing or proxying, just connect me to the first available pod".<br/><br/>
+			When you create a headless service by setting clusterIP None, no load-balancing is done and no cluster IP is allocated for this service. Only DNS is automatically configured. When you run a DNS query for headless service, you will get the list of the Pods IPs and usually client dns chooses the first DNS record.<br/><br/>
+StatefulSet comes with the capability of running replicas with stable DNS name/entries that target each replica. And here comes the role of "Headless service" to deliver that.</p>
+		</div>
+        </body>
+</html>
