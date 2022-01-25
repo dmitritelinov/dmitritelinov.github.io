@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>Iterating over dictionary keys | dmitritelinov</title>
+                <title>Iterating over dictionary values in Python | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,15 +11,15 @@
 
         <body>
 		<div class="wrap">
-			<h2>Iterating over dictionary keys</h2>
+			<h2>Iterating over dictionary values in Python</h2>
 			<p><pre><code>friend_ages = {"Rolf": 25, "Anne": 37, "Charlie": 31, "Bob": 22}
-for name in friend_ages:
-  print(name)</code></pre>
+for age in friend_ages.values():
+  print(age)</code></pre>
 Output:
-<pre><code>Rolf
-Anne
-Charlie
-Bob</code></pre></p>
+<pre><code>25
+37
+31
+22</code></pre></p>
 		</div>
         </body>
 </html>
