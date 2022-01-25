@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Pod with headless service example | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Pod with headless service example</h2>
+			<p>pod-definition.yml:
+			<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+  - name: mysql
+    image: mysql
+  subdomain: mysql-h
+  hostname: mysql-pod</code></pre>
+headless-service.yml
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-h
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None</code></pre>
+The Pod will be accesible at address <strong>mysql-pod.mysql-h.default.svc.cluster.local</strong></p>
+		</div>
+        </body>
+</html>
