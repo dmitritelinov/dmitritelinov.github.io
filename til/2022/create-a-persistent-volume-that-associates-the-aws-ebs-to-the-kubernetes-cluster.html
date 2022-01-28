@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Create a Persistent Volume that associates the AWS EBS to the Kubernetes cluster | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Create a Persistent Volume that associates the AWS EBS to the Kubernetes cluster</h2>
+			<p><pre><code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: aws-pv
+  labels:
+    type: aws-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  awsElasticBlockStore:
+    volumeID: {{ YOUR-EBS-VOLUME-ID-HERE }}
+    fsType: ext4</code></pre>
+Next you can create the Persistent Volume Claim that will bound the Persistent Volume we just made.</p>
+		</div>
+        </body>
+</html>
