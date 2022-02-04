@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>bash if | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>bash if</h2>
+			<p>Simple if:
+<pre><code>if [ -d /etc]; then
+echo "/etc exists"
+fi</code></pre>
+if with else
+<pre><code>if [ -f /etc/fstab ]; then
+  echo "/etc/fstab exists"
+else
+  echo "/etc/fstab does not exists"
+fi</code></pre>
+if with else - example 2
+<pre><code>count=100
+if [ $count -eq 100 ]
+then
+  echo Count is 100
+else
+  echo Count is not 100
+fi</code></pre>
+if with else example 3 here - check if file exists:
+<pre><code>if [ -e /etc/os-release ]
+then
+  echo "File exists"
+else
+  echo "File doesn't exist"
+fi</code></pre>
+if statement - check if a variable value is met
+<pre><code>a=`date | awk '{ print $1 }'`
+if [ "$a" == Mon ]
+then
+  echo Today is $a
+else
+  echo Today is not Monday
+fi</code></pre>
+if with elif and else
+<pre><code>if [ $1 = "y" ]; then
+  echo "yes"
+elif [ $1 = "n" ]; then
+  echo "no"
+else
+  echo "other"
+fi</code></pre>
+if with elif and else example 2 - check the responce and output
+<pre><code>clear
+echo "What is yout name?"
+echo
+read name
+echo
+echo Hello $name
+echo
+echo "Do you like working in IT? (y/n)"
+echo
+read like
+echo
+
+if [ "$like" == y ]
+then
+  echo You are cool
+elif [ "$like" == n ]
+then
+echo "You should try IT, it is a good field"
+echo
+fi</code></pre>
+if with test
+<pre><code>if test -e /etc/hosts; then
+  echo "/etc/hosts exists"
+fi</code></pre>
+if with || and [[ ]]<br/>
+|| - other option is &amp;&amp;<br/>
+[[ ]] - ability to use the entire expression within the brackets themselves, also fives possiblity to use regex and file globbing within expression
+<pre><code>if [[ -f /etc/fstab || -d /var2 ]]; then
+  echo "true"
+else
+  echo "false"
+fi</code></pre>
+if with &amp;&amp; and [ ]
+[ ] - a single expression
+<pre><code>if [ -f /etc/fstab ] &amp;&amp; [ -d /var2 ]; then
+  echo "true"
+else
+  echo "false"
+fi</code></pre></p>
+		</div>
+        </body>
+</html>
