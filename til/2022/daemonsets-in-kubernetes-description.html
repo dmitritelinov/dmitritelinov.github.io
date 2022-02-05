@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>DaemonSets in Kubernetes description | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>DaemonSets in Kubernetes description</h2>
+			<p>DaemonSets ensure that every single node in the Kubernetes cluster runs the same Pod resource. This is useful if you want to ensure that a certain Pod is running on every single Kubernetes node.<br/><br/>
+			When a node is added to the cluster, a new Pod will be started automatically. Same when a node is removed, the Pod will not be rescheduled on another node.<br/><br/>
+Typical use cases:
+<ul><li>Logging aggregators</li>
+<li>Monitoring</li>
+<li>Load Balancers/Reverse Proxies/API Gateways</li>
+<li>Running a daemon that only needs one instance per single node</li></ul></p>
+		</div>
+        </body>
+</html>
