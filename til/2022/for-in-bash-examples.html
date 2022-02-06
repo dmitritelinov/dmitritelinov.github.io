@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>for in bash examples | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>for in bash examples</h2>
+			<p>Example 1
+			<pre><code>#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+	echo "Hello $i times"
+done</code></pre>
+Example 2
+<pre><code>#!/bin/bash
+
+for i in eat run jump play
+do
+	echo "See Dmitri $i"
+done</code></pre>
+Example 3
+<pre><code>#!/bin/bash
+
+for i in {1..5}
+do
+	touch $i
+done</code></pre>
+Example 4
+<pre><code>#!/bin/bash
+
+i=1
+for day in Mon Tue Wed Thu Fri Sat Sun
+do
+	echo "Weekday $((i++)) is $day"
+done</code></pre>
+Example 5
+<pre><code>#!/bin/bash
+
+i=1
+for username in `awk -F: '{print $1}' /etc/passwd`
+do
+	echo "Username $((i++)) is $username"
+done</code></pre>
+Example 6
+<pre><code>#!/bin/bash
+
+echo How many files you want
+read total
+echo Enter the start name of the file
+read n
+
+for i in $(seq 1 $t)
+do
+	touch $n.$i
+done</code></pre>
+Example 7
+<pre><code>#!/bin/bash
+
+for i in file.*
+do
+	echo Assigning write permissions to $i
+	chmod a+w $i
+	sleep 1
+done</code></pre></p>
+		</div>
+        </body>
+</html>
