@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Delete a volume by volumeID in AWS with aws-cli | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Delete a volume by volumeID in AWS with aws-cli</h2>
+			<p>If you have a <strong>volumeID</strong> you can easily delete a volume. First make sure that it is not used (detached) and delete it by <strong>volumeID</strong>:
+			<pre><code>aws ec2 delete-volume --volume-id {{ volumeID }}</code></pre></p>
+		</div>
+        </body>
+</html>
