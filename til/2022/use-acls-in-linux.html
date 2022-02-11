@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Use ACLs in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Use ACLs in Linux</h2>
+			<p>Let's suppose we have 2 groups: sales and account with 2 directories owned by respective users:
+			<pre><code>$ ls -l /data
+total 0
+drwxrwx---. 2 root account 6 Oct 12 19:30 account
+drwxrwx---. 2 root sales   6 Oct 12 19:30 sales</code></pre>
+To make group sales to access account directory:
+<pre><code>$ setfacl -m d:g:sales:rx /data/account # this is setting the default permissions for new for files in the directory
+$ setfacl -m g:sales:rx /data/account   # this one is for current directory files</code></pre>
+To make group account to access sales directory 
+<pre><code>$ setfacl -m d:g:account:rx /data/sales
+$ setfacl -m g:account:rx /data/sales</code></pre>
+Get details about the directories:
+<pre><code>$ getfacl /data/sales
+$ getfacl /data/account</code></pre></p>
+		</div>
+        </body>
+</html>
