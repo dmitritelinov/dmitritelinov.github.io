@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>SUID in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>SUID in Linux</h2>
+			<p>Set User ID only has a meaning on a file, and it means that if a user runs a program that has SUID set, it will run it as the owner of the program and not as user itself.<br/><br/>
+That makes SUID efficient for utilities like passwd that allows user to write passwords, but in order to write passwords the user need access to the /etc/shadow file, which is allowed only for user root.<br/><br/>
+SUID is typically not something that users should apply themselves on files, because it is very dangerous.</p>
+		</div>
+        </body>
+</html>
