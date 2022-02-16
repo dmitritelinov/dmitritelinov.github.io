@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Container registry | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Container registry</h2>
+			<p>There is a crucial piece of technology that provides the ability to move container images around. An image registry is a specialized piece of storage technology that houses containers, making them available for hosts. A host can push a container image to a registry, which transfers the layers to the registry. And then another host can pull the image from the registry to the host’s environment, after which the host can execute the container.<br/><br/>
+The registry manages the layers. When one host requests an image, the registry lets the host know which layers compose that image. The host can then determine which layers (if any) are missing and subsequently download just those layers from the registry.<br/><br/>
+A registry uses up to three pieces of information to identify a particular image:
+<ul><li>Name<br/>
+An image name can range from simple to complex, depending on the registry that stores the image: nginx, servers/nginx, or example.com/servers/nginx.</li>
+	<li>Tag<br/>
+		The tag typically refers to the version of the software installed (v1.2.3), though tags are really just arbitrary strings. The tags latest and stable are often used to indicate “the most recent version” and “the most recent production-ready version,” respectively.</li>
+	<li>Digest<br/>
+		Sometimes it is important to pull a very specific version of an image. Since tags are mutable, there is no guarantee that at any given time a tag refers to exactly a specific version of the software. So registries support fetching images by digest, which is a SHA-256 or SHA-512 digest of the image’s layer information.</li></ul></p>
+		</div>
+        </body>
+</html>
