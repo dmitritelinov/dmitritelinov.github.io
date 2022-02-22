@@ -32,7 +32,8 @@ ufw allow proto tcp from any to any port 80,443
 ufw allow http/tcp
 ufw allow 1725/udp
 ufw delete allow "Nginx Full"
-ufw deny 111</code></pre>
+ufw deny 111
+ufw deny out 25</code></pre>
 To allow/deny connections from an IP address/subnet:
 <pre><code>ufw allow from 198.51.100.0
 ufw allow from 198.51.100.0/24
@@ -42,8 +43,7 @@ ufw allow in on eth0 from 203.0.113.102
 ufw allow from 203.0.113.103 to any port 3306
 ufw deny from 203.0.113.100
 ufw deny from 203.0.113.0/24
-ufw deny in on eth0 from 203.0.113.100
-ufw deny out 25</code></pre>
+ufw deny in on eth0 from 203.0.113.100</code></pre>
 Delete rules:
 <pre><code>ufw delete allow 80
 ufw delete allow from 203.0.113.101</code></pre>
@@ -52,7 +52,7 @@ Delete numbered rules:
 ufw delete 1</code></pre>
 Enable logging:
 <pre><code>ufw logging on
-ufw logging {{ low|medium|high }}</code></pre></p>
+ufw logging {{ low | medium | high }}</code></pre></p>
 		</div>
         </body>
 </html>
