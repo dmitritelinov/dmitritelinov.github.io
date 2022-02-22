@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>ufw basic usage | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>ufw basic usage</h2>
+			<p>UFW, or uncomplicated firewall, is a frontend for managing firewall rules in Arch Linux, Debian, or Ubuntu. UFW is used through the command line (although it has GUIs available), and aims to make firewall configuration easy (or, uncomplicated).<br/><br/>
+Show help:
+<pre><code>ufw help</code></pre>
+Show status:
+<pre><code>ufw status</code></pre>
+Enable it:
+<pre><code>ufw enable</code></pre>
+Show a list of applications:
+<pre><code>ufw app list</code></pre>
+Allow/deny rules:
+<pre><code>ufw allow OpenSSH
+ufw allow ssh
+ufw allow 22
+ufw allow Apache
+ufw allow "Nginx HTTPS"
+ufw allow 80/tcp
+ufw allow proto tcp from any to any port 80,443
+ufw allow http/tcp
+ufw allow 1725/udp
+ufw delete allow "Nginx Full"
+ufw deny 111</code></pre>
+To allow/deny connections from an IP address/subnet:
+<pre><code>ufw allow from 198.51.100.0
+ufw allow from 198.51.100.0/24
+ufw allow from 198.51.100.0 to any port 22 proto tcp
+ufw allow from 203.0.113.0/24 to any port 873
+ufw allow in on eth0 from 203.0.113.102
+ufw allow from 203.0.113.103 to any port 3306
+ufw deny from 203.0.113.100
+ufw deny from 203.0.113.0/24
+ufw deny in on eth0 from 203.0.113.100
+ufw deny out 25</code></pre>
+Delete rules:
+<pre><code>ufw delete allow 80
+ufw delete allow from 203.0.113.101</code></pre>
+Delete numbered rules:
+<pre><code>ufw status numbered
+ufw delete 1</code></pre>
+Enable logging:
+<pre><code>ufw logging on
+ufw logging {{ low|medium|high }}</code></pre></p>
+		</div>
+        </body>
+</html>
