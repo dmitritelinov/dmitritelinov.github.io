@@ -1,50 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Get instance metadata in AWS</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Get instance metadata in AWS | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-aws curl wget awsec2
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Get instance metadata in AWS</h2>
-					<div class="news_box">
-In AWS there is a link-local address <strong>169.254.169.254</strong> which have metadata that EC2 instance can access. If you log in to an EC2 Instance, you can use curl or wget to get information about the instance from metadata endpoint:
+        <body>
+		<div class="wrap">
+			<h2>Get instance metadata in AWS</h2>
+			<p>In AWS there is a link-local address <strong>169.254.169.254</strong> which have metadata that EC2 instance can access. If you log in to an EC2 Instance, you can use curl or wget to get information about the instance from metadata endpoint:
 <pre><code>curl http://169.254.169.254/latest/meta-data/
 wget -q -O - http://169.254.169.254/latest/meta-data/</code></pre>
-
 Examples<br />
 Get public IP of instance:
 <pre><code>http://169.254.169.254/latest/meta-data/public-ipv4</code></pre>
-
 Get local IP of instance:
 <pre><code>curl http://169.254.169.254/latest/meta-data/local-ipv4</code></pre>
-
 Get instance ID:
 <pre><code>curl http://169.254.169.254/latest/meta-data/instance-id</code></pre>
-
 Get instance type:
 <pre><code>curl http://169.254.169.254/latest/meta-data/instance-type</code></pre>
-
 Get AZ:
-<pre><code>http://169.254.169.254/latest/meta-data/placement/availability-zone</code></pre>
-
-You can also dowload this bash script from Amazon - <a href="https://aws.amazon.com/code/ec2-instance-metadata-query-tool/">EC2 Instance Metadata Query Tool</a>
-					</div>
-				</div>
-			</div> <!-- end of content -->
+<pre><code>http://169.254.169.254/latest/meta-data/placement/availability-zone</code></pre></p>
 		</div>
-	</body>
+        </body>
 </html>
