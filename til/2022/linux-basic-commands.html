@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Linux basic commands | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Linux basic commands</h2>
+			<p>Print to screen
+			<pre><code>echo Hi</code></pre>
+List files and folders in current directory
+<pre><code>ls</code></pre>
+Change directory
+<pre><code>cd /tmp</code></pre>
+Print working directory
+<pre><code>pwd</code></pre>
+Make directory
+<pre><code>mkdir /tmp/new_dir</code></pre>
+Make directory hierarchy
+<pre><code>mkdir -p /tmp/new_dir/sobfolder</code></pre>
+Remove a directory with all contents
+<pre><code>rm -r /tmp/new_dir</code></pre>
+Copy directory to another location recursively
+<pre><code>cp -r /etc /tmp/etc_backup</code></pre>
+Run multiple commands - separate them by semicolon (;):
+<pre><code>cd /tmp; mkdir new_dir; pwd</code></pre>
+Create an empty file
+<pre><code>touch myfile</code></pre>
+Add contents to file
+<pre><code>cat &gt; myfile</code></pre>
+add content and press Ctrl+D at the end<br/>
+View the contents of the file
+<pre><code>cat myfile</code></pre>
+Copy file
+<pre><code>cp /etc/hosts /tmp/hosts_backup</code></pre>
+Move/Rename a file
+<pre><code>mv /tmp/hosts_backup /tmp/hosts_bkp</code></pre>
+Delete a file
+<pre><code>rm /tmp/hosts_bkp</code></pre></p>
+		</div>
+        </body>
+</html>
