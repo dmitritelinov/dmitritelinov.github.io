@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>golang sample application for testing | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>golang sample application for testing</h2>
+			<p>This sample application uses Echo as web application framework and Gorm as the backend database.<br/><br/>
+Clone repo:
+<pre><code>git clone https://github.com/kodekloudhub/go-webapp-sample</code></pre>
+Deploy app:
+<pre><code>cd go-webapp-sample
+go run main.go</code></pre>
+Login on Web interface with test:test credentials.<br/>
+Also - you can test the following URLs:
+<pre><code>/api/auth/loginStatus
+/api/books
+/swagger/index.html - Swagger interface</code></pre>
+To run the tests - switch to another terminal in controller directory and run:
+<pre><code>go test -v .</code></pre>
+You should get PASS after running the tests.</p>
+		</div>
+        </body>
+</html>
