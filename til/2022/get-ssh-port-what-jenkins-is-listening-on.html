@@ -2,17 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #jenkins | dmitritelinov</title>
+                <title>Get SSH port what Jenkins is listening on | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#jenkins</h2>
-			<a href="/til/2019/executing-bash-and-groovy-commands-on-a-jenkins-node.html">Executing bash and groovy commands on a Jenkins node</a><br/>
-			<a href="/til/2022/get-ssh-port-what-jenkins-is-listening-on.html">Get SSH port what Jenkins is listening on</a><br/>
+			<h2>Get SSH port what Jenkins is listening on</h2>
+			<p><pre><code>curl -Lv http://<strong>{{ jenkins_IP }}</strong>:<strong>{{ jenkins_PORT }}</strong>/login 2 &gt;&amp;1 | grep -i 'x-ssh-endpoint'</code></pre></p>
 		</div>
         </body>
 </html>
