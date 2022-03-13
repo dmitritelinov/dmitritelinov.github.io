@@ -12,7 +12,7 @@
         <body>
 		<div class="wrap">
 			<h2>Get SSH port what Jenkins is listening on</h2>
-			<p><pre><code>curl -Lv http://<strong>{{ jenkins_IP }}</strong>:<strong>{{ jenkins_PORT }}</strong>/login 2 &gt;&amp;1 | grep -i 'x-ssh-endpoint'</code></pre></p>
+			<p><pre><code>curl -Lv http://<strong>{{ jenkins_IP }}</strong>:<strong>{{ jenkins_PORT }}</strong>/login 2&gt;&amp;1 | grep -i 'x-ssh-endpoint'</code></pre></p>
 		</div>
         </body>
 </html>
