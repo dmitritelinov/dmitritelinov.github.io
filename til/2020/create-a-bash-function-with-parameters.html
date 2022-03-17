@@ -1,40 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Create a bash function with parameters</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Create a bash function with parameters | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-bash rest
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Create a bash function with parameters</h2>
-					<div class="news_box">
-In the below example I'll create a function that will take an URL as parameter and query it's stats from 3rd party REST APIs. Add to ~/.bashrc:
+        <body>
+		<div class="wrap">
+			<h2>Create a bash function with parameters</h2>
+			<p>In the below example I'll create a function that will take an URL as parameter and query it's stats from 3rd party REST APIs. Add to ~/.bashrc:
 <code><pre>function cs() {
   TITLE=$(curl -s "cli.fyi/$1" |jq -r '.data.title')
-  RATING=$(curl -s "https://graph.facebook.com/?access_token=xxx|yyy&fields=engagement&id=$1" | jq -r '.engagement.share_count')
+  RATING=$(curl -s "https://graph.facebook.com/?access_token=xxx|yyy&amp;fields=engagement&amp;id=$1" | jq -r '.engagement.share_count')
   echo $RATING" || "$TITLE
 }
 </pre></code>
 Sample output (used mostly for adding entries to <a href="/kb.txt">kb.txt</a>):
 <pre><code>$ cs https://www.youtube.com/watch?v=oHg5SJYRHA0
 14399 || RickRoll'D</code></pre>
-You should have curl and <a href="https://stedolan.github.io/jq/">jq</a> installed and set-up your Facebook API keys to query the REST API.
-					</div>
-				</div>
-			</div> <!-- end of content -->
+You should have curl and <a href="https://stedolan.github.io/jq/">jq</a> installed and set-up your Facebook API keys to query the REST API.</p>
 		</div>
-	</body>
+        </body>
 </html>
