@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #golang | dmitritelinov</title>
+                <title>golang import packages | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,9 +11,18 @@
 
         <body>
 		<div class="wrap">
-			<h2>#golang</h2>
-			<a href="/til/2022/golang-sample-application-for-testing.html">golang sample application for testing</a><br/>
-			<a href="/til/2022/golang-import-packages.html">golang import packages</a><br/>
+			<h2>golang import packages</h2>
+			<p>It is not recommended to import line by line:
+			<pre><code>import "fmt"
+import "log"
+import "math/rand"</code></pre>
+When importing more than one package, you can use the () to create a block. By using a block you can avoid repeating the import keyword on every line:
+<pre><code>import (
+  "fmt"
+  "log"
+  "math/rand"
+)</code></pre>
+This will make your code look cleaner</p>
 		</div>
         </body>
 </html>
