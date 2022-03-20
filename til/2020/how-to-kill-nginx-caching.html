@@ -1,35 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | How to kill nginx caching</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>How to kill nginx caching | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-nginx
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>How to kill nginx caching</h2>
-					<div class="news_box">
-Put inside <strong>location</strong> directive:
+        <body>
+		<div class="wrap">
+			<h2>How to kill nginx caching</h2>
+			<p>Put inside <strong>location</strong> directive:
 <pre><code>add_header Last-Modified $date_gmt;
 add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
 if_modified_since off;
 expires off;
-etag off;</code></pre>
-					</div>
-				</div>
-			</div> <!-- end of content -->
+etag off;</code></pre></p>
 		</div>
-	</body>
+        </body>
 </html>
