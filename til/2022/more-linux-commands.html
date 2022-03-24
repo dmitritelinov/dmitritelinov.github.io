@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>More Linux commands | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>More Linux commands</h2>
+			<p>Get file type
+			<pre><code>file /etc/hosts</code></pre>
+Output first part (10 lines) of the file
+<pre><code>head /etc/hosts</code></pre>
+Show first 5 lines
+<pre><code>head -5 /etc/hosts</code></pre>
+Output last part (10 lines) of the file
+<pre><code>tail /etc/hosts</code></pre>
+Show last 5 lines
+<pre><code>tail -5 /etc/hosts</code></pre>
+To watch a file for changes with the tail command pass the -f option
+<pre><code>tail -f /var/log/messages</code></pre>
+How long the system has been up
+<pre><code>uptime</code></pre>
+Show memory information
+<pre><code>free</code></pre>
+Display processes
+<pre><code>ps -A</code></pre>
+Show file system disk space usage
+<pre><code>df -h</code></pre>
+Pull information about the partitions
+<pre><code>fdisk -l
+lsblk</code></pre>
+Display processes (q to quit)
+<pre><code>top
+htop</code></pre>
+To get user which you are logged in
+<pre><code>whoami
+id -un</code></pre>
+Get more information about the user
+<pre><code>id</code></pre>
+Show hostname of the system
+<pre><code>hostname</code></pre>
+See the output of command page by page (q to exit)
+<pre><code>hostname --help | less</code></pre>
+Set user password
+<pre><code>passwd</code></pre>
+Get kernel information
+<pre><code>uname -a</code></pre>
+Get/set the date and time
+<pre><code>date</code></pre>
+Show last logins that happened on the system
+<pre><code>last</code></pre>
+To switch between users - you will be prompted for users password
+<pre><code>su lora</code></pre>
+Switch between users by opening a login shell (the full environment of a target user will be set)
+<pre><code>su - lora</code></pre>
+Execute commands as root (needs an entry in /etc/sudoers)
+<pre><code>sudo ls /root</code></pre>
+Become root
+<pre><code>sudo -i
+sudo su -
+su -</code></pre>
+Login via SSH to another hostname using specified username
+<pre><code>ssh lora@192.168.1.2</code></pre>
+Download a file from Internet
+<pre><code>curl http://domain.tld/file.txt -O
+wget http://domain.tld/file.txt -O file.txt</code></pre>
+Check OS version
+<pre><code>ls /etc/*release*
+cat /etc/*release*</code></pre>
+Get networking information
+<pre><code>ifconfig
+ip a</code></pre></p>
+		</div>
+        </body>
+</html>
