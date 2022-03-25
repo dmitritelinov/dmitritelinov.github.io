@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Hello world in golang | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Hello world in golang</h2>
+			<p>Go programs are organized into packages - a collection of source files in the same directory that compile together.<br/><br/>
+			Since the need it to be executable - we need this <strong>package main</strong> in the file <strong>main.go</strong>:
+			<pre><code>package main
+
+import (
+  "fmt"
+)
+
+func main() {
+  fmt.Println("Hello world!")
+}</code></pre>
+			In this file we have a function which starts with <strong>func main()</strong> - it takes no parameters and has no return.<br/><br/>
+To print some words - we need to import some packages like <strong>fmt</strong>.<br/><br/>
+Let's run this and see what's happens:
+<pre><code>go run main.go</code></pre>
+You can also build the binary:
+<pre><code>go build main.go</code></pre>
+and run that binary:
+<pre><code>./main</code></pre>
+Ofcourse - everytime we change the code, we have to rebuild the file.</p>
+		</div>
+        </body>
+</html>
