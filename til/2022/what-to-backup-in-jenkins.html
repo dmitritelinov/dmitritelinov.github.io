@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>What to backup in Jenkins | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>What to backup in Jenkins</h2>
+			<p>You can backup the whole <strong>$JENKINS_HOME</strong> directory, but the most important are:
+			<ul><li><strong>$JENKINS_HOME/*.xml</strong> - configuration files (Ex. config.xml)</li>
+<li><strong>$JENKINS_HOME/jobs/*/*.xml</strong> - jobs folder - if you want to save your CICD pipelines</li>
+<li><strong>$JENKINS_HOME/nodes/*</strong> - agent configuration</li>
+<li><strong>$JENKINS_HOME/plugins/*.jpi</strong> - Plugins installed</li>
+<li><strong>$JENKINS_HOME/secrets/*</strong> - Secrets for credentials</li>
+	<li><strong>$JENKINS_HOME/users/*</strong> - users folder</li></ul>
+			Also, you can use this script to do the above: <a href="https://github.com/sue445/jenkins-backup-script">jenkins=backup-script</a></p>
+		</div>
+        </body>
+</html>
