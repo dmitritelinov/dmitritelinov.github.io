@@ -1,27 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | passwd shadow group files structure</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>passwd shadow group files structure | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-passwd shadow group
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>passwd shadow group files structure</h2>
-					<div class="news_box">
-<strong>passwd</strong> contains 7 fields:<br />
+        <body>
+		<div class="wrap">
+			<h2>passwd shadow group files structure</h2>
+			<p><strong>passwd</strong> contains 7 fields:<br />
 <strong>username</strong> - unique login name<br />
 <strong>password</strong> - empty, moved to /etc/shadow<br />
 <strong>user id</strong> - unique number id<br />
@@ -41,11 +32,8 @@ passwd shadow group
 <strong>group</strong> file contains group membership for all local users and it has 4 fields:<br />
 <strong>group</strong> - group name<br />
 <strong>password</strong> - empty<br />
-<strong>group</strong> id (GID) - unique group id number<br />
-<strong>group</strong> list - a comma delimited list of usernames that belong to the group
-					</div>
-				</div>
-			</div> <!-- end of content -->
+<strong>group id (GID) </strong> - unique group id number<br />
+<strong>group list </strong> - a comma delimited list of usernames that belong to the group</p>
 		</div>
-	</body>
+        </body>
 </html>
