@@ -13,10 +13,10 @@
 		<div class="wrap">
 			<h2>read in bash</h2>
 			<p>read is a bash built-in command that reads a line from the standard input (or from the file descriptor) and assigns to variable:
-			<pre><code>$ echo $var1 $var2 $var3
+			<pre><code>$ read -r $var1 $var2 $var3
 hello new delimiter
 $ echo $var3 $var2 $var1
-delimiter space hello</code></pre>
+delimiter new hello</code></pre>
 			Changing the delimiter can be done by modifying the variable IFS.<br/>
 Example 1:
 <pre><code>$ IFS=":" read -r var1 var2 var3
