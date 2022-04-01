@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Put bash process in new other namespaces | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Put bash process in new other namespaces</h2>
+			<p><pre><code>unshare --pid --net --fork --mount-proc /bin/bash</code></pre>
+Now, in this shell - list the running the processes, you can see that bash is in another PID namespace:
+<pre><code># ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   7100  3656 pts/0    S    19:27   0:00 /bin/bash
+root           2  0.0  0.0   9700  3360 pts/0    R+   19:27   0:00 ps aux</code></pre>
+Show network parameters - you can see, the bash process is in another network namespace:
+<pre><code># ip a
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</code></pre></p>
+		</div>
+        </body>
+</html>
