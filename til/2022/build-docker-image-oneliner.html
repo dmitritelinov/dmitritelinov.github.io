@@ -2,18 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #docker | dmitritelinov</title>
+                <title>Build docker image oneliner | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#docker</h2>
-			<a href="/til/2021/copy-vs-add-in-docker.html">COPY vs ADD in Docker</a><br/>
-			<a href="/til/2022/mount-volumes-and-directories-in-docker-new-and-old-way.html">Mount volumes and directories in Docker - new and old way</a><br/>
-			<a href="/til/2022/build-docker-image-oneliner.html">Build docker image oneliner</a><br/>
+			<h2>Build docker image oneliner</h2>
+			<p>Can be used in scripts:
+			<pre><code>docker build -t test -&lt;&lt;EOF
+FROM alpine
+ENTRYPOINT ["ping"]
+CMD ["8.8.8.8"]
+EOF</code></pre></p>
 		</div>
         </body>
 </html>
