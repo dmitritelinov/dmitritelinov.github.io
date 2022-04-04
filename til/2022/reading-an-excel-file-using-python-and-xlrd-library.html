@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Reading an Excel file using Python and xlrd library | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Reading an Excel file using Python and xlrd library</h2>
+			<p><pre><code>import xlrd
+
+# Give the location of the file
+loc = ("Input_sheet.xls")
+
+# To open Workbook
+wb = xlrd.open_workbook(loc)
+sheet = wb.sheet_by_index(5)
+
+# For row 1 and columns 1-20
+for i in range(1,20):
+  print(sheet.cell_value(1, i))</code></pre>
+For XLSX files support install older version of library:
+<pre><code>pip install xlrd==1.2.0</code></pre></p>
+		</div>
+        </body>
+</html>
