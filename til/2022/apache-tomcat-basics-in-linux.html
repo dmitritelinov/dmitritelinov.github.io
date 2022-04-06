@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Apache Tomcat basics in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Apache Tomcat basics in Linux</h2>
+			<p>Startup/Shutdown scripts are located in <strong>bin/</strong> directory: <strong>startup.sh</strong> and <strong>shutdown.sh</strong><br/><br/>
+			Default Tomcat port is on port <strong>8080</strong> which is defined in configuration direcotry <strong>conf/</strong> in the file <strong>server.xml</strong><br/>
+			Here the <strong>Connector</strong> are defined which defines the port Tomcat is listening to.<br/><br/>
+			<strong>web.xml</strong> file in <strong>conf/</strong> directory is used to configure and deploy web applications.<br/><br/>
+			<strong>logs/</strong> directory is where the logs are stored.<br/><br/>
+			Place your application that you want the Tomcat to serve to <strong>webapps/</strong> folder.<br/>
+			If you place <strong>app.war</strong> file inside this directory, it will be automatically detected and unpacked to the directory the same as file name of the WAR file and served.<br/>
+Also in <strong>logs/catalina.out</strong> you can see the logs about these events.</p>
+		</div>
+        </body>
+</html>
