@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Types of Linux namespaces | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Types of Linux namespaces</h2>
+			<p>Namespaces achieve the isolation at a kernel level. Similar to how the application chroot works, which jails a process in a different root directory, namespaces separate other aspects of the system. There are seven namespaces available:
+			<ul><li><strong>Mount</strong> or <strong>mnt</strong>. Very similar to chroot, the Mount namespace virtually partitions the file system. Processes running in separate mount namespaces cannot access files outside of their mount point. Because this is done at a kernel level, it’s much more secure than changing the root directory with chroot.</li>
+<li><strong>Process</strong>, or <strong>pid</strong>. In Linux, the first processes spawn as children of PID 1, which forms the root of the process tree. The process namespace cuts off a branch of the PID tree, and doesn’t allow access further up the branch. Processes in child namespaces will actually have multiple PIDs—the first one representing the global PID used by the main system, and the second PID representing the PID within the child process tree, which will restart from 1.</li>
+<li><strong>Interprocess Communication</strong>, or <strong>ipc</strong>. This namespace controls whether or not processes can talk directly to one another.</li>
+<li><strong>Network</strong>, or <strong>net</strong>. This namespace manages which network devices a process can see. However, this doesn’t automatically set up anything for you—you’ll still need to create virtual network devices, and manage the connection between global network interfaces and child network interfaces. Containerization software like Docker already has this figured out, and can manage networking for you.</li>
+<li><strong>User</strong>. This namespace allows process to have “virtual root” inside their own namespace, without having actual root access to the parent system. It also partitions off UID and GID information, so child namespaces can have their own user configurations.</li>
+<li><strong>UTS</strong>. This namespace controls hostname and domain information, and allows processes to think they’re running on differently named servers.</li>
+<li><strong>Control group</strong> or <strong>cgroup</strong>. Hides the identity of the control group of which process is a member. A process in such a namespace, checking which control group any process is part of, would see a path that is actually relative to the control group set at creation time, hiding its true control group position and identity.</ul></p>
+		</div>
+        </body>
+</html>
