@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>nsenter - alternative to docker exec in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>nsenter - alternative to docker exec in Linux</h2>
+			<p>With nsenter we can enter in a target PID namespace.<br/><br/>
+First - run a docker container:
+<pre><code>$ docker run --name test --rm test
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: seq=0 ttl=111 time=45.726 ms</code></pre>
+Get the ping PID from lsns - this is process running inside contariner:
+<pre><code>$ sudo lsns|grep ping
+4026532379 mnt         1  1576 root             ping 8.8.8.8
+4026532380 uts         1  1576 root             ping 8.8.8.8
+4026532381 ipc         1  1576 root             ping 8.8.8.8
+4026532382 pid         1  1576 root             ping 8.8.8.8
+4026532384 net         1  1576 root             ping 8.8.8.8
+4026532538 cgroup      1  1576 root             ping 8.8.8.8</code></pre>
+As we can see - the PID of process is 1576<br/><br/>
+Now, enter these namespaces with nsenter:
+<pre><code>$ sudo nsenter -t 1576 --pid --net --mount --ipc --uts sh
+/ # ps aux
+PID   USER     TIME  COMMAND
+    1 root      0:00 ping 8.8.8.8
+    7 root      0:00 sh
+    8 root      0:00 ps aux
+/ # ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+10: eth0@if11: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue state UP 
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever</code></pre>
+In similar way - docker process is entering inside the container.</p>
+		</div>
+        </body>
+</html>
