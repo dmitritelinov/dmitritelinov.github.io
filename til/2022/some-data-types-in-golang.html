@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Some data types in Golang | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Some data types in Golang</h2>
+			<p><pre><code>// booleans
+var myBoolean bool
+
+// string
+var myString string
+
+// integers - signed and unsigned
+var myInt int
+var myInt8 int8
+var myInt16 int16
+var myInt32 int32
+var myInt64 int64
+var myUint uint
+var myUint8 uint8
+var myUint16 uint16
+var myUint32 uint32
+var myUint64 uint64
+var myUintptr uintptr // It is an unsigned integer type. Its width is not defined, but its can hold all the bits of a pointer value.
+
+var myRune rune // same as int32
+var myByte byte // same as int8
+
+// floats
+var myFloat32 float32
+var myFloat64 float64
+
+// complex
+var myComplex64 complex64 // set of all complex numbers with float32 real and imaginary parts
+var myComplex128 complex128 // set of all complex numbers with float64 real and imaginary parts
+
+// error is a primitive type, it is an interface type, which wrappers around the string type
+var err error</code></pre></p>
+		</div>
+        </body>
+</html>
