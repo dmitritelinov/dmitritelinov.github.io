@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Find prime numbers in Python | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Find prime numbers in Python</h2>
+			<p><pre><code>for n in range(2, 15):
+  for x in range(2, n // 2):
+    if n % x == 0:
+      print(f"{n} equals {x} * {n // x}")
+      break
+  else:
+    print(f"{n} is a prime number")</code></pre>
+Output:
+<pre><code>2 is a prime number
+3 is a prime number
+4 is a prime number
+5 is a prime number
+6 equals 2 * 3
+7 is a prime number
+8 equals 2 * 4
+9 equals 3 * 3
+10 equals 2 * 5
+11 is a prime number
+12 equals 2 * 6
+13 is a prime number
+14 equals 2 * 7</code></pre></p>
+		</div>
+        </body>
+</html>
