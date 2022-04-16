@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Getting started with Terraform and AWS on Debian | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Getting started with Terraform and AWS on Debian</h2>
+			<p>Install Terraform on Debian - you can follow the official documentation too:
+			<pre><code>sudo apt-get update &amp;&amp; sudo apt-get install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update &amp;&amp; sudo apt-get install terraform</code></pre>
+Authenticate to AWS<br/>
+Create a terraform user in IAM with Programmatic accesss and attach to it AdministratorAccess policy. Save somewhere Access Key ID and Secret Access Key.<br/>
+Install awscli:
+<pre><code>sudo pip install awscli</code></pre>
+Configure it:
+<pre><code>aws configure</code></pre>
+and enter saved Access Key ID and Secret Access Key<br/>
+Create a basic Terraform configuration - main.tf:
+<pre><code>terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~&gt; 3.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-011899242bb902164" # Ubuntu 20.04 LTS
+  instance_type = "t3.nano"
+}</code></pre>
+Initialize the backend:
+<pre><code>terraform init</code></pre>
+Plan. See the changes to be applied as output:
+<pre><code>terraform plan</code></pre>
+Apply the changes:
+<pre><code>terraform apply</code></pre>
+you can now go the the AWS console to see the new-created instance details.<br/>
+Destroy the created instance:
+<pre><code>terraform destroy</code></pre></p>
+		</div>
+        </body>
+</html>
