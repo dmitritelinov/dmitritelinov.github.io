@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Strings are immutable in Python | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Strings are immutable in Python</h2>
+			<p><pre><code>greeting = "Hello"
+name = "Dmitri"
+greeting = greeting + ", my name is " + name
+print(greeting)</code></pre>
+In the above example, first greeting is not the same object as the previous one and that is because that strings in Python are immutable - it means that they cannot be changed.<br/><br/>
+So, when you did the reassignment, essentially - you created a new string with the same name. However: the both variables are different objects. You can see it by using the <strong>id</strong> function:
+<pre><code>greeting = "Hello"
+print(id(greeting))
+name = "Dmitri"
+greeting = greeting + ", my name is " + name
+print(id(greeting))</code></pre>
+Output:
+<pre><code>140270949458736
+140270949348336</code></pre></p>
+		</div>
+        </body>
+</html>
