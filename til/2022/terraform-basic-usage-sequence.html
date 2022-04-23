@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Terraform basic usage sequence | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Terraform basic usage sequence</h2>
+			<p><pre><code>terraform init</code></pre>
+			Actually goes and downloads the associated Terraform provider file from Terraform registry and puts it into a working directory.<br/>
+If you used modules, they are downloaded too into .terraform subdirectory
+<pre><code>terraform plan</code></pre>
+It is taking our terraform config (desired state) and compares to the actual state (which is state of the world) and gives output about this.
+<pre><code>terraform apply</code></pre>
+It is actually going to do and apply the changes from plan command. So we will have desired state to match the actual state.
+<pre><code>terraform destroy</code></pre>
+Destroy everything associated to this particular project.</p>
+		</div>
+        </body>
+</html>
