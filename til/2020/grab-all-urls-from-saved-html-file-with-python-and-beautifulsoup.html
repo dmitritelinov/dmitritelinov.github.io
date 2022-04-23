@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Grab all urls from saved html file with python and beautifulsoup | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Grab all urls from saved html file with python and beautifulsoup</h2>
+			<p><ol><li>Prepare html file: in Chrome open youtube.com, press ctrl+s and save the page under the name youtube.html</li>
+<li>Install pip dependencies:
+<pre><code>pip install bs4</code></pre></li>
+<li>Create a <strong>grab-links.py</strong> file with following contents:
+<pre><code>from bs4 import BeautifulSoup
+import argparse
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        'file',
+        type=str,
+        nargs='+',
+        help='saved html file to get urls from'
+    )
+    return parser.parse_args()
+
+def main():
+    args = get_args()
+
+    print(args.file[0])
+    f = open(args.file[0],"r") 
+
+    soup = BeautifulSoup(f.read(), 'lxml')
+    f.close()
+
+    for l in soup.findAll('a'):
+      print(l.get('href'))
+
+if __name__ == "__main__":
+    main()
+</code></pre></li>
+<li>Grab the links from saved file using new-created script:
+<pre><code>python3 grab-links.py youtube.html</code></pre></li></ol></p>
+		</div>
+        </body>
+</html>
