@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Simple GitLab Ci/CD pipeline | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Simple GitLab Ci/CD pipeline</h2>
+			<p>.gitlab-ci.yml:
+stages:
+    - build
+    - test
+
+build the car:
+    stage: build
+    script:
+        - mkdir build
+        - cd build
+        - touch car.txt
+        - echo "chassis" &gt;&gt; car.txt
+        - echo "engine" &gt;&gt; car.txt
+        - echo "wheels" &gt;&gt; car.txt
+    artifacts:
+        paths:
+            - build/
+
+test the car:
+    stage: test
+    script:
+        - test -f build/car.txt
+        - cd build
+        - grep "chassis" car.txt
+        - grep "engine" car.txt
+        - grep "wheels" car.txt</p>
+		</div>
+        </body>
+</html>
