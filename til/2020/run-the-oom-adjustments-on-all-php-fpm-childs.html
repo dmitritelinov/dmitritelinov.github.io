@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Run the OOM adjustments on all php-fpm childs | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Run the OOM adjustments on all php-fpm childs</h2>
+			<p>Dirty hack, but nothing else available on target server. Added to /etc/crontab:
+<pre><code>*/3 * * * * root for line in $(pgrep php-fpm); do echo -950 &gt; /proc/$line/oom_score_adj; done</code></pre>
+To check the priority – invoke:
+<pre><code>for line in $(pgrep php-fpm); do cat /proc/$line/oom_score_adj; done</code></pre>
+Valid values are integers in the range of -1000 to 1000 for oom_score_adj. The lower the value, the lower the chance that it's going to be killed.</p>
+		</div>
+        </body>
+</html>
