@@ -1,37 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Jenkins terms</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Jenkins terms | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-                                        <h2>til</h2>
-jenkins
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Jenkins terms</h2>
-					<div class="news_box">
-<strong>Plugins</strong><br />
+        <body>
+		<div class="wrap">
+			<h2>Jenkins terms</h2>
+			<p><strong>Plugins</strong><br />
 Within Jenkins nearly everything is a plugin. In fact nearly all functionality is provided by plugins. You can think of Jenkins as little more than an executer of plugins. Plugins are small libraries that add new abilities to Jenkins and can provide intergration points for other tools. At the setup of Jenkins a wizard will be provided that will recommend a curated collection of initial plugins to get you started.<br /><br />
 <strong>Projects</strong><br />
 You might notice that projects are sometimes referred to as a jobs. Projects are the main unit of work in Jenkins by containing a list of instructions needed to complete a build for a software project. Those instructions are a part of the Jenkins project's configuration along with other project information, like source control location and project metadata. The project configuration is broken up into general information, pre and post build steps, the main build steps, build phases or other build events potentially added by plugins.<br /><br />
 <strong>Views</strong><br />
 Are a way to group related projects together and really only serve to improve the users's interface in Jenkins. There are global views that are available to everyone, although they will only show the projects the user has access to. Also, user defined views are set up in private to the logged in user on Jenkins. The default All view is provided once the first project is created and will contain all projects from that point forward.<br /><br />
 <strong>Workspaces</strong><br />
-Is a location on the computer system where Jenkins places all the files related to the Jenkins project and related software project. By default each project or job is assigned a workspace location. In addition to the software project source code the workspace can contain intermediate temporary log or build files or Jenkins build metadata. Upon success the workspace may also contain build artifacts.
-					</div>
-				</div>
-			</div> <!-- end of content -->
+Is a location on the computer system where Jenkins places all the files related to the Jenkins project and related software project. By default each project or job is assigned a workspace location. In addition to the software project source code the workspace can contain intermediate temporary log or build files or Jenkins build metadata. Upon success the workspace may also contain build artifacts.</p>
 		</div>
-	</body>
+        </body>
 </html>
