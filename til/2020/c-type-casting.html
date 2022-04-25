@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>C type casting | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>C type casting</h2>
+			<p><pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+	printf("The number of eggs for the day:");
+
+	int eggs;
+	scanf("%i", &amp;eggs);
+
+	double dozen = (double) eggs / 12; // type casting for eggs variable
+
+	printf("You have %f dozen eggs.\n", dozen);
+
+	return 0;
+}</code></pre></p>
+		</div>
+        </body>
+</html>
