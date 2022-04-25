@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>if statement in Jinja2 templates with Ansible | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>if statement in Jinja2 templates with Ansible</h2>
+			<p><strong>tasks/main.yml</strong>:
+<pre><code>- name: configure
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload haproxy</code></pre><br />
+<strong>templates/haproxy.cfg.j2</strong>:
+<pre><code>...
+frontend haproxy
+  bind {{ haproxy_listen_addr }}:{{ haproxy_listen_port }}
+  mode http
+{% if haproxy_stats %}
+  stats enable
+  stats uri /haproxy?stats
+  stats realm HAProxy Statistics
+  stats auth admin:admin
+{% endif %}
+...</code></pre><br />
+<strong>defaults/main.yml</strong>:
+<pre><code>---
+haproxy_listen_addr: 0.0.0.0
+haproxy_listen_port: 80
+haproxy_stats: true</code></pre></p>
+		</div>
+        </body>
+</html>
