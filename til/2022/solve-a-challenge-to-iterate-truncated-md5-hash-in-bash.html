@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Solve a challenge to iterate truncated md5 hash in bash | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Solve a challenge to iterate truncated md5 hash in bash</h2>
+			<p><strong>Problem</strong>:<br/>
+			With this string: OTE2MDM5NjJmZDdkYTQ0OA==<br/>
+			MD5 hash it and remove the last 16 characters of the hash. Iterate this process 50 times and submit the final truncated hash below.<br/><br/>
+<strong>Solution</strong>:
+<pre><code>#!/bin/bash
+
+str="OTE2MDM5NjJmZDdkYTQ0OA=="
+
+for i in {1..50}
+do
+  str=$(echo $str | md5sum | cut -c1-16)
+done
+
+echo $str</code></pre>
+
+<strong>Output</strong>:
+<pre><code>076f9461e86839f6</code></pre></p>
+		</div>
+        </body>
+</html>
