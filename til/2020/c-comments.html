@@ -2,18 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #clang | dmitritelinov</title>
+                <title>C comments | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#clang</h2>
-			<a href="/til/2020/c-type-casting.html">C type casting</a><br/>
-			<a href="/til/2020/installing-c-compiler-on-linux.html">Installing C compiler on Linux</a><br/>
-			<a href="/til/2020/c-comments.html">C comments</a><br/>
+			<h2>C comments</h2>
+			<p><pre><code>* Single-line C-style comment. */
+
+/* Multi-line
+   C-style comment. */
+
+/*
+ * A very common way to
+ * format a multi-line
+ * C-Style comment.
+ */
+
+printf( /* Say hello. */ "Hello, world!\n" );
+
+// A C++ style comment (terminated by End-of-Line)
+
+//
+// A more common way
+// of commenting with multi-line
+// C++ style comments
+//</code></pre></p>
 		</div>
         </body>
 </html>
