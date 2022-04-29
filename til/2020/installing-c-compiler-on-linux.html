@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #clang | dmitritelinov</title>
+                <title>Installing C compiler on Linux | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#clang</h2>
-			<a href="/til/2020/c-type-casting.html">C type casting</a><br/>
-			<a href="/til/2020/installing-c-compiler-on-linux.html">Installing C compiler on Linux</a><br/>
+			<h2>Installing C compiler on Linux</h2>
+			<p>On RPM based:
+<pre><code>sudo yum group install development-tools</code></pre>
+On Deb based:
+<pre><code>sudo apt-get install build-essentials</code></pre>
+Verify installation:
+<pre><code>cc --version
+gcc --version</code></pre></p>
 		</div>
         </body>
 </html>
