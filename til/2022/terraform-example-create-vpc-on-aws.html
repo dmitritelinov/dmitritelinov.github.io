@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Terraform example - create VPC on AWS | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Terraform example - create VPC on AWS</h2>
+			<p><pre><code>resource "aws_vpc" "mtc_vpc" {
+  cidr_block = "10.123.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support = true
+
+  tags = {
+    Name = "dev"
+  }
+}</code></pre></p>
+		</div>
+        </body>
+</html>
