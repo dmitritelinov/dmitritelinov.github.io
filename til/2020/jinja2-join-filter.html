@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>jinja2 join filter | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>jinja2 join filter</h2>
+			<p>It iterates throught the list and join all items. So the final list will become <strong>rhel,debian,gentoo,arch</strong><br /><br />
+<strong>vars.yml</strong>:
+<pre><code>distributions:
+  - rhel
+  - debian
+  - gentoo
+  - arch</code></pre>
+<strong>templates/page.j2</strong>:
+<pre><code>...
+{{ distributions|join(,) }} # rhel,debian,gentoo,arch
+...</code></pre></p>
+		</div>
+        </body>
+</html>
