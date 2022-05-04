@@ -2,20 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #clang | dmitritelinov</title>
+                <title>Hello world in C | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#clang</h2>
-			<a href="/til/2020/c-type-casting.html">C type casting</a><br/>
-			<a href="/til/2020/installing-c-compiler-on-linux.html">Installing C compiler on Linux</a><br/>
-			<a href="/til/2020/c-comments.html">C comments</a><br/>
-			<a href="/til/2020/legal-c-digraphs.html">Legal C digraphs</a><br/>
-			<a href="/til/2020/hello-world-in-c.html">Hello world in C</a><br/>
+			<h2>Hello world in C</h2>
+			<p><pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+  printf("Hello world!\n");
+  return 0;
+}</code></pre>
+Compile:
+<pre><code>gcc first.c
+cc first.c</code></pre>
+Run:
+<pre><code>./a.out</code></pre></p>
 		</div>
         </body>
 </html>
