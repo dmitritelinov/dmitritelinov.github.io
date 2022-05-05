@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>What are Ansible facts | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>What are Ansible facts</h2>
+			<p>Facts are variables that Ansible collects automatically when controlling a remote system.<br />
+Facts provide information that is specific to remote system.<br />
+Facts are collected by running the <strong>setup</strong> module. The first thing when Ansible goes to talk to remote system what it's controling. It is mentioned by the message of setup module:<pre><code>TASK [Gathering Facts] **********</code></pre>
+Example of running setup module:<pre><code>ansible all -i server01, -m setup</code></pre>
+All variables from this module starts with "ansible_". Example:<br />
+<strong>ansible_hostname</strong> - hosname<br />
+<strong>ansible_fqdn</strong> - machine name<br />
+<strong>ansible_default_ipv4</strong> - network info<br />
+<strong>ansible_architecture</strong> - x84 or x86_64<br />
+<strong>ansible_distribution</strong> - Debian, Ubuntu, CentOS<br />
+<strong>ansible_os_family</strong> - Debian, RedHat etc.<br />
+<strong>ansible_memtotal_mb</strong> - RAM in MB<br />
+<strong>ansible_processor_cores</strong> - number of CPU cores<br />
+<strong>ansible_virtualization_role</strong> - host or guest</p>
+		</div>
+        </body>
+</html>
