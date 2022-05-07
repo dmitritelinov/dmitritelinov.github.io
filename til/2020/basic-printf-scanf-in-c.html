@@ -2,21 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #clang | dmitritelinov</title>
+                <title>Basic printf/scanf in C | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#clang</h2>
-			<a href="/til/2020/c-type-casting.html">C type casting</a><br/>
-			<a href="/til/2020/installing-c-compiler-on-linux.html">Installing C compiler on Linux</a><br/>
-			<a href="/til/2020/c-comments.html">C comments</a><br/>
-			<a href="/til/2020/legal-c-digraphs.html">Legal C digraphs</a><br/>
-			<a href="/til/2020/hello-world-in-c.html">Hello world in C</a><br/>
-			<a href="/til/2020/basic-printf-scanf-in-c.html">Basic printf/scanf in C</a><br/>
+			<h2>Basic printf/scanf in C</h2>
+			<p><pre><code>#include &lt;stdio.h&gt;
+  
+int main()
+{
+    printf("Your name:");
+    char name[32];
+    scanf("%s", name);
+
+    printf("Your age:");
+    int age;
+    scanf("%i", &amp;age);
+
+    printf("Your height(m):");
+    float height;
+    scanf("%f", &amp;height);
+
+    printf("Your name is %s. Your age is %i. Your height is %fm.\n", name, age, height);
+
+    return 0;
+}</code></pre></p>
 		</div>
         </body>
 </html>
