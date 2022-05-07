@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>jinja2 map filter | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>jinja2 map filter</h2>
+			<p>Lets suppose that we have following definitions:
+<pre><code>haproxy_backends:
+  refinery0:
+    ip: 192.168.33.11
+  refinery1:
+    ip: 192.168.33.12</code></pre>
+Then the following map statement returns a list of ip values from the dictionary:
+<pre><code>{{ haproxy_backends.values()|map(attribute='ip')|join(',') }} # 192.168.33.11,192,168,33.12</code></pre></p>
+		</div>
+        </body>
+</html>
