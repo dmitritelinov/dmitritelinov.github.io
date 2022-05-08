@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>What are Ansible variables | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>What are Ansible variables</h2>
+			<p>Variables are dynamic values that can be overridden to control Ansible tasks or populate templates, they help us to create reusable and generic roles<br />
+Example of <strong>{{ path }}</strong> variable definition (file <strong>roles/debug/defaults/main.yml</strong>):
+<pre><code>---
+path: 'roles/debug/defaults/main.yml'</code></pre>
+Usage (file <strong>roles/debug/tasks/main.yml</strong>):
+<pre><code>...
+- debug
+    msg: "The path is {{ path|default('not defined') }}"
+,..</code></pre></p>
+		</div>
+        </body>
+</html>
