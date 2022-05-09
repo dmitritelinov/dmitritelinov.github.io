@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>First steps with Gatsby | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>First steps with Gatsby</h2>
+			<p>Check if node and npm are installed:
+			<pre><code>node --version
+npm --version</code></pre>
+Install Gatsby CLI:
+<pre><code>sudo npm install -g gatsby-cli</code></pre>
+Create a new site - this will create a new folder static-website:
+<pre><code>gatsby new static-website</code></pre>
+Compile and run the projexct:
+<pre><code>cd static-website
+export NODE_OPTIONS=--no-experimental-fetch
+gatsby develop</code></pre>
+Open in browser http://localhost:8000/<br/><br/>
+Upload the project to GitLab.<br/>
+First create a new, empty project.<br/><br/>
+Update remote (you can get it from project instructions):
+<pre><code>git remote add origin https://gitlab.com/dmitritelinov/my-static-website.git</code></pre>
+Upload the files to the repository:
+<pre><code>git push -u origin master</code></pre>
+Create a static build folder:
+<pre><code>gatsby build</code></pre>
+this will create a <strong>public/</strong> folder which can be used as artifact to deploy on other servers.</p>
+		</div>
+        </body>
+</html>
