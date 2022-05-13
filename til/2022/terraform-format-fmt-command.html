@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Terraform format (fmt) command | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Terraform format (fmt) command</h2>
+			<p>Run the command below to return the filenames that need formatting correction:
+<pre><code>terraform fmt -check</code></pre>
+To check a file under sub-directories (if any), append the <strong>-recursive</strong> flag. Example:
+<pre><code>terraform fmt -check -recursive</code></pre>
+To preview the changes try running the terraform fmt command with the <strong>-diff</strong> flag:
+<pre><code>terraform fmt -check -diff</code></pre>
+The lines that start with - are the original (current configuration) code. The lines beginning with + show the proposed changes to the code.<br/><br/>
+To apply the proper Terraform configuration format run:
+<pre><code>terraform fmt</code></pre></p>
+		</div>
+        </body>
+</html>
