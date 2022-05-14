@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Vim - substitute in multiple files | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Vim - substitute in multiple files</h2>
+			<p><strong>update.vim</strong>
+<pre><code>%s/Telinov Dmitri/TD/g
+write
+quit</code></pre>
+<strong>updatevim.sh</strong>
+<pre><code>#!/bin/bash
+for file in *.txt; do
+  vim -e -s $file &lt; update.vim
+done</code></pre></p>
+		</div>
+        </body>
+</html>
