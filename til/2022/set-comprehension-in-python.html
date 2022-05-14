@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>set comprehension in Python | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>set comprehension in Python</h2>
+			<p>It is very similar to list comprehention. Example:
+			<pre><code>friends = ["Rolf", "ruth", "charlie", "Jen"]
+guests = ["jose", "Bob", "Rolf", "Charlie", "michael"]
+
+friends_lower = {friend.lower() for friend in friends}
+guests_lower = {guest.lower() for guest in guests}
+
+present_friends = {name.title() for name in friends_lower.intersection(guests_lower)}
+
+print(present_friends)</code></pre>
+Output:
+<pre><code>{'Charlie', 'Rolf'}</code></pre></p>
+		</div>
+        </body>
+</html>
