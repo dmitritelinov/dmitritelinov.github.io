@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Dictionary comprehension in Python | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Dictionary comprehension in Python</h2>
+			<p>Example:
+			<pre><code>friends = ["Rolf", "Bob", "Jen", "Anne"]
+time_since_seen = [3, 7, 15, 11]
+
+long_timers = {
+  friends[i]: time_since_seen[i]
+  for i in range(len(friends))
+  if time_since_seen[i] &gt; 5
+}
+
+print(long_timers)</code></pre>
+Output:
+<pre><code>{'Bob': 7, 'Jen': 15, 'Anne': 11}</code></pre></p>
+		</div>
+        </body>
+</html>
