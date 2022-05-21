@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Locals in Terraform | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Locals in Terraform</h2>
+			<p>A local value store a result from an expression (this can be interpolation or output from a Terraform function), so you can use it multiple times within a module without repeating it. These are more like variables in other scripting or programming languages.
+<pre><code>...
+data "aws_caller_identity" "current" {}
+
+# local values allow you to assign a name to an expression
+# locals can make your code more readable
+locals {
+  aws_full_bucket_name = "${lower(data.aws_caller_identity.current.user_id)}-${var.bucket_name}"
+}
+
+resource "aws_s3_bucket" "bucket1" {
+  bucket = local.aws_full_bucket_name
+}
+...</code></pre></p>
+		</div>
+        </body>
+</html>
