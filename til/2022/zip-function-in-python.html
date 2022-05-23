@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>zip function in Python | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>zip function in Python</h2>
+			<p>The <strong>zip()</strong> function returns a zip object, which is an iterator of tuples where the each item in each passed iterator is paired together.<br/><br/>
+So basically the code:
+<pre><code>friends = ["Rolf", "Bob", "Jen", "Anne"]
+time_since_seen = [3, 7, 15, 11]
+
+long_timers = {
+  friends[i]: time_since_seen[i]
+  for i in range(len(friends))
+}</code></pre>
+is equivalent to:
+<pre><code>friends = ["Rolf", "Bob", "Jen", "Anne"]
+time_since_seen = [3, 7, 15, 11]
+
+long_timers = dict(zip(friends, time_since_seen))</code></pre>
+If the passed iterators have different lengths, the iterator with the least items decides the length of the new iterator. Example:
+<pre><code>friends = ["Rolf", "Bob", "Jen", "Anne"]
+time_since_seen = [3, 7, 15, 11]
+numbers = [1, 2, 3, 4, 5]
+
+long_timers = list(zip(friends, time_since_seen, numbers))
+
+print(long_timers)</code></pre>
+Output - is basically a list of tuples with lenght of the least items list - 4:
+<pre><code>[('Rolf', 3, 1), ('Bob', 7, 2), ('Jen', 15, 3), ('Anne', 11, 4)]</code></pre></p>
+		</div>
+        </body>
+</html>
