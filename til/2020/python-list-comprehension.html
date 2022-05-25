@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Python list comprehension | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Python list comprehension</h2>
+			<p><strong>Regular</strong>:
+<pre><code>numbers = [1, 2, 3, 4, 5]
+tripled_numbers = [number * 3 for number in numbers]</code></pre>
+<strong>With conditionals<br/>
+Example1</strong>:
+<pre><code>numbers = [1, 2, 3, 4, 5]
+odd_numbers = [number for number in numbers if number % 2 == 1]</code></pre>
+<strong>Example2:</strong>
+<pre><code>numbers = [1, 2, 3, 4, 5]
+numbers_b_than_3 = [numbers[i] for i in range(len(numbers)) if numbers[i] &gt; 3]</code></pre></p>
+		</div>
+        </body>
+</html>
