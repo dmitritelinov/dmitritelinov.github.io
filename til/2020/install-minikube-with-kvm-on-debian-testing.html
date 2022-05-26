@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Install minikube with KVM on Debian testing | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Install minikube with KVM on Debian testing</h2>
+			<p>Install and configure minikube:
+<pre><code>wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+chmod +x minikube-linux-amd64
+sudo mv minikube-linux-amd64 /usr/local/bin/minikube
+minikube version</code></pre>
+Install and configure kubectl:
+<pre><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl  /usr/local/bin/
+kubectl version -o json</code></pre>
+Configure prerequisites:
+<pre><code>curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2
+chmod +x docker-machine-driver-kvm2
+sudo mv docker-machine-driver-kvm2 /usr/local/bin/
+docker-machine-driver-kvm2 version</code></pre>
+Start minikube VM:
+<pre><code>minikube config set vm-driver kvm2
+minikube start --vm-driver kvm2
+kubectl get nodes
+kubectl get pods --all-namespaces
+minikube dashboard --url</code></pre></p>
+		</div>
+        </body>
+</html>
