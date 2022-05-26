@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Uploading static website to surge.sh | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Uploading static website to surge.sh</h2>
+			<p>To upload the files - switch to target directory and launch surge:
+<pre><code>$ sudo npm install --global surge
+$ cd ~/Desktop/static-website/public
+$ surge
+
+   Welcome to surge! (surge.sh)
+   Login (or create surge account) by entering email &amp; password.
+
+          email: telinovdima@gmail.com
+       password: 
+
+   Running as telinovdima@gmail.com (Student)
+
+        project: /home/dmitritelinov/Desktop/static-website/
+         domain: pctags2.surge.sh
+         upload: [====================] 100% eta: 0.0s (68 files, 1637921 bytes)
+            CDN: [====================] 100%
+     encryption: *.surge.sh, surge.sh (360 days)
+             IP: 138.197.235.123
+
+   Success! - Published to pctags2.surge.sh</code></pre>
+To remove the domain and files use this command:
+<pre><code>$ surge teardown
+
+         domain: pctags2.surge.sh
+   Success - pctags2.surge.sh has been removed.</code></pre></p>
+		</div>
+        </body>
+</html>
