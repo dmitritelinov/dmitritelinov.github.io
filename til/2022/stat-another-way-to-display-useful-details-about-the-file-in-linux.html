@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>stat - another way to display useful details about the file in Linux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>stat - another way to display useful details about the file in Linux</h2>
+			<p><strong>stat</strong> command gives information such as the size of the file, access permissions and the user ID and group ID, birth time access time of the file. Stat command has another feature, by which it can also provide the file system information.
+<pre><code>$ stat ../links.txt 
+  File: ../links.txt
+  Size: 2229171   	Blocks: 4360       IO Block: 4096   regular file
+Device: 10301h/66305d	Inode: 4764976     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/dmitritelinov)   Gid: ( 1000/dmitritelinov)
+Access: 2022-05-25 21:39:37.545029650 +0300
+Modify: 2022-05-25 21:39:37.553029858 +0300
+Change: 2022-05-25 21:39:37.565030172 +0300
+ Birth: 2022-05-25 21:39:37.545029650 +0300</code></pre></p>
+		</div>
+        </body>
+</html>
