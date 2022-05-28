@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Run Mongo and Mongo Express using Docker | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Run Mongo and Mongo Express using Docker</h2>
+			<p>Create the network
+<pre><code>docker network create mongo-network
+docker network ls</code></pre>
+Run Mongo container:
+<pre><code>docker run \
+-p 27017:27017 -d \
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+-e MONGO_INITDB_ROOT_PASSWORD=password \
+--name mongodb \
+--network mongo-network mongo</code></pre>
+Check Mongo container logs:
+<pre><code>docker ps
+docker logs 616e8b</code></pre>
+Run Mongo Express container:
+<pre><code>docker run -d \
+-p 8081:8081 \
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+--network mongo-network \
+--name mongo-express \
+-e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express</code></pre>
+Check and tail Mongo Express container logs
+<pre><code>docker ps
+docker logs bd9f59
+docker logs bd9f59 -f</code></pre></p>
+		</div>
+        </body>
+</html>
