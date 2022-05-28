@@ -2,18 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #nginx | dmitritelinov</title>
+                <title>nginx virtual host for reverse proxy | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#nginx</h2>
-			<a href="/til/2019/dont-log-commonly-missing-files-in-nginx.html">Don't log commonly missing files in nginx</a><br/>
-			<a href="/til/2020/how-to-kill-nginx-caching.html">How to kill nginx caching</a><br/>
-			<a href="/til/2020/nginx-virtual-host-for-reverse-proxy.html">nginx virtual host for reverse proxy</a><br/>
+			<h2>nginx virtual host for reverse proxy</h2>
+			<p><pre><code>server {
+    listen 80;
+    server_name <strong>server_domain.tld</strong>;
+
+    location / {
+	proxy_pass http://<strong>server_ip</strong>:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}</code></pre></p>
 		</div>
         </body>
 </html>
