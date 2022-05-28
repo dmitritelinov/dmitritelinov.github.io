@@ -2,17 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #java | dmitritelinov</title>
+                <title>Java process core dump | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#java</h2>
-			<a href="/til/2022/what-exactly-is-java.html">What exactly is Java?</a><br/>
-			<a href="/til/2020/java-process-core-dump.html">Java process core dump</a><br/>
+			<h2>Java process core dump</h2>
+			<p>Get java process PID:
+<pre><code>ps -ef|grep java # java process pid</code></pre>
+Run debugger:
+<pre><code>sudo gdb —pid=<strong>XXXX</strong></code></pre>
+Save to a file and quit from gdb:
+<pre><code>gcore /tmp/jvm.core
+detach
+quit</code></pre></p>
 		</div>
         </body>
 </html>
