@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #chef | dmitritelinov</title>
+                <title>ohai values interpolation in Chef | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,9 +11,16 @@
 
         <body>
 		<div class="wrap">
-			<h2>#chef</h2>
-			<a href="/til/2022/fix-chef-knife-ssl-check-error.html">Fix Chef knife ssl check error</a><br/>
-			<a href="/til/2020/ohai-values-interpolation-in-chef.html">ohai values interpolation in Chef</a><br/>
+			<h2>ohai values interpolation in Chef</h2>
+			<p><pre><code>file '/etc/motd' do
+  content "About system:
+  CPU: #{node['cpu']['0']['mhz']}
+  MEMORY: #{node['memory']['total']}
+  IPADDRESS: #{node['ipaddress']}
+  HOSTNAME: #{node['hostname']}
+  "
+  action :create
+end</code></pre></p>
 		</div>
         </body>
 </html>
