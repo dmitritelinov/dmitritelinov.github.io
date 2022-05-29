@@ -1,29 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Ansible code to add Grafana users</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Ansible code to add Grafana users | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-					<h2>til</h2>
-					grafana ansible
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Ansible code to add Grafana users</h2>
-					<div class="news_box">
-						<p>This code uses Grafana API to add a new users from localhost. Not perfect, but it works.<br/>
-						<strong>tasks/main.yml</strong>
-						<pre><code>- name: Include vars
+        <body>
+		<div class="wrap">
+			<h2>Ansible code to add Grafana users</h2>
+			<p>This code uses Grafana API to add a new users from localhost. Not perfect, but it works.<br/>
+<strong>tasks/main.yml</strong>
+<pre><code>- name: Include vars
   include_vars:
     file: main.yml
     file: secrets.yml
@@ -48,7 +39,7 @@
   delegate_to: localhost
   become: no
   ignore_errors: yes</code></pre>
-						<strong>vars/main.yml</strong>
+<strong>vars/main.yml</strong>
 <pre><code>grafana_fqdn: grafana.domain.tld
 grafana_admin_list:
   - name: "Dmitri Telinov"
@@ -61,9 +52,6 @@ grafana_admin_list:
 <pre><code>---
 grafana_admin_pwd: "xxx"
 grafana_default_new_user_pwd: "yyy"</code></pre></p>
-					</div>
-				</div>
-			</div> <!-- end of content -->
 		</div>
-	</body>
+        </body>
 </html>
