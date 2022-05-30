@@ -1,38 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Vim: Searching and replacing</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Vim: Searching and replacing | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-					<h2>til</h2>
-					vim
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Vim: Searching and replacing
-					<div class="news_box">
-						<p><strong>/string</strong> - search forward for string<br/>
-						<strong>?string</strong> - search backward for string<br/>
-						<strong>n</strong> - next<br/>
-						<strong>N</strong> - previous, reverse order<br/><br/>
-						<strong>:set ignorecase</strong> - for case insensitive searches<br/>
+        <body>
+		<div class="wrap">
+			<h2>Vim: Searching and replacing</h2>
+			<p><strong>/string</strong> - search forward for string<br/>
+<strong>?string</strong> - search backward for string<br/>
+<strong>n</strong> - next<br/>
+<strong>N</strong> - previous, reverse order<br/><br/>
+<strong>:set ignorecase</strong> - for case insensitive searches<br/>
 Don't retype searches, use history:<br/>
-						<strong>/</strong> - and hit up arrow<br/>
-						<strong>?</strong> - and hit up arrow<br/><br/>
-						<strong>/the\&gt;</strong> - finds words that end with the<br/>
-						<strong>/\&lt;the</strong> - finds words that begin with the<br/>
-						<strong>/\&lt;the\&gt;</strong> - finds the as a word<br/>
-						<strong>:set hlsearch</strong> - set highlight on<br/><br/>
+<strong>/</strong> - and hit up arrow<br/>
+<strong>?</strong> - and hit up arrow<br/><br/>
+<strong>/the\&gt;</strong> - finds words that end with the<br/>
+<strong>/\&lt;the</strong> - finds words that begin with the<br/>
+<strong>/\&lt;the\&gt;</strong> - finds the as a word<br/>
+<strong>:set hlsearch</strong> - set highlight on<br/><br/>
 Set your highlight colors in search with:<br/>
 <strong>:hi search ctermbg=grey ctermfg=blue</strong><br/><br/>
 <strong>^</strong> and <strong>$</strong> are useful for finding the beginnings and ends of lines<br/><br/>
@@ -66,9 +57,6 @@ If you can't type a very long search, go to the string to search and press *. No
 <strong>s</strong> - substitute character<br/>
 <strong>5s</strong> - substitute 5 characters by removing current ones<br/>
 <strong>S</strong> - substitute line</p>
-					</div>
-				</div>
-			</div> <!-- end of content -->
 		</div>
-	</body>
+        </body>
 </html>
