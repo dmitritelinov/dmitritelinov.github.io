@@ -1,27 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Vim: Recording macros</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Vim: Recording macros | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-					<h2>til</h2>
-					vim
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Vim: Recording macros</h2>
-					<div class="news_box">
-						<p><strong>qz</strong> - starts recording to the register <strong>z</strong><br/>
+        <body>
+		<div class="wrap">
+			<h2>Vim: Recording macros</h2>
+			<p><strong>qz</strong> - starts recording to the register <strong>z</strong><br/>
 <strong>Esc q</strong> - stops the recording<br/>
 <strong>@z</strong> - replays the recording <strong>z</strong><br/>
 <strong>5@z</strong> - replays the recording <strong>z</strong> 5 times<br/>
@@ -37,9 +28,6 @@ they can execute <strong>!cmds</strong>, but not in <strong>:shell</strong><br/>
 <strong>"zyy</strong> - copy current line to a register <strong>z</strong><br/><br/>
 Adding to vimrc:<br/>
 <pre><code>let @z='here is your macro'</code></pre></p>
-					</div>
-				</div>
-			</div> <!-- end of content -->
 		</div>
-	</body>
+        </body>
 </html>
