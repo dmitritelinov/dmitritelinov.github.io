@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Set CPU limitation to Docker containers | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Set CPU limitation to Docker containers</h2>
+			<p>Docker inherits the Linux CGroups notion of CPU shares (by default it is 1024 shared weight units).<br/>
+A relative weight can be expressed - run the container on 4 CPUs on 50% shared weight units:
+<pre><code>docker run -it --rm -c 512 nginx --cpus 4</code></pre><br/>
+Pin a container to run on specific CPUs - cores 0 and 2 only (2 CPUs):
+<pre><code>docker run -it --rm --cpuset-cpus=0,2 busybox --cpus 2 dd if=/dev/zero of=/dev/null</code></pre></p>
+		</div>
+        </body>
+</html>
