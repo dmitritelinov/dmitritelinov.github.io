@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Using bind mount directories in Docker | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Using bind mount directories in Docker</h2>
+			<p><strong>$(pwd)/binddir</strong> - is the bind mount directory. We can mount it in 2 ways:
+<pre><code>docker run --rm -dit name bind1 --mount type=bind,source="$(pwd)"/binddir, target=/app nginx
+docker run --rm -dit name bind2 -v "$(pwd)"/binddir:/app nginx</code></pre>
+Verify:
+<pre><code>docker exec bind1 ls -l /app
+docker inspect bind2 # check Mounts section or HostConfig.Binds</code></pre></p>
+		</div>
+        </body>
+</html>
