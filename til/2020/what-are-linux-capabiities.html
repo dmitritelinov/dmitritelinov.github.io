@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>What are Linux capabiities | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>What are Linux capabiities</h2>
+			<p>Linux capabilities are special attributes in the Linux kernel that grant processes and binary executables specific privileges that are normally reserved for processes whose effective user ID is 0 (the root user). Example with ntpd daemon: it has option <strong>--enable-linuxcaps</strong>: ntpd is run as user ntp, and uses Linux capabilities for non-root clock control.</p>
+<p>There is currently an extensive list of capabilities available, defined in the <a href="https://wiki.gentoo.org/wiki/Hardened/Overview_of_POSIX_capabilities">capability library</a>.</p>
+<p>Without going into too much detail, we can say that the files and processes of the system have a set of 3 flags for the capabilities, which are: P (Permitted), E (Effective) and I (Inheritable), which are used to decide, through an algorithm, the final privilege to apply in the execution.</p>
+		</div>
+        </body>
+</html>
