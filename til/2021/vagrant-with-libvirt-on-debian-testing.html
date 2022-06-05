@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Vagrant with libvirt on Debian testing | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Vagrant with libvirt on Debian testing</h2>
+			<p>Install prerequisites:
+<pre><code>sudo apt install vagrant-libvirt libvirt-daemon-system</code></pre>
+Add current user to libvirt group:
+<pre><code>sudo usermod --append --groups libvirt $USER
+# should return libvirt
+groups | grep -o libvirt</code></pre>
+Add some images:
+<pre><code>vagrant box add bento/centos-7.9 # this will not work at libvirt
+vagrant box add debian/buster64</code></pre>
+Start your Vagrant environment:
+<pre><code>vagrant init debian/buster64 # it will create a Vagrantfile in current dir that can be edited
+vagrant up --provider=libvirt
+vagrant ssh</code></pre></p>
+		</div>
+        </body>
+</html>
