@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Chef resource | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Chef resource</h2>
+			<p>It is a fundamental block you work with. A Chef resource is essentially a some system component that we'd like to take action on. We'd like to take this resource and change its state on the system. Examples: files. packages, services - system components that needed to be modified using Chef.<br/>
+Resource describes the desired state of an element of your infrastructure and the steps needed to bring that item to a desired state.<br/><br/>
+<strong>Example 1:</strong>
+<pre><code>package 'nginx' do
+  action :install
+end</code></pre>
+<strong>Example 2:</strong>
+<pre><code>service 'ntp' do
+  action [:enable, :start]
+end</code></pre>
+<strong>Example 3:</strong>
+<pre><code>file '/etc/motd' do
+  content 'This is a private system'
+end</code></pre>
+If no action is listed, the default action is applied.</p>
+		</div>
+        </body>
+</html>
