@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Running an interactive shell in a container | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Running an interactive shell in a container</h2>
+			<p><pre><code>docker exec -it {{ container_id }} bash
+docker exec -it {{ container_id }} sh</code></pre>
+<strong>-i (--interactive)</strong> - starts in interactive mode which allows to interract with container<br/>
+<strong>-t (--tty)</strong> - allocate a TTY, without this flag you can also interact with container, but you will not have a nicer, more features terminal<br/><br/>
+This is powerful for debugging.</p>
+		</div>
+        </body>
+</html>
