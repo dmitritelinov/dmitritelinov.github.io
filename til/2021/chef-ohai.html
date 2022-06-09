@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Chef Ohai | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Chef Ohai</h2>
+			<p>A configuration management system will usually provide system facts or some way to detect information about the server that's being configured.<br/>
+These system facts such as networking interfaces, operating system details or user information can be used to create a generic scripts that run on any system.<br/>
+In Chef we call system discovery tool - Ohai, and it makes system details available to our Chef code.</br><br/>
+Examples:
+<pre><code>$ ohai ipaddress
+[
+  "192.168.121.94"
+]
+$ ohai hostname 
+[
+  "buster"
+]
+$ ohai memory/total
+[
+  "494792kB"
+]
+$ ohai cpu/0/mhz   
+[
+  "2999.998"
+]</code></pre></p>
+		</div>
+        </body>
+</html>
