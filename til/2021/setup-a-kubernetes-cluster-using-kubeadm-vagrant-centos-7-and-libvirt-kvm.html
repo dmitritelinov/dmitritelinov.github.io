@@ -1,27 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>pctags.com | notes from kb.txt | Setup a Kubernetes cluster using kubeadm, Vagrant, Centos 7 and libvirt (KVM)</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="/style.css" rel="stylesheet" type="text/css" />
-	</head>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Setup a Kubernetes cluster using kubeadm, Vagrant, Centos 7 and libvirt (KVM) | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
 
-	<body>
-		<div id="content_wrapper">
-			<div id="sidebar">
-                                <div class="sidebar_box">
-					<h2>til</h2>
-					kubernetes libvirt kvm centos vagrant
-                                </div>
-                                <div class="sidebar_box_bottom"></div>
-                        </div> <!-- end of sidebar -->
-			<div id="content">
-				<div class="content_box">
-					<h2>Setup a Kubernetes cluster using kubeadm, Vagrant, Centos 7 and libvirt (KVM)</h2>
-					<div class="news_box">
-<p>Create a working directories for Vagrant machines:
+        <body>
+		<div class="wrap">
+			<h2>Setup a Kubernetes cluster using kubeadm, Vagrant, Centos 7 and libvirt (KVM)</h2>
+			<p>Create a working directories for Vagrant machines:
 <pre><code>mkdir machines
 cd machines/
 mkdir master worker{1,2,3}</code></pre>
@@ -137,14 +128,11 @@ You should get the following output:
 KubeDNS is running at https://192.168.121.65:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.</code></pre>
-
 One more check:
 <pre><code>kubectl get nodes</code></pre>
-
 Output:
 <pre><code>NAME                 STATUS     ROLES                  AGE     VERSION
 master.example.com   NotReady   control-plane,master   2m47s   v1.20.2</code></pre>
-
 Install weave network plugin - go to the <a href="https://www.weave.works/docs/net/latest/kubernetes/kube-addon/">homepage</a> and you'll find the following command for installation:
 <pre><code>kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"</code></pre>
 Check again master node:
@@ -161,9 +149,6 @@ NAME                   STATUS   ROLES                  AGE   VERSION
 worker1.example.com    Ready    <none>                 78s   v1.20.2
 master.example.com     Ready    control-plane,master    8m   v1.20.2</code></pre>
 Repeat for other workers. So in 10 minutes you'll have your kubeadm Vagrant cluster ready to go.</p>
-					</div>
-				</div>
-			</div> <!-- end of content -->
 		</div>
-	</body>
+        </body>
 </html>
