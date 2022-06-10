@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Container restart policies in docker-compose | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Container restart policies in docker-compose</h2>
+			<p><ul><li><strong>"no"</strong><br/>
+Never attempt to restart this container if it stops or crashes. It is embraced in quotes, otherwise it will be considered as "false"</li>
+<li><strong>always</strong><br/>
+If this container stops "for any reason" automatically attempt to restart it</li>
+<li><strong>on-failure</strong><br/>
+Only restart if the container stops with an error code</li>
+<li><strong>unless-stopped</strong><br/>
+Always restart unless we (the developers) forcibly stop it</li></ul><br/>
+Example:
+<pre><code>version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    <strong>restart: always</strong>
+    build: .
+    ports:
+      - "4001:8081"</code></pre></p>
+		</div>
+        </body>
+</html>
