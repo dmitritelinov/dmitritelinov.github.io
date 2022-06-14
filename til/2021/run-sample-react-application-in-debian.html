@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Run sample React application in Debian | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Run sample React application in Debian</h2>
+			<p>If you're learning React or creating a new single-page app, use <strong>Create React App</strong>.<br/><br/>
+First install NodeJS:
+<pre><code>sudo apt update
+sudo apt install nodejs npm
+node -v</code></pre>
+Change the directory and generate the project:
+<pre><code>cd Desktop/
+npx create-react-app frontend
+cd frontend/</code></pre>
+Run tests:
+<pre><code>npm run test</code></pre>
+Run a production build:
+<pre><code>npm run build</code></pre>
+Start the app in the browser - it will open it automatically:
+<pre><code>npm run start</code></pre>
+To start the production build: install <strong>serve</strong> and serve the build directory:
+<pre><code>sudo npm install -g serve
+serve -s build</code></pre></p>
+		</div>
+        </body>
+</html>
