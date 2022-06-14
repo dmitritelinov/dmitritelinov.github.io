@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Mapping a file to a variable in bash | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Mapping a file to a variable in bash</h2>
+			<p>On Unix-like operating systems, <strong>mapfile</strong> is a builtin command of the Bash shell. It reads lines from standard input into an indexed array variable.
+<pre><code>mapfile remote.txt
+echo "Hello this is first line: ${MAPFILE[0]}"</code></pre></p>
+		</div>
+        </body>
+</html>
