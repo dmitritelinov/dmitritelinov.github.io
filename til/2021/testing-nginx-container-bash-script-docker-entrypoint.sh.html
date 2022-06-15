@@ -2,19 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #nginx | dmitritelinov</title>
+                <title>Testing nginx container bash script (docker-entrypoint.sh) | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#nginx</h2>
-			<a href="/til/2021/testing-nginx-container-bash-script-docker-entrypoint.sh.html">Testing nginx container bash script (docker-entrypoint.sh)</a><br/>
-			<a href="/til/2019/dont-log-commonly-missing-files-in-nginx.html">Don't log commonly missing files in nginx</a><br/>
-			<a href="/til/2020/how-to-kill-nginx-caching.html">How to kill nginx caching</a><br/>
-			<a href="/til/2020/nginx-virtual-host-for-reverse-proxy.html">nginx virtual host for reverse proxy</a><br/>
+			<h2>Testing nginx container bash script (docker-entrypoint.sh)</h2>
+			<p><pre><code>#!/bin/sh
+echo -en "\033[37;1;42m Checking nginx container: \033[0m"
+curl -H "Host: docker.pctags.com" --silent --show-error --fail -I http://nginx
+echo -e "------------------------\n"</code></pre></p>
 		</div>
         </body>
 </html>
