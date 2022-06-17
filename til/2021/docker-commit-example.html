@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Docker commit example | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Docker commit example</h2>
+			<p>Run <strong>Alpine</strong> container in interactive mode with shell:
+<pre><code>docker run -it alpine sh</code></pre>
+In the container to install <strong>Redis</strong>, issue:
+<pre><code>apk add --update redis</code></pre>
+In another terminal, get the ID of this running container and commit the changes with startup command:
+<pre><code>docker ps
+docker commit -c 'CMD ["redis-server"]' <em>{{ container_id }}</em></code></pre>
+You'll get the new container ID with the <strong>Redis</strong> installed.</p>
+		</div>
+        </body>
+</html>
