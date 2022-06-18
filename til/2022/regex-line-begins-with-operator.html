@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #regexp | dmitritelinov</title>
+                <title>regex - line begins with operator | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,8 +11,17 @@
 
         <body>
 		<div class="wrap">
-			<h2>#regexp</h2>
-			<a href="/til/2020/replace-string-with-another-string-with-regexp-in-ansible.html">Replace string with another string with regexp in Ansible</a><br/>
+			<h2>regex - line begins with operator</h2>
+			<p>This is character <strong>^</strong> and using this operator returns the lines that starts with given search term.<br/>
+Example 1:
+<pre><code>$ grep '^sam' namex.txt
+samad
+samuel</code></pre>
+Example 2:
+<pre><code>$ grep '^PASS' /etc/login.defs 
+PASS_MAX_DAYS	99999
+PASS_MIN_DAYS	0
+PASS_WARN_AGE	7</code></pre></p>
 		</div>
         </body>
 </html>
