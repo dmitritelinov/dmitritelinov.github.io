@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>cookbook_file resource in Chef | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>cookbook_file resource in Chef</h2>
+			<p><strong>cookbook_file</strong> differs from something like a <strong>template</strong> is in that <strong>cookbook_file</strong> is for purely static content. There is no room for variables or dynamic content.<br/>
+It transfers files from a sub-directory of a cookbook to the node.<br/>
+Cookbook files are shipped with cookbook itself. These are cookbook files like configuration files, PHP files, things that are unlikely to change.<br/><br/>
+<strong>Example</strong>:<br/>
+Generate a <strong>cookbook_file</strong> using the command:
+<pre><code>chef generate file <em>{{ cookbook }} {{ file_name }}</em></code></pre>
+like below:
+<pre><code>chef generate file apache index.html</code></pre>
+Use <strong>cookbook_file</strong> resource:
+<pre><code>package 'apache2' 
+cookbook_file '/var/www/html/index.html' do 
+  source 'index.html' 
+end 
+service 'apache2' do 
+  action [:enable, :start ] 
+end</code></pre>
+Fill in <strong>cookbook_file index.html</strong> in the cookbook:
+<pre><code>$ cat apache/files/default/index.html 
+Hello world!</code></pre>
+Converge the cookbook <strong>apache</strong>:
+<pre><code>sudo chef-client -zr 'recipe[apache]'</code></pre>
+Test the cookbook:
+<pre><code>$ curl localhost
+Hello world!</code></pre></p>
+		</div>
+        </body>
+</html>
