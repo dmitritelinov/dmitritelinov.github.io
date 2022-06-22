@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #regex | dmitritelinov</title>
+                <title>regex - line ends with operator | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,10 +11,19 @@
 
         <body>
 		<div class="wrap">
-			<h2>#regex</h2>
-			<a href="/til/2022/regex-line-ends-with-operator.html">regex - line ends with operator</a><br/>
-			<a href="/til/2022/regex-line-begins-with-operator.html">regex - line begins with operator</a><br/>
-			<a href="/til/2020/replace-string-with-another-string-with-regexp-in-ansible.html">Replace string with another string with regexp in Ansible</a><br/>
+			<h2>regex - line ends with operator</h2>
+			<p>We would like to get the string that ends with the given search term. For this use $ operator - we place this operator at the end of search term.<br/><br/>
+Example 1:
+<pre><code>$ grep 'sam$' names.txt
+basam</code></pre>
+Example 2:
+<pre><code>$ grep '7$' /etc/login.defs 
+ERASECHAR	0177
+PASS_WARN_AGE	7</code></pre>
+Example 3:
+<pre><code>$ grep 'mail$' /etc/login.defs 
+MAIL_DIR        /var/mail
+#MAIL_FILE      .mail</code></pre></p>
 		</div>
         </body>
 </html>
