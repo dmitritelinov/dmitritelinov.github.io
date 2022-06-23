@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Create AWS Route Table and link it with Internet Gateway and Subnet with Terraform | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Create AWS Route Table and link it with Internet Gateway and Subnet with Terraform</h2>
+			<p>Before of this, you should have created <a href="/til/2022/create-internet-gateway-in-terraform.html">Internet Gateway</a> and <a href="/til/2022/create-an-aws-vpc-subnet-in-terraform.html">Subnet</a>:
+			<pre><code>resource "aws_route_table" "mtc_public_rt" {
+  vpc_id = aws_vpc.mtc_vpc.id
+
+  tags = {
+    Name = "dev_public_rt"
+  }
+}
+
+resource "aws_route" "default_route" {
+  route_table_id         = aws_route_table.mtc_public_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.mtc_internet_gateway.id
+}
+
+resource "aws_route_table_association" "mtc_public_assoc" {
+  subnet_id      = aws_subnet.mtc_public_subnet.id
+  route_table_id = aws_route_table.mtc_public_rt.id
+}</code></pre></p>
+		</div>
+        </body>
+</html>
