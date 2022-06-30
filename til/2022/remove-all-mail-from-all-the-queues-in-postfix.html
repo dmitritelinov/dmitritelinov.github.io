@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #posifix | dmitritelinov</title>
+                <title>Remove all mail from all the queues in Postfix | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,9 +11,11 @@
 
         <body>
 		<div class="wrap">
-			<h2>#postfix</h2>
-			<a href="/til/2022/remove-all-mail-from-all-the-queues-in-postfix.html">Remove all mail from all the queues in Postfix</a><br/>
-			<a href="/til/2021/implement-postfix-header-checks.html">Implement Postfix header checks</a><br/>
+			<h2>Remove all mail from all the queues in Postfix</h2>
+			<p>All the queues - hold, incoming, active and deferred:
+<pre><code>postsuper -d ALL</code></pre>
+To remove all mails in the deferred queue only, run :
+<pre><code>postsuper -d ALL deferred</code></pre></p>
 		</div>
         </body>
 </html>
