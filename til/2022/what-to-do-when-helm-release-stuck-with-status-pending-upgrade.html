@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #helm | dmitritelinov</title>
+                <title>What to do when Helm release stuck with status "pending-upgrade" | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
@@ -11,9 +11,11 @@
 
         <body>
 		<div class="wrap">
-			<h2>#helm</h2>
-			<a href="/til/2022/what-to-do-when-helm-release-stuck-with-status-pending-upgrade.html">What to do when Helm release stuck with status "pending-upgrade"</a><br/>
-			<a href="/til/2021/helm-application-example.html">Helm application example</a><br/>
+			<h2>What to do when Helm release stuck with status "pending-upgrade"</h2>
+			<p>Just delete corresponding Helm secret:
+<pre><code>kubectl get secrets
+kubectl delete secret sh.helm.release.v1.{{ RELEASE_NAME }}.v{{ LATEST_REVISION }}</code></pre>
+</p>
 		</div>
         </body>
 </html>
