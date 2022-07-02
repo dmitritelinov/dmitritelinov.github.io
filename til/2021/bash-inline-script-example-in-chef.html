@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>bash inline script example in Chef | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>bash inline script example in Chef</h2>
+			<p>The bash resource is for including the script contents inline in the recipe code:
+<pre><code>bash "inline script" do
+  user "root"
+  code "mkdir -p /var/www/mysites/ &amp;&amp; chown -R www-data /var/www/mysites"
+  not_if "[ -d '/var/www/mysites/' ]"
+end</code></pre>
+or
+<pre><code>bash "inline script" do
+  user "root"
+  code "mkdir -p /var/www/mysites/ &amp;&amp; chown -R www-data /var/www/mysites"
+  not_if do
+    File.directory?('/var/www/mysites')
+  end
+end</code></pre></p>
+		</div>
+        </body>
+</html>
