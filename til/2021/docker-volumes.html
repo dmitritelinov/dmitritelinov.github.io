@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Docker volumes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Docker volumes</h2>
+			<p>With a Docker volumes we essentially setting up a mapping from a folder inside the container to a folder outside the container.<br/><br/>
+<strong>Example</strong>. Map a present working directory of a NodeJS project into the <strong>/app</strong> folder:
+<pre><code>docker run -v /app/node_modules -v $(pwd):/app <em>{{ image }}</em></code></pre><br/>
+<strong>-v $(pwd):/app</strong> - take everything in present working directory and map it to <strong>/app</strong> inside a container<br/>
+<strong>-v /app/node_modules</strong> - put a bookmark on the <strong>node_modules</strong> folder inside a container, to not overwrite or to not map it</p>
+		</div>
+        </body>
+</html>
