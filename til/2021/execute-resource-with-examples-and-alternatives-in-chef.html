@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>execute resource with examples and alternatives in Chef | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>execute resource with examples and alternatives in Chef</h2>
+			<p>This is a resource that actually lets us to execute some script or some contents of a script inside of our actual Chef recipes. It provides compatibility across multiple Unix systems.<br/><br/>
+<strong>Example1</strong>: execute with inline script
+<pre><code>execute "run a script" do
+  user "root"
+  command &lt;&lt;-EOL
+  mkdir -p /var/www/mysites/
+  chown -R www-data /var/www/mysites
+  EOL
+  not_if do
+    File.directory?('/var/www/mysites')
+  end
+end</code></pre><br/>
+<strong>Example2</strong>: execute with calling the script directly
+<pre><code>execute "run script"
+  user "root"
+  command "./myscript.sh"
+  not_if
+  ...
+end</code></pre><br/>
+<strong>Example 3</strong>: alternative to the Example 1
+<pre><code>directory "/var/www/mysites" do
+  owner "www-data"
+  recursive true
+  mode ...
+end</code></pre></p>
+		</div>
+        </body>
+</html>
