@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>SSH connectivity overview | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>SSH connectivity overview</h2>
+			<p><ol><li>client requests an SSH session with server</li>
+<li>SSH Protocol sessions are exchanged, if they are compatible - they agree, otherwise - no connection</li>
+<li>Key Exchange information is shared with the cryptographic primitives that each side supports</li>
+<li>Both client and server negociate session key using Diffie-Helman algorithm, creating a symmetric key. At this point, if the server is not known to the client, you will see the request to add the key fingerprint to the clients known_hosts file</li>
+<li>New keys between client and server are established. Future communication uses these keys</li>
+<li>Encrypted session established, ready for authentication</li></ol></p>
+		</div>
+        </body>
+</html>
