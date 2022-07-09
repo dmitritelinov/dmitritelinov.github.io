@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Fix error of cannot login to phpMyAdmin due plugin changes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Fix error of cannot login to phpMyAdmin due plugin changes</h2>
+			<p>In MySQL 5.7 (released Oct 2015) and MySQL 8, the root MySQL user is set to authenticate using the <strong>auth_socket</strong> or <strong>caching_sha2_password</strong> plugin rather than with <strong>mysql_native_password</strong>. This will prevent programs like phpMyAdmin from logging in with the root account.<br/><br/>
+The fix for this:
+<pre><code>mysql&gt; UPDATE mysql.user SET plugin = 'mysql_native_password', authentication_string = PASSWORD('changeme') WHERE User = 'root';
+mysql&gt; FLUSH PRIVILEGES;</code></pre></p>
+		</div>
+        </body>
+</html>
