@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Embedded Ruby (ERB) template file in Chef | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Embedded Ruby (ERB) template file in Chef</h2>
+			<p>A cookbook template is going to be an Embedded Ruby (ERB) template that is used to generate files for us. These templates are going to be great ways to insert Ruby expressions and statements into a native file format.<br/><br/>
+<strong>Example of inclusion</strong>:
+<pre><code>template /var/www/index.html do
+  source 'index.html.erb'
+  end</code></pre>
+These are comparable to Jinja2 template files in Ansible where the Ruby content is inserted in a specific ERB tags.<br/><br/>
+An Embedded Ruby (ERB) file is going to be a template file that allows us to build the code in its native file format, but after this we can also insert any Ruby expressions and statements into this ERB file between specifically formatted tags.</br></br>
+<p><strong>Example of ERB file template</strong>:
+<pre><code>&lt;% if (25+25) == 100 %&gt;
+25 + 25 = &lt;%= 25+25 %&gt;
+&lt;% else %&gt;
+Wrong math
+&lt;% end %&gt;</code></pre></p>
+		</div>
+        </body>
+</html>
