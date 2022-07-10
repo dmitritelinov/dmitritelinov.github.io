@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Multi-stage Docker build for serving static content using React application | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Multi-stage Docker build for serving static content using React application</h2>
+			<p>First install NodeJS:
+<pre><code>sudo apt update
+sudo apt install nodejs npm
+node -v</code></pre>
+Change the directory and generate the project:
+<pre><code>cd Desktop/
+npx create-react-app frontend
+cd frontend/</code></pre>
+Now, we will create a Dockerfile to serve the static content from build directory:
+<pre><code>FROM node:alpine as builder
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx
+COPY --from=builder /app/build /usr/share/nginx/html</code></pre>
+Build and copy the <em>container ID</em>:
+<pre><code>docker build .</code></pre>
+Run:
+<pre><code>docker run -p8080:80 <em>{{ container_ID }}</em></code></pre>
+Open the browser at the <strong>http://localhost:8080</strong> to see the static content of the app.</p>
+		</div>
+        </body>
+</html>
