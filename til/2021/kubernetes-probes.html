@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Kubernetes probes | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Kubernetes probes</h2>
+			<p>One of the challenges with distributed systems and microservices architecture is automatically detecting unhealthy applications, rerouting requests to other available systems and restoring the broken components. Health checks are one way to address this challenge and ensure reliability. With Kubernetes, health checks are configured via <strong>probes</strong> to determine the state of each pod.<br/><br/>
+There are now three types of probes supported:
+<ul><li><strong>Liveness probe</strong>. This is for detecting whether the application process has crashed/deadlocked. If a liveness probe fails, Kubernetes will stop the pod, and create a new one.</li>
+<li><strong>Readiness probe</strong>. This is for detecting whether the application is ready to handle requests. If a readiness probe fails, Kubernetes will leave the pod running, but won't send any requests to the pod.</li>
+<li><strong>Startup probe</strong>. This is used when the container starts up, to indicate that it's ready. Once the startup probe succeeds, Kubernetes switches to using the liveness probe to determine if the application is alive. This probe was introduced in Kubernetes version 1.16. As soon as the startup probe succeeds once, it never runs again for the lifetime of that container. If the startup probe never succeeds, Kubernetes will eventually kill the container, and restart the pod.</li></ul></p>
+		</div>
+        </body>
+</html>
