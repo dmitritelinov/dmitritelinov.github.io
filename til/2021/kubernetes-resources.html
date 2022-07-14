@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Kubernetes resources | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Kubernetes resources</h2>
+			<p><strong>Requests</strong> and <strong>limits</strong> are the mechanisms Kubernetes uses to control resources such as CPU and memory.<br/>
+<strong>Requests</strong> are what the container is guaranteed to get.</br>
+<strong>Limits</strong>, on the other hand, make sure a container never goes above a certain value. The container is only allowed to go up to the <strong>limit</strong>, and then it is restricted.<br/><br/>
+<strong>Example</strong>:
+<pre><code>...
+resources:
+  requests:
+    cpu: 50m
+    memory: 100Mi
+   limits:
+     cpu: 100m
+      memory: 100Mi
+...</code></pre>
+It is important to remember that the <strong>limit</strong> can never be lower than the <strong>request</strong>.</p>
+		</div>
+        </body>
+</html>
