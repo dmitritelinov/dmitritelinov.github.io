@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Fix 403 error in webserver caused by SELinux | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Fix 403 error in webserver caused by SELinux</h2>
+			<p>Usually, to fix the 403 browser error for a directory, you should issue:
+<pre><code>sudo chcon -R -t httpd_sys_content_t /path/to/www/data</code></pre>
+Red Hat Enterprise version 4 introduced SELinux to their offering of Linux operating systems.<br/><br/>
+It is possible for any given web document on your server to have the correct permissions to be viewable from the web, but the httpd daemon will not be able to read it, unless you assign the correct security context or daemon access permissions. Context related errors usually show up as 403 errors when viewed from a web browser.<br/><br/>
+When a new file is created, it inherits the security context of its parent directory:
+<ul><li><strong>httpd_sys_content_t</strong> - The type used by regular static web pages with .html and .htm extensions</li>
+<li><strong>httpd_sys_script_ro_t</strong> - Required for CGI scripts to read files and directories</li>
+<li><strong>httpd_sys_script_ra_t</strong> - Same as the httpd_sys_script_ro_t type but also allows appending data to files by the CGI script</li>
+<li><strong>httpd_sys_script_rw_t</strong> - Files with this type may be changed by a CGI script in any way, including deletion</li>
+<li><strong>httpd_sys_script_exec_t</strong> - The type required for the execution of CGI scripts</li></ul>
+To see current context, issue (works on RedHat family distributions):
+<pre><code>ls -Z</code></pre></p>
+		</div>
+        </body>
+</html>
