@@ -2,17 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #elasticsearch | dmitritelinov</title>
+                <title>Delete all Elasticsearch indices from 2020 | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#elasticsearch</h2>
-			<a href="/til/2021/delete-all-elasticsearch-indices-from-2020.html">Delete all Elasticsearch indices from 2020</a><br/>
-			<a href="/til/2019/check-elasticsearch-status-from-nagios.html">Check Elasticsearch status from Nagios</a>
+			<h2>Delete all Elasticsearch indices from 2020</h2>
+			<p><pre><code>for item in $(curl http://localhost:9200/_cat/indices | \
+grep 2020 | awk '{print $3}'); do \
+curl -X DELETE http://localhost:9200/$item; done</code></pre></p>
 		</div>
         </body>
 </html>
