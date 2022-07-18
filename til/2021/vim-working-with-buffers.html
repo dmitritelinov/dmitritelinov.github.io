@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Vim: working with buffers | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Vim: working with buffers</h2>
+			<p><strong>:bad myfile.txt</strong> or <strong>:e myfile.txt</strong> - open another file in separate buffer<br/>
+<strong>:buffers</strong> or <strong>:ls</strong> - show available buffers<br/>
+<strong>%</strong> - current<br/>
+<strong>a</strong>- active<br/>
+<strong>h</strong> - hidden<br/>
+<strong>+</strong> - changed<br/>
+<strong>=</strong> - read-only<br/>
+<strong>#</strong> - most recent used, alternate<br/><br/>
+<strong>:bnext</strong> or <strong>:bn</strong> - switch to the next buffer<br/>
+<strong>:bprevious</strong> or <strong>:bp</strong> - go to previous buffer<br/>
+<strong>:bfirst</strong> or <strong>:bf</strong> - 1st buffer<br/>
+<strong>:blast</strong> or <strong>:bl</strong> - last buffer<br/>
+<strong>:bdelete</strong> or <strong>:bd</strong> - delete current or specify #<br/>
+<strong>:bwipe</strong> or <strong>:bw</strong> - purge buffer from the list<br/>
+<strong>:bufdo</strong> - do cmd in all buffers<br/>
+<strong>:b 2</strong> - switch to the 2nd buffer<br/>
+<strong>Ctrl+6</strong> - switch between buffers<br/>
+<strong>ctrl+g</strong> - get generic file, buffer info<br/>
+<strong>1ctrl+g</strong> - adding full path to filename, positional info<br/>
+<strong>2ctrl+g</strong> - addin buffer # to the info<br/>
+<strong>:f</strong> - characteristics of file that I'm editing<br/><br/>
+Changing a buffer may cause errors, in this case use:<br/>
+<strong>:hide bn</strong> - switch to the next buffer if there are the changes on current one<br/><br/>
+<strong>:wqa</strong> - writes all buffers, exists vim<br/>
+<strong>:wqa!</strong> - attempts to force write all buffers, exits vim</p>
+		</div>
+        </body>
+</html>
