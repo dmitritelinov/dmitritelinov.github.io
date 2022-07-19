@@ -2,17 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #iptables | dmitritelinov</title>
+                <title>List and delete iptables firewall rules | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#iptables</h2>
-			<a href="/til/2022/list-and-delete-iptables-firewall-rules.html">List and delete iptables firewall rules</a><br/>
-			<a href="/til/2020/allow-incoming-syn-packets-to-all-listening-ports-using-iptables-and-ansible.html">Allow incoming SYN packets to all listening ports using iptables and Ansible</a><br/>
+			<h2>List and delete iptables firewall rules</h2>
+			<p>First - list iptables rules with line numbers:
+<pre><code>iptables -L --line-numbers</code></pre>
+Next, delete the required line number from specific chain:
+<pre><code>iptables -D INPUT 3</code></pre></p>
 		</div>
         </body>
 </html>
