@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Regex plus - match the previous element 1 or more times | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Regex plus - match the previous element 1 or more times</h2>
+			<p><pre><code>0+</code></pre>
+will match strings:
+<pre><code>0
+00
+000</code></pre>
+and so on<br/><br/>
+0+ cannot be used in grep because the grep by default uses basic regular expressions that means: to use the + operator we should add a \ in front of it so it will become \+. So our command becomes this:
+<pre><code>grep -r '0\+' /etc</code></pre>
+To use 0+ - use <a href="/til/2022/using-extended-grep.html">extended grep</a>:
+<pre><code>egrep -r '0+' /etc</code></pre></p>
+		</div>
+        </body>
+</html>
