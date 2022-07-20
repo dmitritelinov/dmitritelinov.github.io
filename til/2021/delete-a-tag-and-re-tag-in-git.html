@@ -2,17 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>TIL by #git | dmitritelinov</title>
+                <title>Delete a tag and re-tag in git | dmitritelinov</title>
                 <meta name="keywords" content="" />
                 <meta name="description" content="" />
 		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 		<link rel="stylesheet" type="text/css" href="/st.css" />
         </head>
+
         <body>
 		<div class="wrap">
-			<h2>#git</h2>
-			<a href="/til/2021/delete-a-tag-and-re-tag-in-git.html">Delete a tag and re-tag in git</a><br/>
-			<a href="/til/2022/rename-git-branch.html">Rename git branch</a><br/>
+			<h2>Delete a tag and re-tag in git</h2>
+			<p><pre><code>git tag --delete 1.1.10
+git push --delete origin 1.1.10
+git tag --list
+git tag 1.1.10
+git push origin 1.1.10</code></pre></p>
 		</div>
         </body>
 </html>
