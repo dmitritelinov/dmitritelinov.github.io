@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Delete bash history for current session only | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Delete bash history for current session only</h2>
+			<p><pre><code>history -c</code></pre>
+			Clearing the history buffer will result in an empty in-memory history for your current session, meaning that no commands will show up if you press ↑, etc. Once you exit your Bash session, all new commands that were entered after the clearing will be appended to the history file and in your next session, you will see the complete history again, with only the range between start of your last session and the clear command missing.<br/><br/>
+<pre><code>history -r</code></pre>
+Replacing the current in-memory history buffer with the history file's content from the disk will have the same final result as clearing the history buffer, except that in your current session you will have access to the old command history instead of an empty list.</p>
+		</div>
+        </body>
+</html>
