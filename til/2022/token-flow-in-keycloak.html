@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Token flow in Keycloak | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Token flow in Keycloak</h2>
+			<p>First, get the token:
+<pre><code>curl -d 'client_id=dmitri' \
+-d 'client_secret=763f6e80-e7d8-4d4a-8cfb-f5edeb22dbf9' \
+-d 'username=admin' \
+-d 'password=password' \
+-d 'grant_type=client_credentials' \
+https://12.34.56.78/auth/realms/{{ realm }}/protocol/openid-connect/token</code></pre>
+Next, test the token validity:
+<pre><code>curl -X POST \
+-H "Authorization: {{ token }}" \
+"https://12.34.56.78/auth/realms/{{ realm }}/protocol/openid-connect/userinfo"</code></pre></p>
+		</div>
+        </body>
+</html>
