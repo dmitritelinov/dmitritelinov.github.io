@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>regex - this element can exist between n and m times | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>regex - this element can exist between n and m times</h2>
+			<p>Example:
+<pre><code>egrep -r '0{3,5}' /etc</code></pre>
+Output:
+<pre><code>/etc/login.defs:UID_MIN			 1000
+/etc/login.defs:UID_MAX			60000
+/etc/login.defs:SUB_UID_MIN		   100000
+/etc/login.defs:SUB_UID_MAX		600100000
+/etc/login.defs:GID_MIN			 1000
+/etc/login.defs:GID_MAX			60000
+/etc/login.defs:SUB_GID_MIN		   100000
+/etc/login.defs:SUB_GID_MAX		600100000</code></pre></p>
+		</div>
+        </body>
+</html>
