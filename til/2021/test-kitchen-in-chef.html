@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Test Kitchen in Chef | dmitritelinov</title>
+                <meta name="keywords" content="" />
+                <meta name="description" content="" />
+		<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+		<link rel="stylesheet" type="text/css" href="/st.css" />
+        </head>
+
+        <body>
+		<div class="wrap">
+			<h2>Test Kitchen in Chef</h2>
+			<p><strong>Test Kitchen</strong> is a framework that allows us to deploy our code in a isolated environment where it can be tested.<br/><br/>
+This environment could be a local system - maybe through virtualization technology like VirtualBox and Vagrant, Docker, Cloud Providers and so on.<br/><br/>
+<strong>Test Kitchen</strong> comes preinstalled with ChefDK.<br/><br/>
+The test/ directory inside your cookbook is for integration testing with <strong>Test Kitchen</strong>. Inside of this dir the .kitchen.yml file is the <strong>Test Kitchen</strong> configuration file. It contains information about how to create the virtual machine (driver), we have also verifiers (it runs Chef on this actual testing) and provisioners (executes tests against the actual testing environment - the inspec platform is used), platorm section and suits section (is how are actually going to run a particular runlist on the testing environment).</p>
+		</div>
+        </body>
+</html>
